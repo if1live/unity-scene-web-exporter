@@ -31,3 +31,6 @@ sysinfo.txt
 
 # development
 UnityProject/output
+
+# node.js for viewer
+node_modules
