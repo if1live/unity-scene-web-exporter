@@ -21,7 +21,7 @@ namespace Assets.Kanau.ThreeScene
 
         ThreeNodeTable CreateSharedNodeTable() {
             var table = new ThreeNodeTable();
-            table.Register(new SingleTypeThreeNodeTable<BufferGeometryElem>());
+            table.Register(new SingleTypeThreeNodeTable<AbstractGeometryElem>());
             table.Register(new SingleTypeThreeNodeTable<TextureElem>());
             table.Register(new SingleTypeThreeNodeTable<ImageElem>());
             table.Register(new SingleTypeThreeNodeTable<MaterialElem>());
@@ -35,7 +35,7 @@ namespace Assets.Kanau.ThreeScene
 
                 writer.WritePropertyName("geometries");
                 using (var s1 = new JsonScopeArrayWriter(writer)) {
-                    foreach (var geometry in SharedNodeTable.GetEnumerable<BufferGeometryElem>()) {
+                    foreach (var geometry in SharedNodeTable.GetEnumerable<AbstractGeometryElem>()) {
                         geometry.ExportJson(writer);
                     }
                 }

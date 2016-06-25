@@ -30,7 +30,7 @@ namespace Assets.Kanau.ThreeScene
             Add(node, InvalidInstanceId);
         }
         public void Add<T1>(T1 node, int instanceId) where T1 : class, IThreeElem {
-            var n = (T)Convert.ChangeType(node, typeof(T));
+            var n = (T)Convert.ChangeType(node, node.GetType());
 
             uuid_table[node.Uuid] = n;
             list.Add(n);
@@ -41,7 +41,8 @@ namespace Assets.Kanau.ThreeScene
         }
 
         public T1 Get<T1>(int instanceId) where T1 : class, IThreeElem {
-            var val = (T1)Convert.ChangeType(instanceid_table[instanceId], typeof(T1));
+            var obj = instanceid_table[instanceId];
+            var val = (T1)Convert.ChangeType(obj, obj.GetType());
             return val;
         }
 
@@ -69,7 +70,7 @@ namespace Assets.Kanau.ThreeScene
             Add(node, SingleTypeThreeNodeTable<T>.InvalidInstanceId);
         }
 
-        public void Add<T>(T node, int instanceId) where T :class, IThreeElem {
+        public void Add<T>(T node, int instanceId) where T : class, IThreeElem {
             var table = tables[typeof(T)];
             table.Add(node, instanceId);
         }

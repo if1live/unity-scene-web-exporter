@@ -228,8 +228,17 @@ namespace Assets.Kanau.UnityScene
         }
 
         void RegisterMesh(MeshContainer n) {
-            var geometryNode = new BufferGeometryElem(n);
-            root.SharedNodeTable.Add(geometryNode, n.InstanceId);
+            AbstractGeometryElem geo = null;
+            if (n.Mesh.name == "Cube") {
+                geo = new BoxBufferGeometryElem(n);
+            } else if (n.Mesh.name == "Sphere") {
+                geo = new SphereBufferGeometryElem(n);
+            } else if(n.Mesh.name == "Cylinder") {
+                geo = new CylinderBufferGeometryElem(n);
+            } else {
+                geo = new BufferGeometryElem(n);
+            } 
+            root.SharedNodeTable.Add(geo, n.InstanceId);
         }
 
         void RegisterScriptVariables(UnitySceneRoot unityscene, Object3DElem obj, ScriptNode script) {
@@ -283,7 +292,7 @@ namespace Assets.Kanau.UnityScene
         }
 
         MeshElem RegisterToThreeScene(RenderNode n) {
-            var geometryNode = root.SharedNodeTable.Get<BufferGeometryElem>(n.Mesh.InstanceId);
+            var geometryNode = root.SharedNodeTable.Get<AbstractGeometryElem>(n.Mesh.InstanceId);
             var materialNode = root.SharedNodeTable.Get<MaterialElem>(n.Material.InstanceId);
 
             Debug.Assert(geometryNode != null);

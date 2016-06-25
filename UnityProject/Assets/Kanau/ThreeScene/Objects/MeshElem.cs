@@ -10,7 +10,7 @@ namespace Assets.Kanau.ThreeScene.Objects
     {
         public override string Type { get { return "Mesh"; } }
 
-        public BufferGeometryElem Geometry { get; set; }
+        public AbstractGeometryElem Geometry { get; set; }
         public MaterialElem Material { get; set; }
 
         public MeshElem(RenderNode n) {
