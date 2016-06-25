@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html>
+<head>
+    <script src="./three.js"></script>
+    <script src="./stats.min.js"></script>
+</head>
+<body>
+<script>
+
+var camera, scene, renderer;
+var stats;
+
+function init() {
+    // stats
+    stats = new Stats();
+    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+    document.body.appendChild( stats.dom );
+
+    // three.js
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setClearColor( 0x333333 );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( 800, 480 );
+    document.body.appendChild( renderer.domElement );
+
+    var loader = new THREE.ObjectLoader();
+    loader.load('/output/demo.json', function(obj) {
+        console.log("on load");
+        scene = obj;
+        // TODO find camera - use tag
+        //camera = scene.getObjectByName("PerspectiveCamera", true).children[0];
+        camera = scene.getObjectByName("Main Camera");
+        // aspect는 threejs의 화면 크기로 계산하기
+        var winsize = renderer.getSize();
+        camera.aspect = winsize.width / winsize.height;
+        camera.updateProjectionMatrix();
+        
+        window.scene = scene;
+        window.camera = camera;
+    });
+};
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    render();
+}
+
+function animate() {
+    stats.begin();
+    
+    var time = Date.now() * 0.001;
+    if(scene && camera) {
+        renderer.render(scene, camera);
+    }
+
+    stats.end();
+
+    requestAnimationFrame( animate );
+}
+
+init();
+requestAnimationFrame(animate);
+
+</script>
+</body>
+</html>

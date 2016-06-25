@@ -1,0 +1,4 @@
+* LitJson : 0.9.0
+* https://github.com/AndreasBroager/unity-jpeg-encoder/
+* https://www.nuget.org/packages/Antlr4.StringTemplate/4.0.6.9004
+* MiniEXR.cs : http://wiki.unity3d.com/index.php/MiniEXR
