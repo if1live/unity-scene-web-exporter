@@ -126,7 +126,7 @@ namespace Assets.Kanau.UnityScene
 
             if (n.HasTag) { elem.Tag = n.Tag; }
             if (n.HasLayer) { elem.Layer = n.Layer; }
-            
+            elem.IsStatic = n.IsStatic;
 
             objNodeTable[n.InstanceId] = elem;
 

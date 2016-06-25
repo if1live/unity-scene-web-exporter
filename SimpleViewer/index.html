@@ -4,13 +4,38 @@
 <head>
     <script src="./node_modules/three/build/three.js"></script>
     <script src="./node_modules/three/examples/js/libs/stats.min.js"></script>
-	
 </head>
 <body>
 <script>
 
 var camera, scene, renderer;
 var stats;
+
+function findByUserData(node, key, value) {
+    if(node.userData && node.userData[key] == value) {
+        return node;
+    }
+
+    for(var i = 0 ; i < node.children.length ; i++) {
+        var child = node.children[i];
+        var found = findByUserData(child, key, value);
+        if(found != null) {
+            return found;
+        }
+    }
+
+    return undefined;
+}
+
+function setupScene(result) {
+    scene = result;
+
+    camera = findByUserData(scene, "tag", "MainCamera");
+    // aspect는 threejs의 화면 크기로 계산하기
+    var winsize = renderer.getSize();
+    camera.aspect = winsize.width / winsize.height;
+    camera.updateProjectionMatrix();
+}
 
 function init() {
     // stats
@@ -25,20 +50,11 @@ function init() {
     renderer.setSize( 800, 480 );
     document.body.appendChild( renderer.domElement );
 
+    // loade scene
     var loader = new THREE.ObjectLoader();
-    loader.load('/UnityProject/output/demo.json', function(obj) {
-        console.log("on load");
-        scene = obj;
-        // TODO find camera - use tag
-        //camera = scene.getObjectByName("PerspectiveCamera", true).children[0];
-        camera = scene.getObjectByName("Main Camera");
-        // aspect는 threejs의 화면 크기로 계산하기
-        var winsize = renderer.getSize();
-        camera.aspect = winsize.width / winsize.height;
-        camera.updateProjectionMatrix();
-        
-        window.scene = scene;
-        window.camera = camera;
+    var url = '/UnityProject/output/demo.json';
+    loader.load(url, function(obj) {
+        setupScene(obj);
     });
 };
 
@@ -51,12 +67,9 @@ function onWindowResize() {
 
 function animate() {
     stats.begin();
-    
-    var time = Date.now() * 0.001;
     if(scene && camera) {
         renderer.render(scene, camera);
     }
-
     stats.end();
 
     requestAnimationFrame( animate );

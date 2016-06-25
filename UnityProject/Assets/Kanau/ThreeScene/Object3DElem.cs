@@ -84,6 +84,8 @@ namespace Assets.Kanau.ThreeScene
                     s1.WriteKeyValue("layer", Layer);
                 }
 
+                s1.WriteKeyValue("isStatic", IsStatic);
+
                 foreach (var kv in varGroupDict) {
                     writer.WritePropertyName(kv.Key);
                     WriteScriptVariableGroup(writer, kv.Value);
@@ -169,6 +171,8 @@ namespace Assets.Kanau.ThreeScene
         public bool HasTag { get { return (Tag != null && Tag != ""); } }
         public bool HasLayer { get { return (Layer != null && Layer != ""); } }
 
+        public bool IsStatic { get; set; }
+
         public void CopyAttributes(Object3DElem other) {
             this.guid = other.guid;
             this.Visible = other.Visible;
@@ -178,6 +182,7 @@ namespace Assets.Kanau.ThreeScene
 
             this.Tag = other.Tag;
             this.Layer = other.Layer;
+            this.IsStatic = other.IsStatic;
 
             this.varGroupDict = new Dictionary<string, List<ScriptVariable>>();
             foreach(var group in other.varGroupDict) {
@@ -201,7 +206,7 @@ namespace Assets.Kanau.ThreeScene
             scope.WriteKeyValue("visible", Visible);
 
             if(HasUserData()) { 
-                writer.WritePropertyName("userdata");
+                writer.WritePropertyName("userData");
                 WriteUserdata(writer);
             }
 
