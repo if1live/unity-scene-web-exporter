@@ -120,10 +120,14 @@ namespace Assets.Kanau.UnityScene
             if(n.SuperRoot) {
                 elem = new SceneElem();
                 elem.Name = "KanauScene";
-
             } else {
                 elem = new GroupElem(n);
             }
+
+            if (n.HasTag) { elem.Tag = n.Tag; }
+            if (n.HasLayer) { elem.Layer = n.Layer; }
+            
+
             objNodeTable[n.InstanceId] = elem;
 
             foreach (var child in n.Children) {

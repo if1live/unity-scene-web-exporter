@@ -77,6 +77,13 @@ namespace Assets.Kanau.ThreeScene
 
         void WriteUserdata(JsonWriter writer) {
             using (var s1 = new JsonScopeObjectWriter(writer)) {
+                if(HasTag) { 
+                    s1.WriteKeyValue("tag", Tag);
+                }
+                if(HasLayer) { 
+                    s1.WriteKeyValue("layer", Layer);
+                }
+
                 foreach (var kv in varGroupDict) {
                     writer.WritePropertyName(kv.Key);
                     WriteScriptVariableGroup(writer, kv.Value);
@@ -157,6 +164,11 @@ namespace Assets.Kanau.ThreeScene
         }
         #endregion
 
+        public string Tag { get; set; }
+        public string Layer { get; set; }
+        public bool HasTag { get { return (Tag != null && Tag != ""); } }
+        public bool HasLayer { get { return (Layer != null && Layer != ""); } }
+
         public void CopyAttributes(Object3DElem other) {
             this.guid = other.guid;
             this.Visible = other.Visible;
@@ -164,10 +176,21 @@ namespace Assets.Kanau.ThreeScene
             this.Name = other.Name;
             this.userdata = new Dictionary<string, object>(other.Userdata);
 
+            this.Tag = other.Tag;
+            this.Layer = other.Layer;
+
             this.varGroupDict = new Dictionary<string, List<ScriptVariable>>();
             foreach(var group in other.varGroupDict) {
                 this.varGroupDict[group.Key] = new List<ScriptVariable>(group.Value);
             }
+        }
+
+        bool HasUserData() {
+            if(userdata.Count > 0) { return true; }
+            if(varGroupDict.Count > 0) { return true; }
+            if(HasLayer) { return true; }
+            if(HasTag) { return true; }
+            return false;
         }
 
         public void WriteCommonObjectNode(JsonWriter writer, JsonScopeObjectWriter scope) {
@@ -177,7 +200,7 @@ namespace Assets.Kanau.ThreeScene
             scope.WriteKeyValue("matrix", Matrix);
             scope.WriteKeyValue("visible", Visible);
 
-            if((userdata.Count + varGroupDict.Count) > 0) {
+            if(HasUserData()) { 
                 writer.WritePropertyName("userdata");
                 WriteUserdata(writer);
             }
