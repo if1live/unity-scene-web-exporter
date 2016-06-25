@@ -25,7 +25,8 @@ namespace Assets.Kanau
 
         public void Export() {
             // 유니티 씬을 제대로 읽었는지 확인
-            {
+            bool useDump = false;
+            if(useDump) {
                 var report = new Report("UnitySceneDump");
                 report.UseConsole = false;
 
@@ -60,9 +61,8 @@ namespace Assets.Kanau
                 foreach(var el in threeSceneRoot.SharedNodeTable.GetEnumerable<ImageElem>()) {
                     el.ExpoortImageFile(pathHelper);
                 }
-
-
-                report.SaveReportFile("demo.json");
+                
+                report.SaveReportFile(pathHelper.SceneFilePath);
             }
         }
     }
