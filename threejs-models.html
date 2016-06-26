@@ -10,19 +10,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--
-<link rel="stylesheet" href="/unity-scene-web-exporter/node_modules/purecss/build/pure-min.css">
+<link rel="stylesheet" href="./node_modules/purecss/build/pure-min.css">
 -->
-<link rel="stylesheet" href="/unity-scene-web-exporter/libs/pure-min.css">
-<link rel="stylesheet" href="/unity-scene-web-exporter/index.css">
+<link rel="stylesheet" href="./libs/pure-min.css">
+<link rel="stylesheet" href="./index.css">
 
 
 <!-- scripts -->
 <!--
-<script src="/unity-scene-web-exporter/node_modules/three/build/three.js"></script>
-<script src="/unity-scene-web-exporter/node_modules/three/examples/js/libs/stats.min.js"></script>
+<script src="./node_modules/three/build/three.js"></script>
+<script src="./node_modules/three/examples/js/libs/stats.min.js"></script>
 -->
-<script src="/unity-scene-web-exporter/libs/three.min.js"></script>
-<script src="/unity-scene-web-exporter/libs/stats.min.js"></script>
+<script src="./libs/three.min.js"></script>
+<script src="./libs/stats.min.js"></script>
+
+<script src="./kanau-utils.js"></script>
 </head>
 
 <body>
@@ -34,10 +36,10 @@
 
 <h3>Three.js Examples</h3>
 <ul>
-    <li><a class="anchor-no-decoration" href="/samples/simple-scene.html">Simple Scene</a></li>
-    <li><a class="anchor-no-decoration" href="/samples/models.html">Models</a></li>
-    <li><a class="anchor-no-decoration" href="/samples/materials.html">Materials</a></li>
-    <li><a class="anchor-no-decoration" href="/samples/script-variables.html">Script Variables (see console)</a></li>
+    <li><a class="anchor-no-decoration" href="./threejs-simple-scene.html">Simple Scene</a></li>
+    <li><a class="anchor-no-decoration" href="./threejs-models.html">Models</a></li>
+    <li><a class="anchor-no-decoration" href="./threejs-materials.html">Materials</a></li>
+    <li><a class="anchor-no-decoration" href="./threejs-script-variables.html">Script Variables (see consoles)</a></li>
 </ul>
 
 
@@ -54,8 +56,6 @@
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 
-
-<script src="/kanau-utils.js"></script>
 
 <!-- three.js -->
 <script>
@@ -108,7 +108,7 @@ function init() {
 
     // loade scene
     var loader = new THREE.ObjectLoader();
-    var url = './materials/scene.json';
+    var url = './samples/models/scene.json';
     loader.load(url, function(obj) {
         setupScene(obj);
     });
