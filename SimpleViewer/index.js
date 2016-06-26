@@ -13,17 +13,17 @@ function writeExamplePage(data, output) {
 }
 
 writeExamplePage({
-    scenefile: './materials/scene.json',
-}, './samples/materials.html');
+    scenefile: './samples/materials/scene.json',
+}, './threejs-materials.html');
 writeExamplePage({
-    scenefile: './models/scene.json',
-}, './samples/models.html');
+    scenefile: './samples/models/scene.json',
+}, './threejs-models.html');
 writeExamplePage({
-    scenefile: './script-variables/scene.json',
-}, './samples/script-variables.html');
+    scenefile: './samples/script-variables/scene.json',
+}, './threejs-script-variables.html');
 writeExamplePage({
-    scenefile: './simple-scene/scene.json',
-}, './samples/simple-scene.html');
+    scenefile: './samples/simple-scene/scene.json',
+}, './threejs-simple-scene.html');
 
 function writeIndexPage() {
     ejs.renderFile('./views/pages/index.ejs', {}, {}, function(err, str) {
