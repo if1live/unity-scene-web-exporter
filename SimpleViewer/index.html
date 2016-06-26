@@ -2,82 +2,66 @@
 
 <html>
 <head>
-    <script src="./node_modules/three/build/three.js"></script>
-    <script src="./node_modules/three/examples/js/libs/stats.min.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+<link rel="stylesheet" href="/node_modules/purecss/build/pure-min.css">
+-->
+<link rel="stylesheet" href="/libs/pure-min.css">
+<link rel="stylesheet" href="/index.css">
+
+
+<!-- scripts -->
+<!--
+<script src="/node_modules/three/build/three.js"></script>
+<script src="/node_modules/three/examples/js/libs/stats.min.js"></script>
+-->
+<script src="/libs/three.min.js"></script>
+<script src="/libs/stats.min.js"></script>
 </head>
 <body>
+<h1><a class="anchor-no-decoration" href="/">Unity Scene Web Exporter</a></h1>
+
+<!-- github ribbon -->
+<a href="https://github.com/5minlab/unity-scene-web-exporter"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+
+<h2>Export Three.js or A-Frame From Unity Scene.</h2>
+
+<h3>Unity3D Scene</h3>
+<img class="pure-img" src="/documents/unity-origin.png"/>
+
+<h3>Exported Three.js Scene<h3>
+<img class="pure-img" src="/documents/threejs-exported.png"/>
+
+<h3>Three.js Examples</h3>
+<ul>
+    <li><a class="anchor-no-decoration" href="/samples/simple-scene.html">Simple Scene</a></li>
+    <li><a class="anchor-no-decoration" href="/samples/models.html">Models</a></li>
+    <li><a class="anchor-no-decoration" href="/samples/materials.html">Materials</a></li>
+    <li><a class="anchor-no-decoration" href="/samples/script-variables.html">Script Variables (see console)</a></li>
+</ul>
+
+
+<h2>
+    <a class="anchor-no-decoration" href="//github.com/5minlab/unity-scene-web-exporter">
+        How To Use / Documents
+    </a>
+</h2>
+
+<footer>
+<a class="anchor-no-decoration" href="http://5minlab.com">© 2016 5minlab</a>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>
-
-var camera, scene, renderer;
-var stats;
-
-function findByUserData(node, key, value) {
-    if(node.userData && node.userData[key] == value) {
-        return node;
-    }
-
-    for(var i = 0 ; i < node.children.length ; i++) {
-        var child = node.children[i];
-        var found = findByUserData(child, key, value);
-        if(found != null) {
-            return found;
-        }
-    }
-
-    return undefined;
-}
-
-function setupScene(result) {
-    scene = result;
-
-    camera = findByUserData(scene, "tag", "MainCamera");
-    // aspect는 threejs의 화면 크기로 계산하기
-    var winsize = renderer.getSize();
-    camera.aspect = winsize.width / winsize.height;
-    camera.updateProjectionMatrix();
-}
-
-function init() {
-    // stats
-    stats = new Stats();
-    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-    document.body.appendChild( stats.dom );
-
-    // three.js
-    renderer = new THREE.WebGLRenderer( { antialias: true } );
-    renderer.setClearColor( 0x333333 );
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( 800, 480 );
-    document.body.appendChild( renderer.domElement );
-
-    // loade scene
-    var loader = new THREE.ObjectLoader();
-    var url = '/UnityProject/output/demo.json';
-    loader.load(url, function(obj) {
-        setupScene(obj);
-    });
-};
-
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    render();
-}
-
-function animate() {
-    stats.begin();
-    if(scene && camera) {
-        renderer.render(scene, camera);
-    }
-    stats.end();
-
-    requestAnimationFrame( animate );
-}
-
-init();
-requestAnimationFrame(animate);
-
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-66505862-1','auto');ga('send','pageview')
 </script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
 </body>
 </html>

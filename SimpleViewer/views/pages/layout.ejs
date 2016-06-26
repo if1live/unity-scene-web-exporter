@@ -1,0 +1,100 @@
+<!doctype html>
+
+<html>
+<head>
+<title>Unity Scene Web Exporter</title>
+
+<% include ../partials/head.ejs %>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+<% include ../partials/samples.ejs %>
+
+<div id="container"></div>
+
+<% include ../partials/footer.ejs %>
+
+<script src="/kanau-utils.js"></script>
+
+<!-- three.js -->
+<script>
+var camera, scene, renderer;
+var stats;
+
+
+function setupScene(result) {
+    scene = result;
+
+    camera = findByUserData(scene, "tag", "MainCamera");
+    // aspect는 threejs의 화면 크기로 계산하기
+    var winsize = renderer.getSize();
+    camera.aspect = winsize.width / winsize.height;
+    camera.updateProjectionMatrix();
+
+    // for script variables demo
+    var scriptobj = findByUserData(scene, "tag", "Player");
+    if(scriptobj) {
+        funcForScriptVariables(scriptobj);
+    }
+}
+
+function funcForScriptVariables(scriptobj) {
+    for(var key in scriptobj.userData) {
+        if(typeof(scriptobj.userData[key]) != "object") {
+            continue;
+        }
+        for(var k in scriptobj.userData[key]) {
+            console.log(key + ":" + JSON.stringify(scriptobj.userData[key][k]));
+        }
+    }
+}
+
+function init() {
+    var container = document.getElementById('container');
+
+    // stats
+    stats = new Stats();
+    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+    container.appendChild( stats.dom );
+
+    // three.js
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setClearColor( 0x333333 );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( 800, 480 );
+    container.appendChild( renderer.domElement );
+    
+
+    // loade scene
+    var loader = new THREE.ObjectLoader();
+    var url = '<%= scenefile %>';
+    loader.load(url, function(obj) {
+        setupScene(obj);
+    });
+};
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    render();
+}
+
+function animate() {
+    stats.begin();
+    if(scene && camera) {
+        renderer.render(scene, camera);
+    }
+    stats.end();
+
+    requestAnimationFrame( animate );
+}
+
+init();
+requestAnimationFrame(animate);
+</script>
+
+</body>
+</html>
