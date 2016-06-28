@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Kanau
-{
+namespace Assets.Kanau {
     /*
     https://github.com/mrdoob/three.js/blob/master/src/Three.js
     */
@@ -51,6 +50,15 @@ namespace Assets.Kanau
             byte g = (byte)(c.g * 255);
             byte b = (byte)(c.b * 255);
             return (uint)(r << 16) | (uint)(g << 8) | (uint)(b << 0);
+        }
+
+        public static string UnityColorToHexColor(Color c) {
+            byte r = (byte)(c.r * 255);
+            byte g = (byte)(c.g * 255);
+            byte b = (byte)(c.b * 255);
+
+            var hex = r.ToString("X2") + g.ToString("X2") + b.ToString("X2");
+            return hex;
         }
     }
 }

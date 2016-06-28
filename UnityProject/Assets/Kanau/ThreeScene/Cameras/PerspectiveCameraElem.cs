@@ -2,8 +2,7 @@
 using Assets.Kanau.Utils;
 using LitJson;
 
-namespace Assets.Kanau.ThreeScene.Cameras
-{
+namespace Assets.Kanau.ThreeScene.Cameras {
     public class PerspectiveCameraElem : CameraElem
     {
         public override string Type { get { return "PerspectiveCamera"; } }
@@ -34,6 +33,36 @@ namespace Assets.Kanau.ThreeScene.Cameras
                 scope.WriteKeyValue("filmGauge", 35);
                 scope.WriteKeyValue("filmOffset", 0);
             }
+        }
+
+        public override AFrameNode ExportAFrame() {
+            var container = new AFrameNode("a-entity");
+            WriteCommonAFrameNode(container);
+
+            var cam = new AFrameNode("a-camera");
+            cam.AddAttribute("far", new SimpleProperty<float>(Far));
+            cam.AddAttribute("near", new SimpleProperty<float>(Near));
+
+            var camsettings = CameraSettings.Instance;
+            cam.AddAttribute("look-controls-enabled", camsettings.lookControlsEnabled.ToString());
+            cam.AddAttribute("wasd-controls-enabled", camsettings.wasdControlsEnabled.ToString());
+
+            container.AddChild(cam);
+
+            var cursorsettings = CursorSettings.Instance;
+            if (cursorsettings.enabled) {
+                var cursor = CreateCursorNode(cursorsettings);
+                cam.AddChild(cursor);
+            }
+            return container;
+        }
+
+        AFrameNode CreateCursorNode(CursorSettings settings) {
+            var cursor = new AFrameNode("a-cursor");
+            cursor.AddAttribute("fuse", settings.fuse.ToString());
+            cursor.AddAttribute("max-distance", settings.maxDistance.ToString());
+            cursor.AddAttribute("timeout", settings.timeout.ToString());
+            return cursor;
         }
     }
 }

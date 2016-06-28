@@ -3,8 +3,7 @@ using Assets.Kanau.Utils;
 using LitJson;
 using System;
 
-namespace Assets.Kanau.ThreeScene.Textures
-{
+namespace Assets.Kanau.ThreeScene.Textures {
     public class ImageElem : BaseElem
     {
         public override string Type {
@@ -37,6 +36,10 @@ namespace Assets.Kanau.ThreeScene.Textures
                 string filename = pathHelper.ToFilePath(Name);
                 texcontainer.Save(filename);
             }
+        }
+
+        public override AFrameNode ExportAFrame() {
+            return null;
         }
     }
 }

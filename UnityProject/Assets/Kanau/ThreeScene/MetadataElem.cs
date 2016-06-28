@@ -1,8 +1,8 @@
 ﻿using Assets.Kanau.Utils;
 using LitJson;
+using System;
 
-namespace Assets.Kanau.ThreeScene
-{
+namespace Assets.Kanau.ThreeScene {
     public class MetadataElem : IJsonExportable
     {
         public float Version { get { return 1f; } }
@@ -15,6 +15,10 @@ namespace Assets.Kanau.ThreeScene
                 scope.WriteKeyValue("type", Type);
                 scope.WriteKeyValue("generator", Generator);
             }
+        }
+
+        public AFrameNode ExportAFrame() {
+            throw new NotImplementedException("A-Frame은 메타데이터가 따로 없다");
         }
     }
 }

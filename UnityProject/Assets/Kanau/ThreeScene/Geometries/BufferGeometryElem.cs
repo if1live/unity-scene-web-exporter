@@ -4,8 +4,7 @@ using LitJson;
 using System;
 using UnityEngine;
 
-namespace Assets.Kanau.ThreeScene.Geometries
-{
+namespace Assets.Kanau.ThreeScene.Geometries {
     public abstract class AbstractGeometryElem : BaseElem
     {
 
@@ -122,63 +121,9 @@ namespace Assets.Kanau.ThreeScene.Geometries
                 }
             }
         }
-    }
 
-    public class BoxBufferGeometryElem : AbstractGeometryElem
-    {
-        public override string Type { get { return "BoxBufferGeometry"; } }
-
-        public BoxBufferGeometryElem(MeshContainer c) {
+        public override AFrameNode ExportAFrame() {
+            return null;
         }
-
-        public override void ExportJson(JsonWriter writer) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("uuid", Uuid);
-                scope.WriteKeyValue("type", Type);
-
-                scope.WriteKeyValue("width", 1);
-                scope.WriteKeyValue("height", 1);
-                scope.WriteKeyValue("depth", 1);
-            }
-        }
-    }
-
-    public class SphereBufferGeometryElem : AbstractGeometryElem
-    {
-        public override string Type { get { return "SphereBufferGeometry"; } }
-
-        public SphereBufferGeometryElem(MeshContainer c) {
-        }
-
-        public override void ExportJson(JsonWriter writer) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("uuid", Uuid);
-                scope.WriteKeyValue("type", Type);
-
-                scope.WriteKeyValue("radius", 0.5f);
-                scope.WriteKeyValue("widthSegments", 16);
-                scope.WriteKeyValue("heightSegments", 16);
-            }
-        }
-    }
-
-    public class CylinderBufferGeometryElem : AbstractGeometryElem
-    {
-        public override string Type { get { return "CylinderBufferGeometry"; } }
-
-        public CylinderBufferGeometryElem(MeshContainer c) {
-        }
-
-        public override void ExportJson(JsonWriter writer) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("uuid", Uuid);
-                scope.WriteKeyValue("type", Type);
-
-                scope.WriteKeyValue("radiusTop", 0.5f);
-                scope.WriteKeyValue("radiusBottom", 0.5f);
-                scope.WriteKeyValue("height", 2);
-                scope.WriteKeyValue("radiusSegments", 16);
-            }
-        }
-    }
+    }    
 }

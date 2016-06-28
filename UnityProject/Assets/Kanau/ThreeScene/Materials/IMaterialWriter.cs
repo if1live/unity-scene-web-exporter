@@ -2,8 +2,7 @@
 using Assets.Kanau.Utils;
 using UnityEngine;
 
-namespace Assets.Kanau.ThreeScene.Materials
-{
+namespace Assets.Kanau.ThreeScene.Materials {
     public interface IMaterialWriter
     {
         void Write(MaterialElem mtl, JsonScopeObjectWriter scope);

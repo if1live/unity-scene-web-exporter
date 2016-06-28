@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Assets.Kanau.Utils;
 
-namespace Assets.Kanau.ThreeScene.Materials
-{
+namespace Assets.Kanau.ThreeScene.Materials {
     public class MeshLambertMaterialWriter : AbstractMaterialWriter
     {
         public override string[] GetAttributes() {

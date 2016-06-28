@@ -6,6 +6,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "aframe": "0.2.0",
     "three": "0.78.0",
     "ejs": "2.4.2",
     "purecss": "0.6.0"

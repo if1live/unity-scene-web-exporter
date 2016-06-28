@@ -4,8 +4,7 @@ using LitJson;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Kanau.ThreeScene
-{
+namespace Assets.Kanau.ThreeScene {
     public abstract class Object3DElem : BaseElem {
         public float[] Matrix {
             get {
@@ -217,6 +216,30 @@ namespace Assets.Kanau.ThreeScene
                         child.ExportJson(writer);
                     }
                 }
+            }
+        }
+
+        public void WriteCommonAFrameNode(AFrameNode node) {
+            var m = Matrix;
+            var pos = Vector3Property.MakePosition(new Vector3(m[12], m[13], m[14]));
+            node.AddAttribute("position", pos);
+
+            var scale = Vector3Property.MakeScale(new Vector3(m[0], m[5], m[10]));
+            node.AddAttribute("scale", scale);
+
+            var forward = UnityMatrix.MultiplyVector(Vector3.forward);
+            var upward = UnityMatrix.MultiplyVector(Vector3.up);
+            var q = Quaternion.LookRotation(forward, upward);
+            var rot = Vector3Property.MakeRotation(q);
+            node.AddAttribute("rotation", rot);
+
+            node.AddAttribute("name", Name);
+            if (HasTag) { node.AddAttribute("tag", Tag); }
+            if (HasLayer) { node.AddAttribute("layer", Layer); }
+
+
+            foreach (var child in Children) {
+                node.AddChild(child.ExportAFrame());
             }
         }
     }

@@ -237,8 +237,10 @@ namespace Assets.Kanau.UnityScene
                 geo = new BoxBufferGeometryElem(n);
             } else if (n.Mesh.name == "Sphere") {
                 geo = new SphereBufferGeometryElem(n);
-            } else if(n.Mesh.name == "Cylinder") {
+            } else if (n.Mesh.name == "Cylinder") {
                 geo = new CylinderBufferGeometryElem(n);
+            } else if(n.Mesh.name == "Quad") {
+                geo = new QuadBufferGeometry(n);
             } else {
                 geo = new BufferGeometryElem(n);
             } 

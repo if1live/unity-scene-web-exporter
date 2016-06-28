@@ -7,9 +7,13 @@ using LitJson;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Kanau
-{
+namespace Assets.Kanau {
     public class SceneExporter {
+        public enum SceneFormat {
+            ThreeJS,
+            AFrame
+        }
+
         ExportPathHelper pathHelper;
 
         readonly UnitySceneRoot unitySceneRoot;
@@ -23,7 +27,7 @@ namespace Assets.Kanau
             }
         }
 
-        public void Export() {
+        public void Export(SceneFormat fmt) {
             // 유니티 씬을 제대로 읽었는지 확인
             bool useDump = false;
             if(useDump) {
@@ -53,6 +57,9 @@ namespace Assets.Kanau
                 writer.IndentValue = 2;
 
                 threeSceneRoot.ExportJson(writer);
+                //var node = threeSceneRoot.ExportAFrame();
+                //node.BuildSource(sb);
+
                 var report = new Report("ThreeSceneJson");
                 report.UseConsole = false;
                 report.Info(sb.ToString());

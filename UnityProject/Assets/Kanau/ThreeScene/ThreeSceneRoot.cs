@@ -3,9 +3,10 @@ using Assets.Kanau.ThreeScene.Materials;
 using Assets.Kanau.ThreeScene.Textures;
 using Assets.Kanau.Utils;
 using LitJson;
+using System;
+using System.Text;
 
-namespace Assets.Kanau.ThreeScene
-{
+namespace Assets.Kanau.ThreeScene {
     public class ThreeSceneRoot : IJsonExportable
     {
         readonly IThreeNodeTable sharedNodeTable;
@@ -67,7 +68,11 @@ namespace Assets.Kanau.ThreeScene
                 }
             }
         }
-        
+
+        public AFrameNode ExportAFrame() {
+            return root.ExportAFrame();
+        }
+
         public ThreeSceneRoot() {
             metadata = new MetadataElem();
             sharedNodeTable = CreateSharedNodeTable();

@@ -1,5 +1,4 @@
-﻿namespace Assets.Kanau.ThreeScene.Materials
-{
+﻿namespace Assets.Kanau.ThreeScene.Materials {
     /// <summary>
     /// http://threejs.org/docs/index.html#Reference/Materials/MeshStandardMaterial
     /// </summary>

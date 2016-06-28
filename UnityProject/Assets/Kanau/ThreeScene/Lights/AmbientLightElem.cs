@@ -2,24 +2,29 @@
 using Assets.Kanau.Utils;
 using LitJson;
 
-namespace Assets.Kanau.ThreeScene.Lights
-{
+namespace Assets.Kanau.ThreeScene.Lights {
     public class AmbientLightElem : LightElem
     {
         public override string Type { get { return "AmbientLight"; } }
 
-        public AmbientLightElem(ProjectSettings settings) {
+        public AmbientLightElem(ProjectSettings settings) : base() {
             this.UnityColor = settings.AmbientColor;
             this.Name = "AmbientLight";
-            this.Intensity = 1;
         }
 
         public override void ExportJson(JsonWriter writer) {
             using (var scope = new JsonScopeObjectWriter(writer)) {
                 WriteCommonObjectNode(writer, scope);
-                scope.WriteKeyValue("color", Color);
-                scope.WriteKeyValue("intensity", Intensity);
+                WriteColor(scope);
             }
+        }
+
+        public override AFrameNode ExportAFrame() {
+            var node = new AFrameNode("a-light");
+            WriteCommonAFrameNode(node);
+            node.AddAttribute("type", "ambient");
+            WriteColor(node);
+            return node;
         }
     }
 }

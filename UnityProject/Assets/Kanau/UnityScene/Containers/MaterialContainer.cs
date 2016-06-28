@@ -2,8 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Kanau.UnityScene.Containers
-{
+namespace Assets.Kanau.UnityScene.Containers {
     public class MaterialContainer
     {
         public Material Material { get; private set; }
@@ -61,6 +60,9 @@ namespace Assets.Kanau.UnityScene.Containers
         public float UVSec { get { return GetFloat("_UVSec", 0); } }
         public float Mode { get { return GetFloat("_Mode", 0); } }
         public float Metallic { get { return GetFloat("_Metallic", 0); } }
+
+        // from unity aframe exporter
+        public bool Transparent { get { return Mode == 3 ? true : false; } }
 
         public float Roughness { get { return 1 - Glossiness; } }
 

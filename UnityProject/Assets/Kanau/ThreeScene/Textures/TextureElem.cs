@@ -4,8 +4,7 @@ using LitJson;
 using System;
 using UnityEngine;
 
-namespace Assets.Kanau.ThreeScene.Textures
-{
+namespace Assets.Kanau.ThreeScene.Textures {
     public class TextureElem : BaseElem
     {
         public TextureElem(LightmapContainer c) {
@@ -114,6 +113,10 @@ namespace Assets.Kanau.ThreeScene.Textures
                 scope.WriteKeyValue("name", ImageName);
                 scope.WriteKeyValue("anisotropy", Anisotropy);
             }
+        }
+
+        public override AFrameNode ExportAFrame() {
+            return null;
         }
     }
 }

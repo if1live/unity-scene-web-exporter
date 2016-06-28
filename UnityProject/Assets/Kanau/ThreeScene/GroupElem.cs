@@ -1,10 +1,8 @@
 ﻿using Assets.Kanau.UnityScene.SceneGraph;
 using Assets.Kanau.Utils;
 using LitJson;
-using UnityEngine;
 
-namespace Assets.Kanau.ThreeScene
-{
+namespace Assets.Kanau.ThreeScene {
     public class GroupElem : Object3DElem
     {
         public override string Type { get { return "Group"; } }
@@ -12,6 +10,11 @@ namespace Assets.Kanau.ThreeScene
             using (var scope = new JsonScopeObjectWriter(writer)) {
                 WriteCommonObjectNode(writer, scope);
             }
+        }
+        public override AFrameNode ExportAFrame() {
+            var node = new AFrameNode("a-entity");
+            WriteCommonAFrameNode(node);
+            return node;
         }
 
         public GroupElem(IGameObjectNode n) {
