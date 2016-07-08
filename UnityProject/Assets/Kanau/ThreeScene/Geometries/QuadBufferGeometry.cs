@@ -1,5 +1,4 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.UnityScene.Containers;
+﻿using Assets.Kanau.UnityScene.Containers;
 
 namespace Assets.Kanau.ThreeScene.Geometries {
     public class QuadBufferGeometry : AbstractGeometryElem {
@@ -13,12 +12,5 @@ namespace Assets.Kanau.ThreeScene.Geometries {
 
         public override string Type { get { return "PlaneBufferGeometry"; } }
         public override void Accept(IVisitor v) { v.Visit(this); }
-
-        public override AFrameNode ExportAFrame() {
-            var node = new AFrameNode("a-plane");
-            node.AddAttribute("width", Width.ToString());
-            node.AddAttribute("height", Height.ToString());
-            return node;
-        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.UnityScene.Containers;
+﻿using Assets.Kanau.UnityScene.Containers;
 
 namespace Assets.Kanau.ThreeScene.Geometries {
     public class BoxBufferGeometryElem : AbstractGeometryElem {
@@ -16,14 +15,5 @@ namespace Assets.Kanau.ThreeScene.Geometries {
             Width = 1;
             Depth = 1;
         }
-
-        public override AFrameNode ExportAFrame() {
-            var node = new AFrameNode("a-box");
-            node.AddAttribute("width", Width.ToString());
-            node.AddAttribute("height", Height.ToString());
-            node.AddAttribute("depth", Depth.ToString());
-            return node;
-        }
-
     }
 }

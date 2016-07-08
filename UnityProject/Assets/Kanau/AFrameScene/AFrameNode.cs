@@ -28,6 +28,12 @@ namespace Assets.Kanau.AFrameScene {
         public void AddAttribute(string name, string value) {
             AddAttribute(name, new SimpleProperty<string>(value));
         }
+        public void AddAttribute(string name, int value) {
+            AddAttribute(name, new SimpleProperty<int>(value));
+        }
+        public void AddAttribute(string name, float value) {
+            AddAttribute(name, new SimpleProperty<float>(value));
+        }
 
         public void BuildSource(StringBuilder sb) {
             sb.AppendLine("");

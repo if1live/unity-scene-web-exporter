@@ -1,19 +1,8 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.UnityScene.SceneGraph;
+﻿using Assets.Kanau.UnityScene.SceneGraph;
 using UnityEngine;
 
 namespace Assets.Kanau.ThreeScene.Lights {
     public abstract class LightElem : Object3DElem {
-        // a-frame default values
-        // https://aframe.io/docs/master/primitives/a-light.html
-        protected const float AFrameAngle = 60;
-        protected readonly Color AFrameColor = new UnityEngine.Color(1, 1, 1);
-        protected const float AFrameDecay = 1.0f;
-        protected const float AFrameDistance = 0.0f;
-        protected const float AFrameExponent = 10.0f;
-        protected readonly Color AFrameGroundColor = new UnityEngine.Color(1, 1, 1);
-        protected const float AFrameIntensity = 1.0f;
-
         public uint Color
         {
             get { return Three.UnityColorToThreeColorInt(UnityColor); }
@@ -24,7 +13,7 @@ namespace Assets.Kanau.ThreeScene.Lights {
         public float Decay { get; set; }
 
         public LightElem() {
-            Intensity = AFrameIntensity;
+            Intensity = 1.0f;
         }
 
         public LightElem(LightNode node) {
@@ -44,27 +33,6 @@ namespace Assets.Kanau.ThreeScene.Lights {
             this.Decay = 1;
 
             // TODO shadow : cast
-        }
-
-        
-        protected void WriteColor(AFrameNode node) {
-            if (UnityColor != AFrameColor) {
-                node.AddAttribute("color", new SimpleProperty<string>("#" + Three.UnityColorToHexColor(UnityColor)));
-            }
-        }
-        protected void WriteIntensity(AFrameNode node) {
-            WriteCommonAttribute(node, "intensity", Intensity, AFrameIntensity);
-        }
-        protected void WriteDecay(AFrameNode node) {
-            WriteCommonAttribute(node, "decay", Decay, AFrameDecay);
-        }
-        protected void WriteDistance(AFrameNode node) {
-            WriteCommonAttribute(node, "distance", Distance, AFrameDistance);
-        }
-        void WriteCommonAttribute<T>(AFrameNode node, string key, T val, T defaultval) {
-            if (!val.Equals(defaultval)) {
-                node.AddAttribute(key, new SimpleProperty<T>(val));
-            }
         }
     }
 }

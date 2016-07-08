@@ -12,8 +12,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Kanau.UnityScene
-{
+namespace Assets.Kanau.UnityScene {
     public class ThreeSceneConvertVisitor
     {
         Report report;

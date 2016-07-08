@@ -6,7 +6,7 @@ using Assets.Kanau.Utils;
 using LitJson;
 
 namespace Assets.Kanau.ThreeScene {
-    public class ThreeSceneRoot : IAFrameExportable
+    public class ThreeSceneRoot
     {
         readonly IThreeNodeTable sharedNodeTable;
         readonly MetadataElem metadata;
@@ -71,7 +71,9 @@ namespace Assets.Kanau.ThreeScene {
         }
 
         public AFrameNode ExportAFrame() {
-            return root.ExportAFrame();
+            var visitor = new AFrameExportVisitor();
+            root.Accept(visitor);
+            return visitor.Node;
         }
 
         public ThreeSceneRoot() {

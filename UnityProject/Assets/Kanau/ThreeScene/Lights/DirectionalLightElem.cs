@@ -1,5 +1,4 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.UnityScene.SceneGraph;
+﻿using Assets.Kanau.UnityScene.SceneGraph;
 
 namespace Assets.Kanau.ThreeScene.Lights {
     public class DirectionalLightElem : LightElem
@@ -10,15 +9,6 @@ namespace Assets.Kanau.ThreeScene.Lights {
         public DirectionalLightElem(LightNode node) : base(node) {
             //this.Name = node.Value.name;
             this.Name = string.Format("{0}_{1}", node.Value.name, Type);
-        }
-
-        public override AFrameNode ExportAFrame() {
-            var node = new AFrameNode("a-light");
-            WriteCommonAFrameNode(node);
-            node.AddAttribute("type", "directional");
-            WriteColor(node);
-            WriteIntensity(node);
-            return node;
         }
     }
 }

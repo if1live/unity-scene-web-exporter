@@ -1,5 +1,4 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.UnityScene.Containers;
+﻿using Assets.Kanau.UnityScene.Containers;
 using System;
 using UnityEngine;
 
@@ -101,9 +100,5 @@ namespace Assets.Kanau.ThreeScene.Textures {
         public int Anisotropy { get; set; }
 
         public ImageElem Image { get; set; }
-
-        public override AFrameNode ExportAFrame() {
-            return null;
-        }
     }
 }

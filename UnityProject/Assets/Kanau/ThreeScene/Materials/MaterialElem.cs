@@ -1,9 +1,5 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.AFrameScene.Materials;
-using Assets.Kanau.ThreeScene.Textures;
+﻿using Assets.Kanau.ThreeScene.Textures;
 using Assets.Kanau.UnityScene.Containers;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Kanau.ThreeScene.Materials {
@@ -12,33 +8,31 @@ namespace Assets.Kanau.ThreeScene.Materials {
     /// </summary>
     public class MaterialElem : BaseElem
     {
-        struct MaterialMappingTuple {
-            public string unity;
-            public string threejs;
-            public string aframe;
+        class MaterialMappingTuple {
+            public string from;
+            public string to;
 
-            public MaterialMappingTuple(string unity, string threejs, string aframe) {
-                this.unity = unity;
-                this.threejs = threejs;
-                this.aframe = aframe;
+            public MaterialMappingTuple(string from, string to) {
+                this.from = from;
+                this.to = to;
             }
         }
         // index=0 -> default
         readonly MaterialMappingTuple[] PredefinedMaterialTable = new MaterialMappingTuple[]
         {
-            new MaterialMappingTuple("Standard", "MeshStandardMaterial", "Standard"),
-            new MaterialMappingTuple("Standard (Specular setup)", "MeshStandardMaterial", "Standard"),
-            new MaterialMappingTuple("Mobile/Diffuse", "MeshPhongMaterial", "Diffuse"),
-            new MaterialMappingTuple("Mobile/VertexLit", "MeshLambertMaterial", "Diffuse"),
-            new MaterialMappingTuple("Mobile/Bumped Diffuse", "MeshPhongMaterial", "Diffuse"),
-            new MaterialMappingTuple("Mobile/Bumped Specular", "MeshPhongMaterial", "Diffuse"),
-            new MaterialMappingTuple("Unlit/Texture", "MeshBasicMaterial", "UnlitTexture"),
-            new MaterialMappingTuple("Unlit/Color", "MeshBasicMaterial", "UnlitColor"),
+            new MaterialMappingTuple("Standard", "MeshStandardMaterial"),
+            new MaterialMappingTuple("Standard (Specular setup)", "MeshStandardMaterial"),
+            new MaterialMappingTuple("Mobile/Diffuse", "MeshPhongMaterial"),
+            new MaterialMappingTuple("Mobile/VertexLit", "MeshLambertMaterial"),
+            new MaterialMappingTuple("Mobile/Bumped Diffuse", "MeshPhongMaterial"),
+            new MaterialMappingTuple("Mobile/Bumped Specular", "MeshPhongMaterial"),
+            new MaterialMappingTuple("Unlit/Texture", "MeshBasicMaterial"),
+            new MaterialMappingTuple("Unlit/Color", "MeshBasicMaterial"),
         };
 
 
         MaterialMappingTuple materialType;
-        public override string Type { get { return materialType.threejs; } }
+        public override string Type { get { return materialType.to; } }
 
         MaterialContainer container;
         public Material Material { get { return container.Material; } }
@@ -52,7 +46,7 @@ namespace Assets.Kanau.ThreeScene.Materials {
             materialType = PredefinedMaterialTable[0];
             var shadername = c.Material.shader.name;
             foreach (var mtl in PredefinedMaterialTable) {
-                if(mtl.unity == shadername) {
+                if(mtl.from == shadername) {
                     materialType = mtl;
                     break;
                 }
@@ -72,33 +66,6 @@ namespace Assets.Kanau.ThreeScene.Materials {
         public TextureElem EnvMap { get; set; }
         public TextureElem AoMap { get; set; }
         public TextureElem DisplacementMap { get; set; }
-        
-        Dictionary<string, IAFrameMaterialFactory> aframeMaterialFactory = new Dictionary<string, IAFrameMaterialFactory>()
-        {
-            { "Standard", new StandardAFrameMaterialFactory() },
-            { "UnlitColor", new UnlitColorAFrameMaterialFactory() },
-            { "UnlitTexture", new UnlitTextureAFrameMaterialFactory() },
-            { "Diffuse", new DiffuseAFrameMaterialFactory() },
-        };
-        IAFrameMaterialFactory FindAFrameMaterialFactory(string type) {
-            IAFrameMaterialFactory factory;
-            if(aframeMaterialFactory.TryGetValue(type, out factory)) {
-                return factory;
-            } else {
-                const string defaulttype = "Standard";
-                return aframeMaterialFactory[defaulttype];
-            }
-        }
-
-
-        public override AFrameNode ExportAFrame() {
-            return null;
-        }
-        public IProperty GetAFrameMaterial() {
-            var factory = FindAFrameMaterialFactory(materialType.aframe);
-            var mtl = factory.Create(this);
-            return mtl.CreateProperty();
-        }
 
         public override void Accept(IVisitor v) {
             v.Visit(this);

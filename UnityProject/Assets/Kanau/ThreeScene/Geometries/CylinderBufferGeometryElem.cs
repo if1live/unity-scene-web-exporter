@@ -1,5 +1,4 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.UnityScene.Containers;
+﻿using Assets.Kanau.UnityScene.Containers;
 
 namespace Assets.Kanau.ThreeScene.Geometries {
     public class CylinderBufferGeometryElem : AbstractGeometryElem {
@@ -12,13 +11,6 @@ namespace Assets.Kanau.ThreeScene.Geometries {
         public CylinderBufferGeometryElem(MeshContainer c) {
             this.Height = 2;
             this.Radius = 0.5f;
-        }
-
-        public override AFrameNode ExportAFrame() {
-            var node = new AFrameNode("a-cylinder");
-            node.AddAttribute("height", Height.ToString());
-            node.AddAttribute("radius", Radius.ToString());
-            return node;
         }
     }
 }

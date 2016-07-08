@@ -56,9 +56,9 @@ namespace Assets.Kanau {
                 writer.PrettyPrint = true;
                 writer.IndentValue = 2;
 
-                threeSceneRoot.ExportJson(writer);
-                //var node = threeSceneRoot.ExportAFrame();
-                //node.BuildSource(sb);
+                //threeSceneRoot.ExportJson(writer);
+                var node = threeSceneRoot.ExportAFrame();
+                node.BuildSource(sb);
 
                 var report = new Report("ThreeSceneJson");
                 report.UseConsole = false;

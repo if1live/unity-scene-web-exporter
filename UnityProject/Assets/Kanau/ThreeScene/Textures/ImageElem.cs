@@ -1,5 +1,4 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.UnityScene.Containers;
+﻿using Assets.Kanau.UnityScene.Containers;
 using Assets.Kanau.Utils;
 using System;
 
@@ -28,10 +27,6 @@ namespace Assets.Kanau.ThreeScene.Textures {
                 string filename = pathHelper.ToFilePath(Name);
                 texcontainer.Save(filename);
             }
-        }
-
-        public override AFrameNode ExportAFrame() {
-            return null;
         }
 
         public override void Accept(IVisitor v) { v.Visit(this); }

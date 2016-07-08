@@ -1,8 +1,7 @@
-﻿using Assets.Kanau.AFrameScene;
-using System;
+﻿using System;
 
 namespace Assets.Kanau.ThreeScene {
-    public abstract class BaseElem : IThreeElem, IAFrameExportable
+    public abstract class BaseElem : IThreeElem
     {
         protected Guid guid = Guid.NewGuid();
         public string Uuid { get { return guid.ToString().ToUpper(); } }
@@ -10,8 +9,6 @@ namespace Assets.Kanau.ThreeScene {
         public virtual string Name { get; set; }
 
         public abstract string Type { get; }
-
-        public abstract AFrameNode ExportAFrame();
 
         public abstract void Accept(IVisitor v);
     }

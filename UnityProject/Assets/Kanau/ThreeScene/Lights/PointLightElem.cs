@@ -1,5 +1,4 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.UnityScene.SceneGraph;
+﻿using Assets.Kanau.UnityScene.SceneGraph;
 
 namespace Assets.Kanau.ThreeScene.Lights {
     public class PointLightElem : LightElem
@@ -11,18 +10,6 @@ namespace Assets.Kanau.ThreeScene.Lights {
         public PointLightElem(LightNode node) : base(node){
             //this.Name = node.Value.name;
             this.Name = string.Format("{0}_{1}", node.Value.name, Type);            
-        }
-
-        public override AFrameNode ExportAFrame() {
-            var node = new AFrameNode("a-light");
-            WriteCommonAFrameNode(node);
-
-            node.AddAttribute("type", "point");
-            WriteColor(node);
-            WriteIntensity(node);
-            WriteDecay(node);
-
-            return node;
         }
     }
 }

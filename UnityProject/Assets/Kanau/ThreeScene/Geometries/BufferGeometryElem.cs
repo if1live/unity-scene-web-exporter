@@ -1,5 +1,4 @@
-﻿using Assets.Kanau.AFrameScene;
-using Assets.Kanau.UnityScene.Containers;
+﻿using Assets.Kanau.UnityScene.Containers;
 using Assets.Kanau.Utils;
 using UnityEngine;
 
@@ -80,10 +79,6 @@ namespace Assets.Kanau.ThreeScene.Geometries {
                 uvCount++;
                 UV4 = FlattenHelper.Flatten(GLConverter.ConvertDxTexcoordToGlTexcoord(mesh.uv4));
             }
-        }
-        
-        public override AFrameNode ExportAFrame() {
-            return null;
         }
     }    
 }
