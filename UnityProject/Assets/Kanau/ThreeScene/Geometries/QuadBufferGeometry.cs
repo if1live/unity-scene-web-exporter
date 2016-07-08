@@ -1,33 +1,23 @@
-﻿using Assets.Kanau.UnityScene.Containers;
-using Assets.Kanau.Utils;
-using LitJson;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.UnityScene.Containers;
 
 namespace Assets.Kanau.ThreeScene.Geometries {
     public class QuadBufferGeometry : AbstractGeometryElem {
-        float width;
-        float height;
+        public float Width { get; private set; }
+        public float Height { get; private set; }
 
         public QuadBufferGeometry(MeshContainer c) {
-            width = 1;
-            height = 1;
+            this.Width = 1;
+            this.Height = 1;
         }
 
         public override string Type { get { return "PlaneBufferGeometry"; } }
-
-        public override void ExportJson(JsonWriter writer) {
-            using(var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("uuid", Uuid);
-                scope.WriteKeyValue("type", Type);
-
-                scope.WriteKeyValue("width", width);
-                scope.WriteKeyValue("height", height);
-            }
-        }
+        public override void Accept(IVisitor v) { v.Visit(this); }
 
         public override AFrameNode ExportAFrame() {
             var node = new AFrameNode("a-plane");
-            node.AddAttribute("width", width.ToString());
-            node.AddAttribute("height", height.ToString());
+            node.AddAttribute("width", Width.ToString());
+            node.AddAttribute("height", Height.ToString());
             return node;
         }
     }

@@ -1,7 +1,6 @@
-﻿using Assets.Kanau.UnityScene.Containers;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.UnityScene.Containers;
 using Assets.Kanau.Utils;
-using LitJson;
-using System;
 using UnityEngine;
 
 namespace Assets.Kanau.ThreeScene.Geometries {
@@ -18,6 +17,7 @@ namespace Assets.Kanau.ThreeScene.Geometries {
     public class BufferGeometryElem : AbstractGeometryElem
     {
         public override string Type { get { return "BufferGeometry"; } }
+        public override void Accept(IVisitor v) { v.Visit(this); }
 
         public float[] Vertices { get; set; }
         public float[] Normals { get; set; }
@@ -81,47 +81,7 @@ namespace Assets.Kanau.ThreeScene.Geometries {
                 UV4 = FlattenHelper.Flatten(GLConverter.ConvertDxTexcoordToGlTexcoord(mesh.uv4));
             }
         }
-
-        void ExportAttributes<T>(string name, T[] arr, int itemSize, string arrtype, JsonWriter writer) {
-            if (arr == null) {
-                return;
-            }
-
-            writer.WritePropertyName(name);
-            using (var s = new JsonScopeObjectWriter(writer)) {
-                s.WriteKeyValue("itemSize", itemSize);
-                s.WriteKeyValue("type", arrtype);
-                if (typeof(T) == typeof(float)) {
-                    s.WriteKeyValue("array", (float[])Convert.ChangeType(arr, typeof(float[])));
-                } else if(typeof(T) == typeof(int)) {
-                    s.WriteKeyValue("array", (int[])Convert.ChangeType(arr, typeof(int[])));
-                }
-            }
-        }
-
-        public override void ExportJson(JsonWriter writer) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("uuid", Uuid);
-                scope.WriteKeyValue("type", Type);
-
-                writer.WritePropertyName("data");
-                using (var s1 = new JsonScopeObjectWriter(writer)) {
-                    ExportAttributes("index", Faces, 1, "Uint16Array", writer);
-
-                    writer.WritePropertyName("attributes");
-                    using (var s2 = new JsonScopeObjectWriter(writer)) {
-                        ExportAttributes("position", Vertices, 3, "Float32Array", writer);
-                        ExportAttributes("normal", Normals, 3, "Float32Array", writer);
-                        ExportAttributes("color", Colors, 3, "Float32Array", writer);
-                        ExportAttributes("uv", UV, 2, "Float32Array", writer);
-                        ExportAttributes("uv2", UV2, 2, "Float32Array", writer);
-                        ExportAttributes("uv3", UV3, 2, "Float32Array", writer);
-                        ExportAttributes("uv4", UV4, 2, "Float32Array", writer);
-                    }
-                }
-            }
-        }
-
+        
         public override AFrameNode ExportAFrame() {
             return null;
         }

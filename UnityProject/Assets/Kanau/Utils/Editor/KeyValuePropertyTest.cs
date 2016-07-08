@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Assets.Kanau.AFrameScene;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace Assets.Kanau.Utils.Editor {

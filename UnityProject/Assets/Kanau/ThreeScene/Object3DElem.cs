@@ -1,6 +1,5 @@
-﻿using Assets.Kanau.UnityScene.SceneGraph;
-using Assets.Kanau.Utils;
-using LitJson;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.UnityScene.SceneGraph;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -63,6 +62,7 @@ namespace Assets.Kanau.ThreeScene {
         Dictionary<string, object> userdata = new Dictionary<string, object>();
         public Dictionary<string, object> Userdata { get { return userdata; } }
 
+        public Dictionary<string, List<ScriptVariable>> VarGroupDict { get { return varGroupDict; } }
         Dictionary<string, List<ScriptVariable>> varGroupDict = new Dictionary<string, List<ScriptVariable>>();
         public void AddScriptVariable(string group, ScriptVariable val) {
             List<ScriptVariable> vars = null;
@@ -72,96 +72,6 @@ namespace Assets.Kanau.ThreeScene {
             }
 
             vars.Add(val);
-        }
-
-        void WriteUserdata(JsonWriter writer) {
-            using (var s1 = new JsonScopeObjectWriter(writer)) {
-                if(HasTag) { 
-                    s1.WriteKeyValue("tag", Tag);
-                }
-                if(HasLayer) { 
-                    s1.WriteKeyValue("layer", Layer);
-                }
-
-                s1.WriteKeyValue("isStatic", IsStatic);
-
-                foreach (var kv in varGroupDict) {
-                    writer.WritePropertyName(kv.Key);
-                    WriteScriptVariableGroup(writer, kv.Value);
-                }
-            }
-        }
-
-        void WriteScriptVariableGroup(JsonWriter writer, List<ScriptVariable> vars) {
-            using (var s2 = new JsonScopeObjectWriter(writer)) {
-                foreach (var val in vars) {
-                    writer.WritePropertyName(val.key);
-                    WriterScriptNodeVariable(writer, val);
-                }
-            }
-        }
-
-        void WriterScriptNodeVariable(JsonWriter writer, ScriptVariable val) {
-            using (var s1 = new JsonScopeObjectWriter(writer)) {
-                s1.WriteKeyValue("key", val.key);
-                s1.WriteKeyValue("type", val.ShortFieldType);
-                WriteObjectVariable(s1, val.value);
-            }
-        }
-
-        void WriteObjectVariable(JsonScopeObjectWriter s, object o) {
-            var type = o.GetType();
-            // primitive types
-            if (WriteObjectVariable_Decimal(s, o)) { return; }
-            if (WriteObjectVariable_Integer(s, o)) { return; }
-            if (WriteObjectVariable_String(s, o)) { return; }
-            if (type == typeof(bool)) {
-                s.WriteKeyValue("value", (bool)o);
-            }
-
-            s.WriteKeyValue("value", o.ToString());
-        }
-
-        bool WriteObjectVariable_Decimal(JsonScopeObjectWriter s, object o) {
-            var type = o.GetType();
-            if (type == typeof(float)) {
-                s.WriteKeyValue("value", (float)o);
-            } else if (type == typeof(double)) {
-                s.WriteKeyValue("value", (double)o);
-            } else {
-                return false;
-            }
-
-            return true;
-        }
-        bool WriteObjectVariable_Integer(JsonScopeObjectWriter s, object o) {
-            var type = o.GetType();
-            if (type == typeof(int)) {
-                s.WriteKeyValue("value", (int)o);
-            } else if (type == typeof(short)) {
-                s.WriteKeyValue("value", (short)o);
-            } else if (type == typeof(byte)) {
-                s.WriteKeyValue("value", (byte)o);
-            } else if (type == typeof(long)) {
-                s.WriteKeyValue("value", (long)o);
-            } else {
-                return false;
-            }
-
-            return true;
-        }
-
-        bool WriteObjectVariable_String(JsonScopeObjectWriter s, object o) {
-            var type = o.GetType();
-            if (type == typeof(char)) {
-                s.WriteKeyValue("value", (char)o);
-            } else if (type == typeof(string)) {
-                s.WriteKeyValue("value", (string)o);
-            } else {
-                return false;
-            }
-
-            return true;
         }
         #endregion
 
@@ -189,34 +99,12 @@ namespace Assets.Kanau.ThreeScene {
             }
         }
 
-        bool HasUserData() {
+        public bool HasUserData() {
             if(userdata.Count > 0) { return true; }
             if(varGroupDict.Count > 0) { return true; }
             if(HasLayer) { return true; }
             if(HasTag) { return true; }
             return false;
-        }
-
-        public void WriteCommonObjectNode(JsonWriter writer, JsonScopeObjectWriter scope) {
-            scope.WriteKeyValue("uuid", Uuid);
-            scope.WriteKeyValue("type", Type);
-            scope.WriteKeyValue("name", Name);
-            scope.WriteKeyValue("matrix", Matrix);
-            scope.WriteKeyValue("visible", Visible);
-
-            if(HasUserData()) { 
-                writer.WritePropertyName("userData");
-                WriteUserdata(writer);
-            }
-
-            if (ChildCount > 0) {
-                writer.WritePropertyName("children");
-                using (var s = new JsonScopeArrayWriter(writer)) {
-                    foreach (var child in Children) {
-                        child.ExportJson(writer);
-                    }
-                }
-            }
         }
 
         public void WriteCommonAFrameNode(AFrameNode node) {

@@ -1,6 +1,4 @@
-﻿using Assets.Kanau.Utils;
-
-namespace Assets.Kanau.ThreeScene.Materials {
+﻿namespace Assets.Kanau.ThreeScene.Materials {
     public class MeshBasicMaterialWriter : AbstractMaterialWriter
     {
         public override string[] GetAttributes() {

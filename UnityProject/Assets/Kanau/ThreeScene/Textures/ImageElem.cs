@@ -1,6 +1,6 @@
-﻿using Assets.Kanau.UnityScene.Containers;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.UnityScene.Containers;
 using Assets.Kanau.Utils;
-using LitJson;
 using System;
 
 namespace Assets.Kanau.ThreeScene.Textures {
@@ -23,14 +23,6 @@ namespace Assets.Kanau.ThreeScene.Textures {
             this.Name = c.ExportedFileName(".png");
         }
 
-        public override void ExportJson(JsonWriter writer) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("url", "./" + Name);
-                scope.WriteKeyValue("uuid", Uuid);
-                scope.WriteKeyValue("name", Name);
-            }
-        }
-
         public void ExpoortImageFile(ExportPathHelper pathHelper) {
             if (texcontainer != null) {
                 string filename = pathHelper.ToFilePath(Name);
@@ -41,5 +33,7 @@ namespace Assets.Kanau.ThreeScene.Textures {
         public override AFrameNode ExportAFrame() {
             return null;
         }
+
+        public override void Accept(IVisitor v) { v.Visit(this); }
     }
 }

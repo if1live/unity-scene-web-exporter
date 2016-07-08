@@ -1,9 +1,8 @@
-﻿using Assets.Kanau.Utils;
-using LitJson;
+﻿using Assets.Kanau.AFrameScene;
 using System;
 
 namespace Assets.Kanau.ThreeScene {
-    public abstract class BaseElem : IThreeElem, IJsonExportable
+    public abstract class BaseElem : IThreeElem, IAFrameExportable
     {
         protected Guid guid = Guid.NewGuid();
         public string Uuid { get { return guid.ToString().ToUpper(); } }
@@ -12,7 +11,8 @@ namespace Assets.Kanau.ThreeScene {
 
         public abstract string Type { get; }
 
-        public abstract void ExportJson(JsonWriter writer);
         public abstract AFrameNode ExportAFrame();
+
+        public abstract void Accept(IVisitor v);
     }
 }

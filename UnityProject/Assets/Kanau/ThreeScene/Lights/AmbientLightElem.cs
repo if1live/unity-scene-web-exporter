@@ -1,22 +1,15 @@
-﻿using Assets.Kanau.UnityScene;
-using Assets.Kanau.Utils;
-using LitJson;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.UnityScene;
 
 namespace Assets.Kanau.ThreeScene.Lights {
     public class AmbientLightElem : LightElem
     {
         public override string Type { get { return "AmbientLight"; } }
+        public override void Accept(IVisitor v) { v.Visit(this); }
 
         public AmbientLightElem(ProjectSettings settings) : base() {
             this.UnityColor = settings.AmbientColor;
             this.Name = "AmbientLight";
-        }
-
-        public override void ExportJson(JsonWriter writer) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                WriteCommonObjectNode(writer, scope);
-                WriteColor(scope);
-            }
         }
 
         public override AFrameNode ExportAFrame() {

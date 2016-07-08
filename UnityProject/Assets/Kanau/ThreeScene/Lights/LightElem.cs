@@ -1,5 +1,5 @@
-﻿using Assets.Kanau.UnityScene.SceneGraph;
-using Assets.Kanau.Utils;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.UnityScene.SceneGraph;
 using UnityEngine;
 
 namespace Assets.Kanau.ThreeScene.Lights {
@@ -46,20 +46,7 @@ namespace Assets.Kanau.ThreeScene.Lights {
             // TODO shadow : cast
         }
 
-
-        protected void WriteColor(JsonScopeObjectWriter scope) {
-            scope.WriteKeyValue("color", Color);
-        }
-        protected void WriteIntensity(JsonScopeObjectWriter scope) {
-            scope.WriteKeyValue("intensity", Intensity);
-        }
-        protected void WriteDistance(JsonScopeObjectWriter scope) {
-            scope.WriteKeyValue("distance", Distance);
-        }
-        protected void WriteDecay(JsonScopeObjectWriter scope) {
-            scope.WriteKeyValue("decay", Decay);
-        }
-
+        
         protected void WriteColor(AFrameNode node) {
             if (UnityColor != AFrameColor) {
                 node.AddAttribute("color", new SimpleProperty<string>("#" + Three.UnityColorToHexColor(UnityColor)));

@@ -1,6 +1,5 @@
-﻿using Assets.Kanau.UnityScene.Containers;
-using Assets.Kanau.Utils;
-using LitJson;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.UnityScene.Containers;
 using System;
 using UnityEngine;
 
@@ -53,6 +52,8 @@ namespace Assets.Kanau.ThreeScene.Textures {
             }
         }
 
+        public override void Accept(IVisitor v) { v.Visit(this); }
+
         public override string Type {
             get {
                 throw new NotImplementedException("not need");
@@ -100,20 +101,6 @@ namespace Assets.Kanau.ThreeScene.Textures {
         public int Anisotropy { get; set; }
 
         public ImageElem Image { get; set; }
-
-        public override void ExportJson(JsonWriter writer) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("uuid", Uuid);
-                scope.WriteKeyValue("offset", Offset);
-                scope.WriteKeyValue("repeat", Repeat);
-                scope.WriteKeyValue("magFilter", MagFilter);
-                scope.WriteKeyValue("minFilter", MinFilter);
-                scope.WriteKeyValue("wrap", Wrap);
-                scope.WriteKeyValue("image", ImageUuid);
-                scope.WriteKeyValue("name", ImageName);
-                scope.WriteKeyValue("anisotropy", Anisotropy);
-            }
-        }
 
         public override AFrameNode ExportAFrame() {
             return null;

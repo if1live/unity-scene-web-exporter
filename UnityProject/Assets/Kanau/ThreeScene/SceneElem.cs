@@ -1,16 +1,11 @@
-﻿using Assets.Kanau.Utils;
-using LitJson;
+﻿using Assets.Kanau.AFrameScene;
+using System;
 
 namespace Assets.Kanau.ThreeScene {
     public class SceneElem : Object3DElem
     {
         public override string Type { get { return "Scene"; } }
-
-        public override void ExportJson(JsonWriter writer) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                WriteCommonObjectNode(writer, scope);
-            }
-        }
+        public override void Accept(IVisitor v) { v.Visit(this); }
 
         public override AFrameNode ExportAFrame() {
             var node = new AFrameNode("a-scene");

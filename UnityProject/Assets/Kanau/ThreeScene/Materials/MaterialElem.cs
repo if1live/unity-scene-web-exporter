@@ -1,7 +1,8 @@
-﻿using Assets.Kanau.ThreeScene.Textures;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.AFrameScene.Materials;
+using Assets.Kanau.ThreeScene.Textures;
 using Assets.Kanau.UnityScene.Containers;
-using Assets.Kanau.Utils;
-using LitJson;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -72,35 +73,6 @@ namespace Assets.Kanau.ThreeScene.Materials {
         public TextureElem AoMap { get; set; }
         public TextureElem DisplacementMap { get; set; }
         
-
-        public override void ExportJson(JsonWriter writer) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("uuid", Uuid);
-                scope.WriteKeyValue("name", Name);
-                scope.WriteKeyValue("type", Type);
-
-                var w = FindThreeJSWriter(Type);
-                w.Write(this, scope);
-            }
-        }
-
-        IMaterialWriter[] threejsWriters = new IMaterialWriter[]
-        {
-            new MeshBasicMaterialWriter(),
-            new MeshLambertMaterialWriter(),
-            new MeshPhongMaterialWriter(),
-            new MeshStandardMaterialWriter(),
-        };
-        IMaterialWriter FindThreeJSWriter(string type) {
-            foreach(var writer in threejsWriters) {
-                if(writer.GetType().ToString().Contains(type)) { 
-                    return writer;
-                }
-            }
-            Debug.Assert(false, "cannot find writer for " + type);
-            return null;
-        }
-
         Dictionary<string, IAFrameMaterialFactory> aframeMaterialFactory = new Dictionary<string, IAFrameMaterialFactory>()
         {
             { "Standard", new StandardAFrameMaterialFactory() },
@@ -126,6 +98,10 @@ namespace Assets.Kanau.ThreeScene.Materials {
             var factory = FindAFrameMaterialFactory(materialType.aframe);
             var mtl = factory.Create(this);
             return mtl.CreateProperty();
+        }
+
+        public override void Accept(IVisitor v) {
+            v.Visit(this);
         }
     }
 }

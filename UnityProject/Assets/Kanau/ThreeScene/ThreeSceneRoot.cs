@@ -1,13 +1,12 @@
-﻿using Assets.Kanau.ThreeScene.Geometries;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.ThreeScene.Geometries;
 using Assets.Kanau.ThreeScene.Materials;
 using Assets.Kanau.ThreeScene.Textures;
 using Assets.Kanau.Utils;
 using LitJson;
-using System;
-using System.Text;
 
 namespace Assets.Kanau.ThreeScene {
-    public class ThreeSceneRoot : IJsonExportable
+    public class ThreeSceneRoot : IAFrameExportable
     {
         readonly IThreeNodeTable sharedNodeTable;
         readonly MetadataElem metadata;
@@ -30,40 +29,42 @@ namespace Assets.Kanau.ThreeScene {
         }
 
         public void ExportJson(JsonWriter writer) {
+            var visitor = new ThreeSceneExportVisitor(writer);
+
             using (var s = new JsonScopeObjectWriter(writer)) {
                 writer.WritePropertyName("metadata");
-                metadata.ExportJson(writer);
+                metadata.Accept(visitor);
 
                 writer.WritePropertyName("geometries");
                 using (var s1 = new JsonScopeArrayWriter(writer)) {
                     foreach (var geometry in SharedNodeTable.GetEnumerable<AbstractGeometryElem>()) {
-                        geometry.ExportJson(writer);
+                        geometry.Accept(visitor);
                     }
                 }
 
                 writer.WritePropertyName("materials");
                 using (var s1 = new JsonScopeArrayWriter(writer)) {
                     foreach (var material in SharedNodeTable.GetEnumerable<MaterialElem>()) {
-                        material.ExportJson(writer);
+                        material.Accept(visitor);
                     }
                 }
 
                 if (root != null) {
                     writer.WritePropertyName("object");
-                    root.ExportJson(writer); 
+                    root.Accept(visitor); 
                 }
 
                 writer.WritePropertyName("images");
                 using (var s1 = new JsonScopeArrayWriter(writer)) {
                     foreach (var image in SharedNodeTable.GetEnumerable<ImageElem>()) {
-                        image.ExportJson(writer);
+                        image.Accept(visitor);
                     }
                 }
 
                 writer.WritePropertyName("textures");
                 using (var s1 = new JsonScopeArrayWriter(writer)) {
                     foreach (var tex in SharedNodeTable.GetEnumerable<TextureElem>()) {
-                        tex.ExportJson(writer);
+                        tex.Accept(visitor);
                     }
                 }
             }
