@@ -1,4 +1,5 @@
 ﻿using Assets.Kanau.ThreeScene;
+using Assets.Kanau.ThreeScene.Geometries;
 using Assets.Kanau.ThreeScene.Textures;
 using Assets.Kanau.UnityScene;
 using Assets.Kanau.UnityScene.SceneGraph;
@@ -52,8 +53,17 @@ namespace Assets.Kanau {
 
         void WriteModelFiles(ThreeSceneRoot root, SceneFormat fmt) {
             // three.js는 단일 파일로 출력하는게 목적이라서 model 파일을 생성하지 않는다
+            var pathHelper = ExportPathHelper.Instance;
+
             if (fmt == SceneFormat.AFrame) {
-                // TODO 모델 export
+                foreach(var el in root.SharedNodeTable.GetEnumerable<AbstractGeometryElem>()) {
+                    // TODO 타입에 따라서 obj 굽는게 바뀔텐데
+                    var bufferGeom = el as BufferGeometryElem;
+                    if(bufferGeom == null) { continue; }
+
+                    string filepath = pathHelper.ToModelPath(bufferGeom.Mesh.name + ".obj");
+                    ObjExporter.MeshToFile(bufferGeom.Mesh, filepath, true);
+                }                
             }
         }
 

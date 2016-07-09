@@ -195,19 +195,22 @@ namespace Assets.Kanau.AFrameScene {
                 mtl = new SimpleProperty<string>("side: double");
             }
 
+            // TODO 타입 하드코딩해서 분기하는거 제거하기
+
             if (el.Geometry.Type != "BufferGeometry") {
                 var v = new AFrameExportVisitor();
                 el.Geometry.Accept(v);
                 geometryNode = v.Node;
-            }
 
-            if (geometryNode != null) {
                 geometryNode.AddAttribute("material", mtl);
                 node.AddChild(geometryNode);
+
             } else {
-                node.AddAttribute("geometry", "primitive: circle; radius: 1");
+                var geom = el.Geometry as BufferGeometryElem;
+                node.AddAttribute("obj-model", "obj: #" + geom.Mesh.name + "-obj");
                 node.AddAttribute("material", mtl);
             }
+
             return node;
         }
     }

@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Assets.Kanau.ThreeScene.Geometries {
     public abstract class AbstractGeometryElem : BaseElem
     {
-
     }
 
 
@@ -28,8 +27,12 @@ namespace Assets.Kanau.ThreeScene.Geometries {
         public float[] UV3 { get; set; }
         public float[] UV4 { get; set; }
 
+        public Mesh Mesh;
+
         public BufferGeometryElem(MeshContainer c) {
+            this.Mesh = c.Mesh;
             Mesh mesh = c.Mesh;
+
 
             // vertices
             if (mesh.vertices.Length > 0) {
