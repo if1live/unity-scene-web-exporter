@@ -1,21 +1,20 @@
 ﻿using NUnit.Framework;
 
-namespace Assets.Kanau.Utils
-{
+namespace Assets.Kanau.Utils {
     public class ExportPathHelperTest
     {
-        ExportPathHelper helper;
-
         [SetUp]
         public void Init()
         {
             string targetFilePath = @"c:\hello\world\sample.json";
-            helper = new ExportPathHelper(targetFilePath);
+            ExportPathHelper.Instance.UpdateTargetFilePath(targetFilePath);
         }
 
         [Test]
         public void PropertiesTest()
         {
+            var helper = ExportPathHelper.Instance;
+
             Assert.AreEqual(@"c:\hello\world", helper.RootPath);
             Assert.AreEqual(@"json", helper.Extension);
             Assert.AreEqual(@"sample", helper.Prefix);

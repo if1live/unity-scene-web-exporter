@@ -44,13 +44,13 @@ namespace Assets.Kanau.AFrameScene {
             cam.AddAttribute("far", new SimpleProperty<float>(el.Far));
             cam.AddAttribute("near", new SimpleProperty<float>(el.Near));
 
-            var camsettings = CameraSettings.Instance;
+            var camsettings = ExportSettings.Instance.camera;
             cam.AddAttribute("look-controls-enabled", camsettings.lookControlsEnabled.ToString());
             cam.AddAttribute("wasd-controls-enabled", camsettings.wasdControlsEnabled.ToString());
 
             container.AddChild(cam);
 
-            var cursorsettings = CursorSettings.Instance;
+            var cursorsettings = ExportSettings.Instance.cursor;
             if (cursorsettings.enabled) {
                 var cursor = Create(cursorsettings);
                 cam.AddChild(cursor);

@@ -97,6 +97,16 @@ namespace Assets.Kanau.ThreeScene.Textures {
                 return Image.Name;
             }
         }
+        public string ImagePath
+        {
+            get
+            {
+                var name = ImageName;
+                if(name == "") { return name; }
+                return string.Format("./{0}/{1}", ExportSettings.Instance.destination.imageDirectory, name);
+            }
+        }
+
         public int Anisotropy { get; set; }
 
         public ImageElem Image { get; set; }

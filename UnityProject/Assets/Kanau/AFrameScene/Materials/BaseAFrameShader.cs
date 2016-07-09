@@ -12,8 +12,7 @@ namespace Assets.Kanau.AFrameScene.Materials {
             p.Add(key, repeat);
         }
         protected void AddTextureSrc(KeyValueProperty p, string key, string src) {
-            const string path = "./";
-            var attr = string.Format("url({0}{1})", path, src);
+            var attr = string.Format("url({0})", src);
             p.Add(key, attr);
         }
     }

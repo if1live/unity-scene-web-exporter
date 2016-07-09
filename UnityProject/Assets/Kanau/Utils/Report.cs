@@ -49,10 +49,6 @@ namespace Assets.Kanau.Utils {
             Instance = Get("Kanau");
         }
 
-        public static string rootPath = "";
-
-
-
         readonly static Dictionary<string, Report> reports = new Dictionary<string, Report>();
         public static Report Get(string tag) {
             Report report;
@@ -105,7 +101,8 @@ namespace Assets.Kanau.Utils {
         }
 
         public void SaveReport(string filename) {
-            var path = Path.Combine(Report.rootPath, filename);
+            var rootpath = ExportSettings.Instance.destination.rootPath;
+            var path = Path.Combine(rootpath, filename);
             foreach (var logger in loggers) {
                 logger.SaveReportFile(path);
             }

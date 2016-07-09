@@ -11,4 +11,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7751e2f4cca784d8b358af50191965, type: 3}
   m_Name: Exporter
   m_EditorClassIdentifier: 
-  title: Hello world!
+  settings:
+    aframe:
+      title: Hello world!
+      libraryAddress: https://aframe.io/releases/0.2.0/aframe.min.js
+      enablePerformanceStatistics: 0
+      exporterPath: Assets/Kanau
+      templateHeadFilename: template_head.txt
+      templateAppendFilename: template_append.txt
+      templateEndFilename: template_end.txt
+    sky:
+      enableSky: 0
+      skyColorFromMainCameraBackground: 1
+      skyColor: {r: 1, g: 1, b: 1, a: 1}
+      skyTexture: {fileID: 0}
+    camera:
+      wasdControlsEnabled: 1
+      lookControlsEnabled: 1
+    cursor:
+      enabled: 1
+      fuse: 0
+      maxDistance: 1000
+      timeout: 1500
+    log:
+      level: 1
+      useConsole: 0

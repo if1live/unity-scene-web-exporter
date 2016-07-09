@@ -7,7 +7,7 @@ namespace Assets.Kanau.AFrameScene.Materials {
 
             var src = "";
             if (elem.Map != null) {
-                src = elem.Map.ImageName;
+                src = elem.Map.ImagePath;
             }
 
             var shader = new FlatAFrameShader()

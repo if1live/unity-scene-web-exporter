@@ -281,7 +281,7 @@ namespace Assets.Kanau.ThreeScene {
                 scope.WriteKeyValue("minFilter", el.MinFilter);
                 scope.WriteKeyValue("wrap", el.Wrap);
                 scope.WriteKeyValue("image", el.ImageUuid);
-                scope.WriteKeyValue("name", el.ImageName);
+                scope.WriteKeyValue("name", el.ImagePath);
                 scope.WriteKeyValue("anisotropy", el.Anisotropy);
             }
         }

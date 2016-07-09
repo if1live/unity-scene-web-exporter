@@ -24,7 +24,7 @@ namespace Assets.Kanau.ThreeScene.Textures {
 
         public void ExpoortImageFile(ExportPathHelper pathHelper) {
             if (texcontainer != null) {
-                string filename = pathHelper.ToFilePath(Name);
+                string filename = pathHelper.ToImagePath(Name);
                 texcontainer.Save(filename);
             }
         }

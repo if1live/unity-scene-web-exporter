@@ -7,4 +7,4 @@
     <script src="&LIBRARY&"></script>
   </head>
   <body>
-    <a-scene>
+    
