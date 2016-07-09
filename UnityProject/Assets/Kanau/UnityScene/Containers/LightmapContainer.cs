@@ -1,11 +1,12 @@
 ﻿using Assets.Kanau.Utils;
 using System;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-namespace Assets.Kanau.UnityScene.Containers
-{
+namespace Assets.Kanau.UnityScene.Containers {
     public class LightmapContainer
     {
         const float JpegQuality = 75.0f;
@@ -21,12 +22,16 @@ namespace Assets.Kanau.UnityScene.Containers
 
         public string ExrAssetPath {
             get {
+#if UNITY_EDITOR
                 // http://answers.unity3d.com/questions/1114251/lightmappingcompleted-callback-occurs-before-light.html
                 string curScene = UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene().path;
                 string[] parts = curScene.Split('/', '\\');
                 string sceneName = parts[parts.Length - 1].Split('.')[0];
                 string lightmapPath = Path.GetDirectoryName(curScene) + "/" + sceneName + "/";
                 return lightmapPath + ExrAssetFileName;
+#else
+                return "";
+#endif
             }
         }
 
@@ -42,11 +47,13 @@ namespace Assets.Kanau.UnityScene.Containers
         }
 
         public void EnableReadable() {
+#if UNITY_EDITOR
             TextureImporter texImporter = (TextureImporter)AssetImporter.GetAtPath(ExrAssetPath);
             if (!texImporter.isReadable) {
                 texImporter.isReadable = true;
                 texImporter.SaveAndReimport();
             }
+#endif
         }
 
         public Texture2D LightmapFar {
@@ -64,6 +71,7 @@ namespace Assets.Kanau.UnityScene.Containers
         }
 
         public void Save(string path, float jpegQuality, float lightmapMult, float lightmapPower) {
+#if UNITY_EDITOR
             // http://answers.unity3d.com/questions/1114251/lightmappingcompleted-callback-occurs-before-light.html
             string curScene = UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene().path;
             string[] parts = curScene.Split('/', '\\');
@@ -114,6 +122,7 @@ namespace Assets.Kanau.UnityScene.Containers
             File.WriteAllBytes(path + FileName, bytes);
 
             Texture2D.DestroyImmediate(tf);
+#endif
         }
     }
 }

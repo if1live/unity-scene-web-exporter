@@ -1,10 +1,11 @@
 ﻿using Assets.Kanau.Utils;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-namespace Assets.Kanau.UnityScene.Containers
-{
+namespace Assets.Kanau.UnityScene.Containers {
     public class TextureContainer
     {
         public Texture Tex { get; private set; }
@@ -19,13 +20,26 @@ namespace Assets.Kanau.UnityScene.Containers
         public int AnisoLevel { get { return Tex.anisoLevel; } }
         public string Name { get { return Tex.name; } }
 
-        public string FilePath { get { return AssetDatabase.GetAssetPath(Tex); } }
+        public string FilePath
+        {
+            get
+            {
+#if UNITY_EDITOR
+                return AssetDatabase.GetAssetPath(Tex);
+#else
+                return "";
+#endif
+            }
+        }
+
         public string FileName { get { return Path.GetFileName(FilePath); } }
 
+#if UNITY_EDITOR
         public TextureImporter Asset {
             get { return (TextureImporter)AssetImporter.GetAtPath(FilePath); }
         }
         public TextureImporterFormat Format { get { return Asset.textureFormat; } }
+#endif
         private Texture2D Tex2d { get { return Tex as Texture2D; } }
         public bool IsImage { get { return Tex is Texture2D; } }
 
@@ -36,17 +50,17 @@ namespace Assets.Kanau.UnityScene.Containers
         }
 
         public void Save(string path) {
+#if UNITY_EDITOR
             if (IsImage) {
-                var report = Report.Instance();
                 if (!Asset.isReadable) {
-                    //report.Log("Texture not exported. '" + Name + "' not marked as readable. so use copy mode.");
                     File.Delete(path);
                     File.Copy(FilePath, path);
                 } else {
                     File.WriteAllBytes(path + FileName, Bytes);
-                    report.Log("Exporting texture " + Name + " to " + path + FileName);
+                    Report.Instance.Log("Exporting texture '{0}' to {2}", Name, path + FileName);
                 }
             }
+#endif
         }
     }
 }

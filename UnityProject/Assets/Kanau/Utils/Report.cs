@@ -1,124 +1,114 @@
 ﻿// Ŭnicode please
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
-namespace Assets.Kanau.Utils
-{
-    public enum ReportLevel
-    {
-        Error, Warning, All
+namespace Assets.Kanau.Utils {
+    public enum ReportLevel {
+        Error, All
     }
 
-    public class Report
-    {
-        private static ILogger logger = Debug.logger;
+    public interface ICustomLogger {
+        void LogErrorFormat(string format, params object[] args);
+        void LogFormat(string format, params object[] args);
+
+        void SaveReportFile(string path);
+    }
+
+    public class ConsoleLogger : ICustomLogger {
+        public void LogErrorFormat(string format, params object[] args) {
+            Debug.LogErrorFormat(format, args);
+        }
+        public void LogFormat(string format, params object[] args) {
+            Debug.LogFormat(format, args);
+        }
+        public void SaveReportFile(string path) { return; }
+    }
+
+    public class TextLogger : ICustomLogger {
+        StringBuilder sb = new StringBuilder();
+
+        public void LogErrorFormat(string format, params object[] args) {
+            var msg = "ERROR: " + string.Format(format, args);
+            sb.AppendLine(msg);
+        }
+        public void LogFormat(string format, params object[] args) {
+            var msg = "LOG:   " + string.Format(format, args);
+            sb.AppendLine(msg);
+        }
+
+        public void SaveReportFile(string path) {
+            FileHelper.SaveContentsAsFile(sb.ToString(), path);
+        }
+    }
+
+    public class Report {
+        public static readonly Report Instance;
+        static Report() {
+            Instance = Get("Kanau");
+        }
+
         public static string rootPath = "";
 
-        private static Dictionary<string, Report> reports = new Dictionary<string, Report>();
 
-        public static Report Instance()
-        {
-            return Get("Kanau");
-        }
 
-        public static Report Get(string tag)
-        {
-            if (!reports.ContainsKey(tag))
-            {
+        readonly static Dictionary<string, Report> reports = new Dictionary<string, Report>();
+        public static Report Get(string tag) {
+            Report report;
+            if (reports.TryGetValue(tag, out report)) {
+                return report;
+            } else {
                 reports[tag] = new Report(tag);
+                return reports[tag];
             }
-            return reports[tag];
         }
 
-        #region Members
-        private string buffer;
+        public ReportLevel Level { get; set; }
+        public string Tag { get; private set; }
 
-        private bool useConsole;
+        ICustomLogger[] loggers;
         public bool UseConsole
         {
-            get { return useConsole; }
-            set { useConsole = value; }
+            set
+            {
+                if(value == true) {
+                    loggers = new ICustomLogger[] { new ConsoleLogger(), };
+                } else {
+                    loggers = new ICustomLogger[] { new ConsoleLogger(), new TextLogger() };
+                }
+            }
         }
 
-        private ReportLevel level;
-        public ReportLevel Level
-        {
-            get { return level; }
-            set { level = value; }
-        }
-
-        private string tag;
-        public string Tag { get { return tag; } }
-
-        public Report(string tag)
-        {
-            UseConsole = true;
+        public Report(string tag) {
             Level = ReportLevel.All;
-            buffer = "";
-            this.tag = tag;
+            this.Tag = tag;
+            this.UseConsole = false;
         }
 
-        public void Warning(object message)
-        {
-            if (Level < ReportLevel.Warning)
-            {
+        public void Error(string message, params object[] args) {
+            if (Level < ReportLevel.Error) {
                 return;
             }
-            if(UseConsole)
-            {
-                logger.LogWarning(tag, message);
+            foreach(var logger in loggers) {
+                logger.LogErrorFormat(message, args);
             }
-            buffer += string.Format("Warning: {0}\n", message);
         }
 
-        public void Error(object message)
-        {
-            if (Level < ReportLevel.Error)
-            {
+        public void Log(string message, params object[] args) {
+            if (Level < ReportLevel.All) {
                 return;
             }
-            if (UseConsole)
-            {
-                logger.LogError(tag, message);
+            foreach(var logger in loggers) {
+                logger.LogFormat(message, args);
             }
-            buffer += string.Format("Error: {0}\n", message);
         }
 
-        public void Log(object message)
-        {
-            if (Level < ReportLevel.All)
-            {
-                return;
+        public void SaveReport(string filename) {
+            var path = Path.Combine(Report.rootPath, filename);
+            foreach (var logger in loggers) {
+                logger.SaveReportFile(path);
             }
-            if(UseConsole)
-            {
-                logger.Log(tag, message);
-            }
-            buffer += string.Format("Log: {0}\n", message);
         }
-
-        public void Info(object message)
-        {
-            if (Level < ReportLevel.All)
-            {
-                return;
-            }
-            if (UseConsole)
-            {
-                logger.Log(tag, message);
-            }
-            buffer += string.Format("{0}\n", message);
-        }
-
-        public void SaveReport(string path)
-        {
-            FileHelper.SaveContentsAsFile(buffer, path);
-        }
-        public void SaveReportFile(string filename)
-        {
-            FileHelper.SaveContentsAsFile(buffer, Path.Combine(Report.rootPath, filename));
-        }
-        #endregion
     }
 }

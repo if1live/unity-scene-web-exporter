@@ -1,8 +1,10 @@
 ﻿using Assets.Kanau.Utils;
 using System;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Assets.Kanau {
     [Serializable]
@@ -34,6 +36,7 @@ namespace Assets.Kanau {
         public static SkySettings Instance;
     }
 
+#if UNITY_EDITOR
     public class ExporterMenu : ScriptableObject {
         // Header에 필요한 정보가 생기면 추가하기
         //[Header("General")]
@@ -49,17 +52,17 @@ namespace Assets.Kanau {
 
         public void ExportThree() {
             var extension = "json";
-            var format = SceneExporter.SceneFormat.ThreeJS;
+            var format = SceneFormat.ThreeJS;
             ExportCommon(extension, format);
         }
 
         public void ExportAFrame() {
             var extension = "html";
-            var format = SceneExporter.SceneFormat.AFrame;
+            var format = SceneFormat.AFrame;
             ExportCommon(extension, format);
         }
 
-        void ExportCommon(string extension, SceneExporter.SceneFormat fmt) {
+        void ExportCommon(string extension, SceneFormat fmt) {
             // 현재 설정값을 전역변수로 연결
             // 그래야 밖에서 조회하기 쉽다
             CameraSettings.Instance = camera;
@@ -76,39 +79,19 @@ namespace Assets.Kanau {
             FileHelper.lastExportPath = pathHelper.RootPath;
             Report.rootPath = pathHelper.RootPath;
 
-            var report = Report.Instance();
+            var report = Report.Instance;
             report.Level = ReportLevel.All;
             report.UseConsole = true;
 
-            Debug.Log(string.Format("Platform: {0}", SystemInfo.operatingSystem));
-            Debug.Log(string.Format("Unity player: {0}", Application.unityVersion));
+            Debug.LogFormat("Platform: {0}", SystemInfo.operatingSystem);
+            Debug.LogFormat("Unity player: {0}", Application.unityVersion);
 
-            var gameObjects = GetExportGameObjects();
+            var gameObjects = GameObjectHelper.GetExportGameObjects();
             var exporter = new SceneExporter(gameObjects, targetFilePath);
             exporter.Export(fmt);
-        }
-        
 
-        GameObject[] GetExportGameObjects() {
-            GameObject[] gameObjects = null;
-            if (Selection.gameObjects.Length > 0) {
-                gameObjects = Selection.gameObjects;
-            } else {
-                gameObjects = GetRootGameObjects().ToArray();
-            }
-
-            Array.Sort(gameObjects, new GameObjectIndexComparer());
-            return gameObjects;
-        }
-
-        List<GameObject> GetRootGameObjects() {
-            List<GameObject> rootObjects = new List<GameObject>();
-            foreach (Transform xform in UnityEngine.Object.FindObjectsOfType<Transform>()) {
-                if (xform.parent == null) {
-                    rootObjects.Add(xform.gameObject);
-                }
-            }
-            return rootObjects;
-        }
+            Debug.LogFormat("Export to {0} finish.", fmt);
+        }  
     }
+#endif
 }

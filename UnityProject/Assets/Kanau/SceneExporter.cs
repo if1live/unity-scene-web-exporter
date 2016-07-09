@@ -9,11 +9,6 @@ using UnityEngine;
 
 namespace Assets.Kanau {
     public class SceneExporter {
-        public enum SceneFormat {
-            ThreeJS,
-            AFrame
-        }
-
         ExportPathHelper pathHelper;
 
         readonly UnitySceneRoot unitySceneRoot;
@@ -31,13 +26,13 @@ namespace Assets.Kanau {
             // 유니티 씬을 제대로 읽었는지 확인
             bool useDump = false;
             if(useDump) {
-                var report = new Report("UnitySceneDump");
+                var report = new Report("unity-scene-dump");
                 report.UseConsole = false;
 
                 var dumpVisitor = new DumpVisitor(report);
                 dumpVisitor.Run(unitySceneRoot);
 
-                report.SaveReportFile("unity-scene.log");
+                report.SaveReport("unity-scene.log");
             }
 
             // 유니티씬을 threejs 씬으로 변환
@@ -62,14 +57,15 @@ namespace Assets.Kanau {
 
                 var report = new Report("ThreeSceneJson");
                 report.UseConsole = false;
-                report.Info(sb.ToString());
+                report.Log(sb.ToString());
+
 
                 // 일반 텍스쳐 export
                 foreach(var el in threeSceneRoot.SharedNodeTable.GetEnumerable<ImageElem>()) {
                     el.ExpoortImageFile(pathHelper);
                 }
                 
-                report.SaveReportFile(pathHelper.SceneFilePath);
+                report.SaveReport(pathHelper.SceneFilePath);
             }
         }
     }
