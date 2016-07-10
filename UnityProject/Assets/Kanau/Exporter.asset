@@ -20,11 +20,13 @@ MonoBehaviour:
       templateHeadFilename: template_head.txt
       templateAppendFilename: template_append.txt
       templateEndFilename: template_end.txt
+      indentStyle: 0
+      indentSize: 2
     sky:
-      enableSky: 0
-      skyColorFromMainCameraBackground: 1
-      skyColor: {r: 1, g: 1, b: 1, a: 1}
+      mode: 1
+      skyColor: {r: 0.41911763, g: 0.07704368, b: 0.07704368, a: 1}
       skyTexture: {fileID: 0}
+      radius: 5000
     camera:
       wasdControlsEnabled: 1
       lookControlsEnabled: 1

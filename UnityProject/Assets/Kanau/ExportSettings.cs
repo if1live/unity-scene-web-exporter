@@ -91,9 +91,17 @@ namespace Assets.Kanau {
 
     [Serializable]
     public class SkySettings {
-        public bool enableSky = false;
-        public bool skyColorFromMainCameraBackground = true;
+        public enum SkyMode {
+            None,
+            MainCameraBackground,
+            Color,
+            Texture,
+        }
+
+        public SkyMode mode = SkyMode.MainCameraBackground;
+
         public Color skyColor = Color.white;
         public Texture skyTexture;
+        public float radius = 5000;
     }
 }

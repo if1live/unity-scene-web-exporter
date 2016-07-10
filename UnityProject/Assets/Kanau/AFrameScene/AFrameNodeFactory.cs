@@ -51,8 +51,8 @@ namespace Assets.Kanau.AFrameScene {
             cam.AddAttribute("near", new SimpleProperty<float>(el.Near));
 
             var camsettings = ExportSettings.Instance.camera;
-            cam.AddAttribute("look-controls-enabled", camsettings.lookControlsEnabled.ToString());
-            cam.AddAttribute("wasd-controls-enabled", camsettings.wasdControlsEnabled.ToString());
+            cam.AddAttribute("look-controls-enabled", camsettings.lookControlsEnabled.ToString().ToLower());
+            cam.AddAttribute("wasd-controls-enabled", camsettings.wasdControlsEnabled.ToString().ToLower());
 
             container.AddChild(cam);
 
@@ -70,6 +70,23 @@ namespace Assets.Kanau.AFrameScene {
             cursor.AddAttribute("max-distance", settings.maxDistance.ToString());
             cursor.AddAttribute("timeout", settings.timeout.ToString());
             return cursor;
+        }
+
+        public AFrameNode Create(SkySettings settings) {
+            var node = new AFrameNode("a-sky");
+
+            node.AddAttribute("radius", settings.radius);
+
+            if(settings.mode == SkySettings.SkyMode.Color) {
+                node.AddAttribute("color", "#" + Three.UnityColorToHexColor(settings.skyColor));
+            } else if(settings.mode == SkySettings.SkyMode.MainCameraBackground) {
+                var cam = Camera.main;
+                node.AddAttribute("color", "#" + Three.UnityColorToHexColor(cam.backgroundColor));
+            } else if(settings.mode == SkySettings.SkyMode.Texture) {
+                throw new NotImplementedException();
+                //node.AddAttribute("src", "TODO")
+            }
+            return node;
         }
 
         #region Lights
@@ -206,6 +223,12 @@ namespace Assets.Kanau.AFrameScene {
                 assetsNode.AddChild(assetNode);
             }
             node.AddChild(assetsNode);
+
+            var sky = ExportSettings.Instance.sky;
+            if (sky.mode != SkySettings.SkyMode.None) {
+                var skyNode = Create(sky);
+                node.AddChild(skyNode);
+            }
 
             WriteCommonAFrameNode(el, node);
 
