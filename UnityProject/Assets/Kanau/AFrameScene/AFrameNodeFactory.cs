@@ -16,18 +16,22 @@ namespace Assets.Kanau.AFrameScene {
         }
 
         void WriteCommonAFrameNode(Object3DElem el, AFrameNode node) {
+            // http://math.stackexchange.com/questions/237369/given-this-transformation-matrix-how-do-i-decompose-it-into-translation-rotati
             var m = el.Matrix;
             var pos = Vector3Property.MakePosition(new Vector3(m[12], m[13], m[14]));
             node.AddAttribute("position", pos);
 
-            var scale = Vector3Property.MakeScale(new Vector3(m[0], m[5], m[10]));
+            var sx = new Vector3(m[0], m[1], m[2]).magnitude;
+            var sy = new Vector3(m[4], m[5], m[6]).magnitude;
+            var sz = new Vector3(m[8], m[9], m[10]).magnitude;
+            var scale = Vector3Property.MakeScale(new Vector3(sx, sy, sz));
             node.AddAttribute("scale", scale);
 
             var forward = el.UnityMatrix.MultiplyVector(Vector3.forward);
             var upward = el.UnityMatrix.MultiplyVector(Vector3.up);
             var q = Quaternion.LookRotation(forward, upward);
             var rot = Vector3Property.MakeRotation(q);
-            node.AddAttribute("rotation", rot);
+            node.AddAttribute("rotation", rot);            
 
             node.AddAttribute("name", el.Name);
             if (el.HasTag) { node.AddAttribute("tag", el.Tag); }

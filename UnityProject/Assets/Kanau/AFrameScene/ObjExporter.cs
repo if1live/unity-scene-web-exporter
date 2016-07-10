@@ -77,16 +77,16 @@ public class ObjExporter {
         return sb.ToString();
     }
 
-    public static string MeshToString(Mesh m, bool flip_x) {
+    public static string MeshToString(Mesh m) {
         StringBuilder sb = new StringBuilder();
 
         sb.Append("g ").Append(m.name).Append("\n");
         foreach (Vector3 v in m.vertices) {
-            sb.Append(string.Format("v {0} {1} {2}\n", (flip_x ? -v.x : v.x), v.y, v.z));
+            sb.Append(string.Format("v {0} {1} {2}\n", v.x, v.y, -v.z));
         }
         sb.Append("\n");
         foreach (Vector3 v in m.normals) {
-            sb.Append(string.Format("vn {0} {1} {2}\n", (flip_x ? -v.x : v.x), (flip_x ? -v.y : v.y), (flip_x ? -v.z : v.z)));
+            sb.Append(string.Format("vn {0} {1} {2}\n", -v.x, -v.y, v.z));
         }
         sb.Append("\n");
         foreach (Vector3 v in m.uv) {
@@ -106,9 +106,9 @@ public class ObjExporter {
             sw.Write(MeshToString(mf, flip_x));
         }
     }
-    public static void MeshToFile(Mesh m, string filename, bool flip_x = false) {
+    public static void MeshToFile(Mesh m, string filename) {
         using (StreamWriter sw = new StreamWriter(filename)) {
-            sw.Write(MeshToString(m, flip_x));
+            sw.Write(MeshToString(m));
         }
     }
 }

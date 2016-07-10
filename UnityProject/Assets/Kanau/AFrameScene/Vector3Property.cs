@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Kanau.AFrameScene {
     public class Vector3Property : IProperty {
@@ -41,7 +37,6 @@ namespace Assets.Kanau.AFrameScene {
         public static Vector3Property MakePosition(Vector3 p) {
             return new Vector3Property(p, Vector3.zero);
         }
-
         public static Vector3Property MakeRotation(Quaternion q) {
             var r = q.eulerAngles;
             return new Vector3Property(new Vector3(-r.x, -r.y, r.z), Vector3.zero);
