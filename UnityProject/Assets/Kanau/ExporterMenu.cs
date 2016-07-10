@@ -8,11 +8,7 @@ using UnityEditor;
 namespace Assets.Kanau {
 #if UNITY_EDITOR
     public class ExporterMenu : ScriptableObject {
-        // Header에 필요한 정보가 생기면 추가하기
-        //[Header("General")]
-        //[Header("Three.js")]
         public ExportSettings settings;
-        
 
         public void ExportThree() {
             var extension = "json";

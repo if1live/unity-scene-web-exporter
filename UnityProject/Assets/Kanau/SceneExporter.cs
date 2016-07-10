@@ -103,13 +103,11 @@ namespace Assets.Kanau {
             node.BuildSource(sb);
 
             var aframe = ExportSettings.Instance.aframe;
-            var text = aframe.TemplateHead + sb.ToString() + aframe.TemplateAppend + aframe.TemplateEnd;
+            var source = sb.ToString() + "\n";
+            var text = aframe.TemplateHead + source + aframe.TemplateAppend + aframe.TemplateEnd;
 
             text = text.Replace("&TITLE&", aframe.title);
             text = text.Replace("&LIBRARY&", aframe.libraryAddress);
-            if (aframe.enablePerformanceStatistics) {
-                text = text.Replace("a-scene", "a-scene stats=\"true\"");
-            }
 
             WriteExportedTextFile(text);
         }

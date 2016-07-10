@@ -71,30 +71,9 @@ namespace Assets.Kanau.ThreeScene {
         }
 
         public AFrameNode ExportAFrame() {
-            var visitor = new AFrameExportVisitor();
+            var visitor = new AFrameExportVisitor(sharedNodeTable);
             root.Accept(visitor);
-            var rootNode = visitor.Node;
-
-            var assetsNode = new AFrameNode("a-assets");
-            // export mesh
-            var pathHelper = ExportPathHelper.Instance;
-            foreach (var el in SharedNodeTable.GetEnumerable<AbstractGeometryElem>()) {
-                // TODO 타입에 따라서 obj 굽는게 바뀔텐데
-                var bufferGeom = el as BufferGeometryElem;
-                if (bufferGeom == null) { continue; }
-                var mesh = bufferGeom.Mesh;
-
-                var node = new AFrameNode("a-asset-item");
-                node.AddAttribute("id", mesh.name + "-obj");
-
-                string filepath = "./models/" + mesh.name + ".obj";
-                node.AddAttribute("src", filepath);
-
-                assetsNode.AddChild(node);
-            }
-            rootNode.AddChild(assetsNode);
-
-            return rootNode;
+            return visitor.Node;
         }
 
         public ThreeSceneRoot() {

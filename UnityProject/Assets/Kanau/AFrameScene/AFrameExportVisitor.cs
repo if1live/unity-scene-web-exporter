@@ -10,9 +10,12 @@ using System.Diagnostics;
 
 namespace Assets.Kanau.AFrameScene {
     public class AFrameExportVisitor : IVisitor {
-        AFrameNodeFactory factory = new AFrameNodeFactory();
-
         public AFrameNode Node { get; private set; }
+
+        AFrameNodeFactory factory;
+        public AFrameExportVisitor(IThreeNodeTable sharedNodeTable) {
+            factory = new AFrameNodeFactory(sharedNodeTable);
+        }
 
         public void Visit(BoxBufferGeometryElem el) { Node = factory.Create(el); }
         public void Visit(QuadBufferGeometry el) { Node = factory.Create(el); }

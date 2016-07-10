@@ -36,25 +36,54 @@ namespace Assets.Kanau.AFrameScene {
         }
 
         public void BuildSource(StringBuilder sb) {
-            sb.AppendLine("");
+            BuildSource(sb, 0);
+        }
 
-            var tagname = string.Format("<{0} ", NodeType);
-            sb.Append(tagname);
-            foreach(var attr in attributes) {
+        void BuildSource(StringBuilder sb, int indentLevel) {
+            PrintIndent(sb, indentLevel);
+            sb.AppendFormat("<{0}", NodeType);
+
+            foreach (var attr in attributes) {
                 var value = attr.property.MakeString();
-                if(value.Length == 0) { continue; }
-                var line = string.Format("{0}=\"{1}\"", attr.name, value);
-                sb.Append(line);
-                sb.Append(" ");
+                if (value.Length == 0) { continue; }
+                sb.AppendFormat(" {0}=\"{1}\"", attr.name, value);
             }
             sb.Append(">");
 
-            foreach(var child in children) {
-                child.BuildSource(sb);
+            foreach (var child in children) {
+                sb.AppendLine();
+                child.BuildSource(sb, indentLevel + 1);
             }
 
-            var endtag = string.Format("</{0}>", NodeType);
-            sb.Append(endtag);
+            if(children.Count == 0) {
+                sb.AppendFormat("</{0}>", NodeType);
+            } else { 
+                sb.AppendLine();
+                PrintIndent(sb, indentLevel);
+                sb.AppendFormat("</{0}>", NodeType);
+            }
+        }
+
+        void PrintIndent(StringBuilder sb, int indentLevel) {
+            var aframe = ExportSettings.Instance.aframe;
+
+            var indentCh = "";
+            switch (aframe.indentStyle) {
+                case AFrameSettings.IndentStyle.Space:
+                    indentCh = " ";
+                    break;
+                case AFrameSettings.IndentStyle.Tab:
+                    indentCh = "\t";
+                    break;
+            }
+            var indentStr = "";
+            for (int i = 0; i < aframe.indentSize; i++) {
+                indentStr += indentCh;
+            }
+
+            for (int i = 0; i < indentLevel; i++) {
+                sb.Append(indentStr);
+            }
         }
     }
 }

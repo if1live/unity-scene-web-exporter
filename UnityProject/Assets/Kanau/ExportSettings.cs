@@ -57,6 +57,13 @@ namespace Assets.Kanau {
         public string TemplateAppend { get { return GetTemplateContent(templateAppendFilename); } }
         public string TemplateEnd { get { return GetTemplateContent(templateEndFilename); } }
 
+        public enum IndentStyle {
+            Space,
+            Tab,
+        }
+        public IndentStyle indentStyle = IndentStyle.Space;
+        public int indentSize = 2;
+
         string GetTemplateContent(string templateFile) {
 #if UNITY_EDITOR
             TextAsset content = AssetDatabase.LoadAssetAtPath<TextAsset>(exporterPath + "/" + templateFile);

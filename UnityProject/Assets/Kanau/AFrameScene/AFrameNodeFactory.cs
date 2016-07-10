@@ -4,11 +4,17 @@ using Assets.Kanau.ThreeScene.Cameras;
 using Assets.Kanau.ThreeScene.Geometries;
 using Assets.Kanau.ThreeScene.Lights;
 using Assets.Kanau.ThreeScene.Objects;
+using Assets.Kanau.Utils;
 using System;
 using UnityEngine;
 
 namespace Assets.Kanau.AFrameScene {
     class AFrameNodeFactory {
+        IThreeNodeTable sharedNodeTable;
+        public AFrameNodeFactory(IThreeNodeTable sharedNodeTable) {
+            this.sharedNodeTable = sharedNodeTable;
+        }
+
         void WriteCommonAFrameNode(Object3DElem el, AFrameNode node) {
             var m = el.Matrix;
             var pos = Vector3Property.MakePosition(new Vector3(m[12], m[13], m[14]));
@@ -28,7 +34,7 @@ namespace Assets.Kanau.AFrameScene {
             if (el.HasLayer) { node.AddAttribute("layer", el.Layer); }
 
 
-            var visitor = new AFrameExportVisitor();
+            var visitor = new AFrameExportVisitor(sharedNodeTable);
             foreach (var child in el.Children) {
                 child.Accept(visitor);
                 node.AddChild(visitor.Node);
@@ -175,7 +181,34 @@ namespace Assets.Kanau.AFrameScene {
 
         public AFrameNode Create(SceneElem el) {
             var node = new AFrameNode("a-scene");
+
+            var aframe = ExportSettings.Instance.aframe;
+            if (aframe.enablePerformanceStatistics) {
+                node.AddAttribute("stats", "true");
+            }
+
+            // assets
+            var assetsNode = new AFrameNode("a-assets");
+            // export mesh
+            var pathHelper = ExportPathHelper.Instance;
+            foreach (var elem in sharedNodeTable.GetEnumerable<AbstractGeometryElem>()) {
+                // TODO 타입에 따라서 obj 굽는게 바뀔텐데
+                var bufferGeom = elem as BufferGeometryElem;
+                if (bufferGeom == null) { continue; }
+                var mesh = bufferGeom.Mesh;
+
+                var assetNode = new AFrameNode("a-asset-item");
+                assetNode.AddAttribute("id", mesh.name + "-obj");
+
+                string filepath = "./models/" + mesh.name + ".obj";
+                assetNode.AddAttribute("src", filepath);
+
+                assetsNode.AddChild(assetNode);
+            }
+            node.AddChild(assetsNode);
+
             WriteCommonAFrameNode(el, node);
+
             return node;
         }
 
@@ -198,7 +231,7 @@ namespace Assets.Kanau.AFrameScene {
             // TODO 타입 하드코딩해서 분기하는거 제거하기
 
             if (el.Geometry.Type != "BufferGeometry") {
-                var v = new AFrameExportVisitor();
+                var v = new AFrameExportVisitor(sharedNodeTable);
                 el.Geometry.Accept(v);
                 geometryNode = v.Node;
 
