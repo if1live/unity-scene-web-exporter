@@ -38,9 +38,12 @@ namespace Assets.Kanau.ThreeScene.Materials {
         public Material Material { get { return container.Material; } }
         public MaterialContainer Container { get { return container; } }
 
+        public bool Transparent { get; private set; }
+
 
         public MaterialElem(MaterialContainer c) {
             this.container = c;
+            Transparent = false;
             Name = c.Name;
 
             materialType = PredefinedMaterialTable[0];

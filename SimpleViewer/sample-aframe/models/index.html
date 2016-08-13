@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello world!</title>
+    <meta name="description" content="Hello world!">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+<a-scene name="KanauScene">
+  <a-assets>
+    <a-asset-item id="body-obj" src="./models/body.obj"></a-asset-item>
+    <a-asset-item id="enginside-obj" src="./models/enginside.obj"></a-asset-item>
+    <a-asset-item id="engmount-obj" src="./models/engmount.obj"></a-asset-item>
+    <a-asset-item id="engout-obj" src="./models/engout.obj"></a-asset-item>
+    <a-asset-item id="engrim-obj" src="./models/engrim.obj"></a-asset-item>
+    <a-asset-item id="rearbody-obj" src="./models/rearbody.obj"></a-asset-item>
+    <a-asset-item id="tail-obj" src="./models/tail.obj"></a-asset-item>
+    <a-asset-item id="tiles-obj" src="./models/tiles.obj"></a-asset-item>
+    <a-asset-item id="windows-obj" src="./models/windows.obj"></a-asset-item>
+    <a-asset-item id="wings-obj" src="./models/wings.obj"></a-asset-item>
+  </a-assets>
+  <a-sky radius="5000" color="#314D79"></a-sky>
+  <a-entity position="0 0 3" name="Main Camera" tag="MainCamera">
+    <a-camera far="1000" near="0.3" look-controls-enabled="true" wasd-controls-enabled="true">
+      <a-cursor fuse="False" max-distance="1000" timeout="1500"></a-cursor>
+    </a-camera>
+  </a-entity>
+  <a-light position="0 3 0" rotation="-50.00001 -330 -1.328236E-06" name="Directional Light" type="directional" color="#FFF4D6"></a-light>
+  <a-entity position="-0.04334605 -0.1202708 -0.2001436" rotation="-329.3924 -129.8496 338.05" name="shuttle">
+    <a-entity name="body" obj-model="obj: #body-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+    <a-entity name="enginside" obj-model="obj: #enginside-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+    <a-entity name="engmount" obj-model="obj: #engmount-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+    <a-entity name="engout" obj-model="obj: #engout-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+    <a-entity name="engrim" obj-model="obj: #engrim-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+    <a-entity name="rearbody" obj-model="obj: #rearbody-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+    <a-entity name="tail" obj-model="obj: #tail-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+    <a-entity name="tiles" obj-model="obj: #tiles-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+    <a-entity name="windows" obj-model="obj: #windows-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+    <a-entity name="wings" obj-model="obj: #wings-obj" material="shader: standard; color: #CCCCCC; metalness: 0"></a-entity>
+  </a-entity>
+  <a-light name="AmbientLight" type="ambient" color="#363942"></a-light>
+</a-scene>
+</body>
+</html>

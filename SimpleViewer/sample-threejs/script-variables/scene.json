@@ -1,0 +1,623 @@
+
+{
+  "metadata" : {
+    "version" : 1.0,
+    "type"    : "Object",
+    "generator" : "Kanau"
+  },
+  "geometries" : [
+    {
+      "uuid" : "57C79BF8-3B28-4A9C-870A-B92BCB1D7973",
+      "type" : "BufferGeometry",
+      "data" : {
+        "index" : {
+          "itemSize" : 1,
+          "type"     : "Uint16Array",
+          "array"    : [
+            0,
+            3,
+            2,
+            0,
+            1,
+            3,
+            8,
+            5,
+            4,
+            8,
+            9,
+            5,
+            10,
+            7,
+            6,
+            10,
+            11,
+            7,
+            12,
+            14,
+            13,
+            12,
+            15,
+            14,
+            16,
+            18,
+            17,
+            16,
+            19,
+            18,
+            20,
+            22,
+            21,
+            20,
+            23,
+            22
+          ]
+        },
+        "attributes" : {
+          "position" : {
+            "itemSize" : 3,
+            "type"     : "Float32Array",
+            "array"    : [
+              0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              0.5,
+              0.5,
+              -0.5,
+              -0.5,
+              0.5,
+              -0.5,
+              0.5,
+              0.5,
+              0.5,
+              -0.5,
+              0.5,
+              0.5,
+              0.5,
+              -0.5,
+              0.5,
+              -0.5,
+              -0.5,
+              0.5,
+              0.5,
+              0.5,
+              -0.5,
+              -0.5,
+              0.5,
+              -0.5,
+              0.5,
+              0.5,
+              0.5,
+              -0.5,
+              0.5,
+              0.5,
+              0.5,
+              -0.5,
+              0.5,
+              0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              -0.5,
+              0.5,
+              -0.5,
+              -0.5,
+              0.5,
+              0.5,
+              -0.5,
+              -0.5,
+              0.5,
+              0.5,
+              -0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              -0.5,
+              0.5,
+              -0.5,
+              -0.5
+            ]
+          },
+          "normal"   : {
+            "itemSize" : 3,
+            "type"     : "Float32Array",
+            "array"    : [
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ]
+          },
+          "uv"       : {
+            "itemSize" : 2,
+            "type"     : "Float32Array",
+            "array"    : [
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.0
+            ]
+          },
+          "uv2"      : {
+            "itemSize" : 2,
+            "type"     : "Float32Array",
+            "array"    : [
+              0.690986514091492,
+              0.347164392471313,
+              0.996658086776733,
+              0.347164392471313,
+              0.690986514091492,
+              0.652835845947266,
+              0.996658086776733,
+              0.652835845947266,
+              0.309727311134338,
+              0.347164243459702,
+              0.00405576638877392,
+              0.347164243459702,
+              0.347164243459702,
+              0.652835845947266,
+              0.652835845947266,
+              0.652835845947266,
+              0.309727311134338,
+              0.652835845947266,
+              0.00405576638877392,
+              0.652835845947266,
+              0.347164243459702,
+              0.347164243459702,
+              0.652835845947266,
+              0.347164243459702,
+              0.347164243459702,
+              0.00405576638877392,
+              0.347164243459702,
+              0.309727311134338,
+              0.652835845947266,
+              0.309727311134338,
+              0.652835845947266,
+              0.00405576638877392,
+              0.690272808074951,
+              0.309727311134338,
+              0.995944261550903,
+              0.309727311134338,
+              0.995944261550903,
+              0.00405576638877392,
+              0.690272808074951,
+              0.00405576638877392,
+              0.309727311134338,
+              0.00405576638877392,
+              0.00405576638877392,
+              0.00405576638877392,
+              0.00405576638877392,
+              0.309727311134338,
+              0.309727311134338,
+              0.309727311134338
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "materials"  : [
+    {
+      "uuid" : "452425DD-7F61-478A-9111-CC10A7DA22D9",
+      "name" : "Default-Material",
+      "type" : "MeshStandardMaterial",
+      "metalness" : 0.0,
+      "bumpScale" : 0.100000001490116,
+      "normalScale" : [
+        0.100000001490116,
+        0.100000001490116
+      ],
+      "displacementScale" : 0.0199999995529652
+    },
+    {
+      "uuid" : "60DD09D3-C641-4A88-9D9F-0948EACD1BB6",
+      "name" : "SampleTexture",
+      "type" : "MeshStandardMaterial",
+      "metalness" : 0.0,
+      "map"       : "AF738358-DF74-4EE3-93CD-887DAA97A150",
+      "bumpScale" : 0.100000001490116,
+      "normalScale" : [
+        0.100000001490116,
+        0.100000001490116
+      ],
+      "displacementScale" : 0.0199999995529652
+    }
+  ],
+  "object"     : {
+    "uuid" : "A996BA5F-FF29-4844-880C-1F08B291CD82",
+    "type" : "Scene",
+    "name" : "KanauScene",
+    "matrix" : [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "visible" : true,
+    "children" : [
+      {
+        "uuid" : "CE171A2A-ADFB-40C0-B2D5-34D6B88B23F4",
+        "type" : "PerspectiveCamera",
+        "name" : "Main Camera",
+        "matrix" : [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.5,
+          4.0,
+          1.0
+        ],
+        "visible" : true,
+        "userData" : {
+          "tag" : "MainCamera",
+          "isStatic" : false
+        },
+        "fov"      : 60.0,
+        "zoom"     : 1,
+        "near"     : 0.300000011920929,
+        "far"      : 1000.0,
+        "focus"    : 10,
+        "aspect"   : 1,
+        "filmGauge" : 35,
+        "filmOffset" : 0
+      },
+      {
+        "uuid" : "3A3000D3-89B9-47BB-9A23-E28A4BDBA55C",
+        "type" : "DirectionalLight",
+        "name" : "Directional Light",
+        "matrix" : [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.32139378786087,
+          0.766044497489929,
+          0.556670308113098,
+          1.0
+        ],
+        "visible" : true,
+        "color"   : 16774358,
+        "intensity" : 1.0
+      },
+      {
+        "uuid" : "B602D7DB-430C-496D-810C-D7369FE39A4D",
+        "type" : "Mesh",
+        "name" : "Cube",
+        "matrix" : [
+          0.330332934856415,
+          0.545898258686066,
+          -0.769983947277069,
+          0.0,
+          -5.96046447753906E-08,
+          0.815778076648712,
+          0.578365087509155,
+          0.0,
+          0.943864524364471,
+          -0.1910530179739,
+          0.269478380680084,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "visible" : true,
+        "userData" : {
+          "tag" : "Player",
+          "isStatic" : false,
+          "HelloWorld" : {
+            "intValue" : {
+              "key" : "intValue",
+              "type" : "int32",
+              "value" : 1
+            }
+          },
+          "ScriptVariableDemo" : {
+            "sampleByte" : {
+              "key" : "sampleByte",
+              "type" : "byte",
+              "value" : 3
+            },
+            "sampleShort" : {
+              "key" : "sampleShort",
+              "type" : "int16",
+              "value" : 2
+            },
+            "sampleInt"   : {
+              "key" : "sampleInt",
+              "type" : "int32",
+              "value" : 1
+            },
+            "sampleLong"  : {
+              "key" : "sampleLong",
+              "type" : "int64",
+              "value" : 12345.0
+            },
+            "sampleFloat" : {
+              "key" : "sampleFloat",
+              "type" : "single",
+              "value" : 2.29999995231628
+            },
+            "sampleDouble" : {
+              "key" : "sampleDouble",
+              "type" : "double",
+              "value" : 4.56789
+            },
+            "sampleBool"   : {
+              "key" : "sampleBool",
+              "type" : "boolean",
+              "value" : true,
+              "value" : "True"
+            },
+            "sampleChar"   : {
+              "key" : "sampleChar",
+              "type" : "char",
+              "value" : 97
+            },
+            "sampleString" : {
+              "key" : "sampleString",
+              "type" : "string",
+              "value" : "hello world"
+            },
+            "sampleGameObject" : {
+              "key" : "sampleGameObject",
+              "type" : "gameobject",
+              "value" : "B602D7DB-430C-496D-810C-D7369FE39A4D"
+            },
+            "sampleMaterial"   : {
+              "key" : "sampleMaterial",
+              "type" : "material",
+              "value" : "60DD09D3-C641-4A88-9D9F-0948EACD1BB6"
+            },
+            "sampleTransform"  : {
+              "key" : "sampleTransform",
+              "type" : "transform",
+              "value" : "3A3000D3-89B9-47BB-9A23-E28A4BDBA55C"
+            },
+            "sampleTexture"    : {
+              "key" : "sampleTexture",
+              "type" : "texture",
+              "value" : "821845DD-6F33-463C-A282-2E8A7BBC9B22"
+            }
+          }
+        },
+        "geometry" : "57C79BF8-3B28-4A9C-870A-B92BCB1D7973",
+        "material" : "452425DD-7F61-478A-9111-CC10A7DA22D9"
+      },
+      {
+        "uuid" : "1B915D25-FC5B-481F-924A-4BA510EB386E",
+        "type" : "AmbientLight",
+        "name" : "AmbientLight",
+        "matrix" : [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "visible" : true,
+        "color"   : 3553602
+      }
+    ]
+  },
+  "images"     : [
+    {
+      "url" : "./images/blue_christmas_by_kahookashii-d4jz91b.jpg",
+      "uuid" : "0ED5E730-8C35-4EED-AFD4-CFDB19EDD9D0",
+      "name" : "blue_christmas_by_kahookashii-d4jz91b.jpg"
+    },
+    {
+      "url" : "./images/128px-BroBear-guide2_cv.png",
+      "uuid" : "48BE4443-DAB6-4064-8E9C-A9C70733C96F",
+      "name" : "128px-BroBear-guide2_cv.png"
+    }
+  ],
+  "textures"   : [
+    {
+      "uuid" : "821845DD-6F33-463C-A282-2E8A7BBC9B22",
+      "offset" : [
+        0.0,
+        0.0
+      ],
+      "repeat" : [
+        1.0,
+        1.0
+      ],
+      "magFilter" : 1006,
+      "minFilter" : 1008,
+      "wrap"      : [
+        1000,
+        1000
+      ],
+      "image"     : "0ED5E730-8C35-4EED-AFD4-CFDB19EDD9D0",
+      "name"      : "./images/blue_christmas_by_kahookashii-d4jz91b.jpg",
+      "anisotropy" : 1
+    },
+    {
+      "uuid" : "AF738358-DF74-4EE3-93CD-887DAA97A150",
+      "offset" : [
+        0.0,
+        0.0
+      ],
+      "repeat" : [
+        1.0,
+        1.0
+      ],
+      "magFilter" : 1006,
+      "minFilter" : 1008,
+      "wrap"      : [
+        1000,
+        1000
+      ],
+      "image"     : "48BE4443-DAB6-4064-8E9C-A9C70733C96F",
+      "name"      : "./images/128px-BroBear-guide2_cv.png",
+      "anisotropy" : 1
+    }
+  ]
+}

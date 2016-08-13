@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello world!</title>
+    <meta name="description" content="Hello world!">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+<a-scene name="KanauScene">
+  <a-assets></a-assets>
+  <a-sky radius="5000" color="#314D79"></a-sky>
+  <a-entity position="0 0 5" name="PerspectiveCamera" tag="MainCamera">
+    <a-camera far="1000" near="0.3" look-controls-enabled="true" wasd-controls-enabled="true">
+      <a-cursor fuse="False" max-distance="1000" timeout="1500"></a-cursor>
+    </a-camera>
+  </a-entity>
+  <a-light position="0 3 0" rotation="-12.18924 -299.1858 352.8222" name="Directional Light" type="directional" color="#FFF4D6"></a-light>
+  <a-entity name="Objects">
+    <a-entity name="Standard">
+      <a-sphere radius="0.5" material="shader: standard; metalness: 0; roughness: 0.6; src: url(./images/Slate Tiles - Color Map.png)"></a-sphere>
+    </a-entity>
+    <a-entity position="1.5 0 0" name="StandardSpecular">
+      <a-sphere radius="0.5" material="shader: standard; metalness: 0; src: url(./images/Slate Tiles - Color Map.png)"></a-sphere>
+    </a-entity>
+    <a-entity position="1.5 1.5 0" name="MobileDiffuse">
+      <a-sphere radius="0.5" material="shader: flat; src: url(./images/Slate Tiles - Color Map.png)"></a-sphere>
+    </a-entity>
+    <a-entity position="0 1.5 0" name="MobileVertexLit">
+      <a-sphere radius="0.5" material="shader: flat; src: url(./images/Slate Tiles - Color Map.png)"></a-sphere>
+    </a-entity>
+    <a-entity position="-1.5 1.5 0" name="UnlitTexture">
+      <a-sphere radius="0.5" material="shader: flat; src: url(./images/Slate Tiles - Color Map.png)"></a-sphere>
+    </a-entity>
+    <a-entity position="-1.5 0 0" name="UnlitColor">
+      <a-sphere radius="0.5" material="shader: flat; color: #61B4D7; src: url()"></a-sphere>
+    </a-entity>
+    <a-entity position="-1.5 -1.5 0" name="MobileBumpedDiffuse">
+      <a-sphere radius="0.5" material="shader: flat; src: url(./images/Slate Tiles - Color Map.png)"></a-sphere>
+    </a-entity>
+    <a-entity position="0 -1.5 0" name="MobileBumpedSpecular">
+      <a-sphere radius="0.5" material="shader: flat; src: url(./images/Slate Tiles - Specular Map.png)"></a-sphere>
+    </a-entity>
+  </a-entity>
+  <a-light name="AmbientLight" type="ambient" color="#363942"></a-light>
+</a-scene>
+</body>
+</html>

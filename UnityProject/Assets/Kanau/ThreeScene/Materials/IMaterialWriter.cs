@@ -21,6 +21,8 @@ namespace Assets.Kanau.ThreeScene.Materials {
             foreach(var attr in attrs) {
                 WriteCommonProperty(attr);
             }
+
+            WriteProperty("transparent", elem.Transparent, false);
         }
 
         protected void WriteProperty(string key, int value, int defaultval) {

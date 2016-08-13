@@ -254,9 +254,7 @@ namespace Assets.Kanau.UnityScene {
 
         void RegisterMeshWithoutLightmap(MeshContainer n) {
             AbstractGeometryElem geo = null;
-            if (n.Mesh.name == "Cube") {
-                geo = new BoxBufferGeometryElem(n);
-            } else if (n.Mesh.name == "Sphere") {
+            if (n.Mesh.name == "Sphere") {
                 geo = new SphereBufferGeometryElem(n);
             } else if (n.Mesh.name == "Cylinder") {
                 geo = new CylinderBufferGeometryElem(n);

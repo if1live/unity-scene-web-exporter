@@ -5,6 +5,7 @@
 <title>Unity Scene Web Exporter</title>
 
 <% include ../partials/head.ejs %>
+<script src="./TrackballControls.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
 <script>
 var camera, scene, renderer;
 var stats;
-
+var controls;
 
 function setupScene(result) {
     scene = result;
@@ -30,6 +31,21 @@ function setupScene(result) {
     var winsize = renderer.getSize();
     camera.aspect = winsize.width / winsize.height;
     camera.updateProjectionMatrix();
+	
+    controls = new THREE.TrackballControls( camera );
+controls.rotateSpeed = 1.0;
+				controls.zoomSpeed = 1.2;
+				controls.panSpeed = 0.8;
+
+				controls.noZoom = false;
+				controls.noPan = false;
+
+				controls.staticMoving = true;
+				controls.dynamicDampingFactor = 0.3;
+
+				controls.keys = [ 65, 83, 68 ];
+
+				//controls.addEventListener( 'change', render );
 
     // for script variables demo
     var scriptobj = findByUserData(scene, "tag", "Player");
@@ -64,6 +80,8 @@ function init() {
     renderer.setSize( 800, 480 );
     container.appendChild( renderer.domElement );
     
+    window.addEventListener( 'resize', onWindowResize, false );
+
 
     // loade scene
     var loader = new THREE.ObjectLoader();
@@ -77,6 +95,11 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize( window.innerWidth, window.innerHeight );
+	
+    if(controls) {
+        controls.handleResize();
+    }
+
     render();
 }
 
@@ -88,6 +111,9 @@ function animate() {
     stats.end();
 
     requestAnimationFrame( animate );
+	if(controls) {
+        controls.update();
+    }
 }
 
 init();

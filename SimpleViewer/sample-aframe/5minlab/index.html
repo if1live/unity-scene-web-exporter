@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello world!</title>
+    <meta name="description" content="Hello world!">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+<a-scene name="KanauScene">
+  <a-assets>
+    <a-asset-item id="PREFIX_NUM_5minvr Instance-obj" src="./models/5minvr Instance.obj"></a-asset-item>
+    <a-asset-item id="PREFIX_NUM_5minvr Instance-obj" src="./models/5minvr Instance.obj"></a-asset-item>
+  </a-assets>
+  <a-sky radius="5000" color="#314D79"></a-sky>
+  <a-entity position="0 0 -0.001" name="Main Camera" tag="MainCamera">
+    <a-camera far="10" near="0.3" look-controls-enabled="true" wasd-controls-enabled="true">
+      <a-cursor fuse="False" max-distance="1000" timeout="1500"></a-cursor>
+    </a-camera>
+  </a-entity>
+  <a-entity position="0 4.22 0" rotation="-15.64758 -91.57122 99.02056" name="Directional Light"></a-entity>
+  <a-entity name="Room">
+    <a-entity position="3.2 -3.2 -3.2" name="5minvr">
+      <a-entity name="5minvr" obj-model="obj: #PREFIX_NUM_5minvr Instance-obj" material="shader: standard; color: #CCCCCC; metalness: 0; src: url(./images/5minvr.png)"></a-entity>
+    </a-entity>
+  </a-entity>
+  <a-entity position="0.058 1.145 2.921" scale="3.41712 2.04 1" rotation="0 -180 0" name="SnakeVR">
+    <a-plane width="1" height="1" material="shader: flat; src: url(./images/app_upper_for_vrweb.png)"></a-plane>
+  </a-entity>
+  <a-entity position="0 2.353 0" name="Point light"></a-entity>
+  <a-entity position="2.91 1.152 -0.15" scale="3.151883 3 3" rotation="0 -90.00001 0" name="LogoContainer">
+    <a-entity position="0 0 0.001" scale="0.76 0.517 1" name="Logo">
+      <a-plane width="1" height="1" material="shader: flat; src: url(./images/01_로고_2.png)"></a-plane>
+    </a-entity>
+    <a-entity scale="1.083518 0.6676731 1" name="Background">
+      <a-plane width="1" height="1" material="shader: flat; src: url()"></a-plane>
+    </a-entity>
+  </a-entity>
+  <a-entity position="-6 0 0" scale="10 10 10" rotation="0 -270 0" name="Sky">
+    <a-plane width="1" height="1" material="shader: flat; src: url(./images/blue-sky-resize.jpg)"></a-plane>
+  </a-entity>
+  <a-light name="AmbientLight" type="ambient" color="#363942"></a-light>
+</a-scene>
+</body>
+</html>

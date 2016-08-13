@@ -359,17 +359,6 @@ namespace Assets.Kanau.ThreeScene {
             }
         }
 
-        public void Visit(BoxBufferGeometryElem el) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("uuid", el.Uuid);
-                scope.WriteKeyValue("type", el.Type);
-
-                scope.WriteKeyValue("width", el.Width);
-                scope.WriteKeyValue("height", el.Height);
-                scope.WriteKeyValue("depth", el.Depth);
-            }
-        }
-
         public void Visit(PerspectiveCameraElem el) {
             using (var scope = new JsonScopeObjectWriter(writer)) {
                 WriteCommonObjectNode(scope, el);

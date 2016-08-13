@@ -166,14 +166,6 @@ namespace Assets.Kanau.AFrameScene {
         #endregion
 
         #region Geometries
-        public AFrameNode Create(BoxBufferGeometryElem el) {
-            var node = new AFrameNode("a-box");
-            node.AddAttribute("width", el.Width);
-            node.AddAttribute("height", el.Height);
-            node.AddAttribute("depth", el.Depth);
-            return node;
-        }
-
         public AFrameNode Create(QuadBufferGeometry el) {
             var node = new AFrameNode("a-plane");
             node.AddAttribute("width", el.Width);

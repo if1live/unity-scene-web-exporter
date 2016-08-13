@@ -10,7 +10,6 @@ namespace Assets.Kanau.ThreeScene {
         void Visit(PerspectiveCameraElem el);
 
         void Visit(BufferGeometryElem el);
-        void Visit(BoxBufferGeometryElem el);
         void Visit(CylinderBufferGeometryElem el);
         void Visit(QuadBufferGeometry el);
         void Visit(SphereBufferGeometryElem el);

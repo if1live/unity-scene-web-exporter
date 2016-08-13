@@ -1,7 +1,9 @@
 ﻿using Assets.Kanau.UnityScene.Containers;
 using Assets.Kanau.UnityScene.SceneGraph;
 using Assets.Kanau.Utils;
+using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Kanau.UnityScene {
@@ -107,6 +109,12 @@ namespace Assets.Kanau.UnityScene {
             }
         }
 
+        [Flags]
+        enum LightmappingMode {
+            Mixed = 1,
+            Baked = 2,
+            Realtime = 4,
+        }
         void VisitToCreateNode_r<Comp, Node>(GameObject go)
             where Comp : Component
             where Node : class, IUnityNode, new() {
@@ -115,10 +123,17 @@ namespace Assets.Kanau.UnityScene {
 
             var isValid = true;
             if(typeof(Comp) == typeof(Light) && comp != null) {
-                // TODO remove if light is mixed or realtime
+                // remove if light is mixed or realtime
                 // baked light is not need in scene
+                // https://github.com/MattRix/UnityDecompiled/blob/master/UnityEditor/UnityEditor/LightEditor.cs
+                // tested on unity 5.4.0f3
                 var light = (Light)(object)comp;
-                int a = 1;
+                var serializedObject = new SerializedObject(light);
+                var lightmapping = serializedObject.FindProperty("m_Lightmapping");
+                int lightmappingMode = lightmapping.intValue;
+                if(lightmappingMode == (int)LightmappingMode.Baked) {
+                    isValid = false;
+                }
             }
 
             if (comp && isValid) {

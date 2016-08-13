@@ -17,7 +17,6 @@ namespace Assets.Kanau.AFrameScene {
             factory = new AFrameNodeFactory(sharedNodeTable);
         }
 
-        public void Visit(BoxBufferGeometryElem el) { Node = factory.Create(el); }
         public void Visit(QuadBufferGeometry el) { Node = factory.Create(el); }
         public void Visit(AmbientLightElem el) { Node = factory.Create(el); }
         public void Visit(PointLightElem el) { Node = factory.Create(el); }

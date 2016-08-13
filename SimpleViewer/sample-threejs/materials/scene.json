@@ -1,0 +1,599 @@
+
+{
+  "metadata" : {
+    "version" : 1.0,
+    "type"    : "Object",
+    "generator" : "Kanau"
+  },
+  "geometries" : [
+    {
+      "uuid" : "29135095-DA03-42B3-9A0F-B7D56BAD43D9",
+      "type" : "SphereBufferGeometry",
+      "radius" : "0.5",
+      "widthSegments" : 16,
+      "heightSegments" : 16
+    }
+  ],
+  "materials"  : [
+    {
+      "uuid" : "AB6E8AEE-E825-47CA-BE61-CFD02BDDDFC1",
+      "name" : "SlateTileStandard",
+      "type" : "MeshStandardMaterial",
+      "roughness" : 0.600000023841858,
+      "metalness" : 0.0,
+      "map"       : "3587907D-D39F-4E6D-B70A-AC6BDDD93C05",
+      "aoMap"     : "8E7E029B-1F82-433D-90E7-4FE546973DA3",
+      "aoMapIntensity" : 0.850000023841858,
+      "emissive"       : 71721,
+      "bumpMap"        : "215694D7-3C48-469E-9D3F-020155C50B75",
+      "bumpScale"      : 0.100000001490116,
+      "normalScale"    : [
+        0.100000001490116,
+        0.100000001490116
+      ],
+      "displacementMap" : "AC6BD9E8-5BB4-4E46-84BC-43AAB8FF7EBF",
+      "displacementScale" : 0.0199999995529652
+    },
+    {
+      "uuid" : "F7832BA5-5053-434C-A823-11645FA41C1E",
+      "name" : "SlateTileStandardSpecular",
+      "type" : "MeshStandardMaterial",
+      "metalness" : 0.0,
+      "map"       : "3587907D-D39F-4E6D-B70A-AC6BDDD93C05",
+      "aoMap"     : "8E7E029B-1F82-433D-90E7-4FE546973DA3",
+      "aoMapIntensity" : 0.899999976158142,
+      "bumpMap"        : "215694D7-3C48-469E-9D3F-020155C50B75",
+      "bumpScale"      : 0.0899999961256981,
+      "normalScale"    : [
+        0.0899999961256981,
+        0.0899999961256981
+      ],
+      "displacementMap" : "AC6BD9E8-5BB4-4E46-84BC-43AAB8FF7EBF",
+      "displacementScale" : 0.0199999995529652
+    },
+    {
+      "uuid" : "A5E272F3-CA9F-490C-BD26-E1B6F22B0DB7",
+      "name" : "SlateTileMobileDiffuse",
+      "type" : "MeshPhongMaterial",
+      "specular" : 16777215,
+      "shininess" : 0.0,
+      "map"       : "3587907D-D39F-4E6D-B70A-AC6BDDD93C05",
+      "aoMapIntensity" : 0.0,
+      "bumpScale"      : 0.100000001490116,
+      "normalScale"    : [
+        0.100000001490116,
+        0.100000001490116
+      ],
+      "displacementScale" : 0.0
+    },
+    {
+      "uuid" : "381C1310-268B-490C-8918-F3D09244B76F",
+      "name" : "SlateTileMobileVertexLit",
+      "type" : "MeshLambertMaterial",
+      "map"  : "3587907D-D39F-4E6D-B70A-AC6BDDD93C05",
+      "aoMapIntensity" : 0.0
+    },
+    {
+      "uuid" : "1E230FFB-95DB-419B-80EE-C5F84CB825E2",
+      "name" : "SlateTileUnlitTexture",
+      "type" : "MeshBasicMaterial",
+      "map"  : "3587907D-D39F-4E6D-B70A-AC6BDDD93C05",
+      "aoMapIntensity" : 0.0
+    },
+    {
+      "uuid" : "11792322-3D95-4CEC-B882-307D36C168CB",
+      "name" : "UnlitColor",
+      "type" : "MeshBasicMaterial",
+      "color" : 6403287,
+      "aoMapIntensity" : 0.0
+    },
+    {
+      "uuid" : "80F00A18-A78A-4D63-A7F5-8A2FEA6E604E",
+      "name" : "SlateTileMobileBumpedDiffuse",
+      "type" : "MeshPhongMaterial",
+      "specular" : 16777215,
+      "shininess" : 0.0,
+      "map"       : "3587907D-D39F-4E6D-B70A-AC6BDDD93C05",
+      "aoMapIntensity" : 0.0,
+      "bumpMap"        : "215694D7-3C48-469E-9D3F-020155C50B75",
+      "bumpScale"      : 0.100000001490116,
+      "normalScale"    : [
+        0.100000001490116,
+        0.100000001490116
+      ],
+      "displacementScale" : 0.0
+    },
+    {
+      "uuid" : "1179DE77-C849-4223-8623-76C3F8EA8C44",
+      "name" : "SlateTileMobileBumpedSpecular",
+      "type" : "MeshPhongMaterial",
+      "specular" : 16777215,
+      "shininess" : 14.2857141494751,
+      "map"       : "81B7DC6A-9748-4D7D-9671-B8B51B19D33B",
+      "aoMapIntensity" : 0.0,
+      "bumpMap"        : "215694D7-3C48-469E-9D3F-020155C50B75",
+      "bumpScale"      : 0.100000001490116,
+      "normalScale"    : [
+        0.100000001490116,
+        0.100000001490116
+      ],
+      "displacementScale" : 0.0
+    }
+  ],
+  "object"     : {
+    "uuid" : "927EEF03-AA4A-4BF9-A144-B466D4F91993",
+    "type" : "Scene",
+    "name" : "KanauScene",
+    "matrix" : [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "visible" : true,
+    "children" : [
+      {
+        "uuid" : "BDDBA201-B905-44AB-B7EC-63FFD1265299",
+        "type" : "PerspectiveCamera",
+        "name" : "PerspectiveCamera",
+        "matrix" : [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          5.0,
+          1.0
+        ],
+        "visible" : true,
+        "userData" : {
+          "tag" : "MainCamera",
+          "isStatic" : false
+        },
+        "fov"      : 60.0,
+        "zoom"     : 1,
+        "near"     : 0.300000011920929,
+        "far"      : 1000.0,
+        "focus"    : 10,
+        "aspect"   : 1,
+        "filmGauge" : 35,
+        "filmOffset" : 0
+      },
+      {
+        "uuid" : "00C90020-B070-4CEB-8052-53FD5C5FB97D",
+        "type" : "DirectionalLight",
+        "name" : "Directional Light",
+        "matrix" : [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.853360533714294,
+          0.211141213774681,
+          0.476650059223175,
+          1.0
+        ],
+        "visible" : true,
+        "color"   : 16774358,
+        "intensity" : 1.0
+      },
+      {
+        "uuid" : "EF3FAF98-2959-45D4-A96B-13E92AD7776C",
+        "type" : "Group",
+        "name" : "Objects",
+        "matrix" : [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "visible" : true,
+        "children" : [
+          {
+            "uuid" : "EC312BF9-7A44-4908-81A8-0F1C244127EE",
+            "type" : "Mesh",
+            "name" : "Standard",
+            "matrix" : [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "visible" : true,
+            "geometry" : "29135095-DA03-42B3-9A0F-B7D56BAD43D9",
+            "material" : "AB6E8AEE-E825-47CA-BE61-CFD02BDDDFC1"
+          },
+          {
+            "uuid" : "48CB935A-F864-4C2A-AE27-4D8EF8DB857D",
+            "type" : "Mesh",
+            "name" : "StandardSpecular",
+            "matrix" : [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.5,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "visible" : true,
+            "geometry" : "29135095-DA03-42B3-9A0F-B7D56BAD43D9",
+            "material" : "F7832BA5-5053-434C-A823-11645FA41C1E"
+          },
+          {
+            "uuid" : "074A2563-1A98-4029-A77F-D03163BE6A59",
+            "type" : "Mesh",
+            "name" : "MobileDiffuse",
+            "matrix" : [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.5,
+              1.5,
+              0.0,
+              1.0
+            ],
+            "visible" : true,
+            "geometry" : "29135095-DA03-42B3-9A0F-B7D56BAD43D9",
+            "material" : "A5E272F3-CA9F-490C-BD26-E1B6F22B0DB7"
+          },
+          {
+            "uuid" : "A1585720-255B-4AEA-BF11-7DA333979C67",
+            "type" : "Mesh",
+            "name" : "MobileVertexLit",
+            "matrix" : [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.5,
+              0.0,
+              1.0
+            ],
+            "visible" : true,
+            "geometry" : "29135095-DA03-42B3-9A0F-B7D56BAD43D9",
+            "material" : "381C1310-268B-490C-8918-F3D09244B76F"
+          },
+          {
+            "uuid" : "16B91F3F-46D7-44F6-B21D-AD5A20E217E3",
+            "type" : "Mesh",
+            "name" : "UnlitTexture",
+            "matrix" : [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.5,
+              1.5,
+              0.0,
+              1.0
+            ],
+            "visible" : true,
+            "geometry" : "29135095-DA03-42B3-9A0F-B7D56BAD43D9",
+            "material" : "1E230FFB-95DB-419B-80EE-C5F84CB825E2"
+          },
+          {
+            "uuid" : "3C9DD5DA-2C0D-4A32-AE63-1D28411CBAE1",
+            "type" : "Mesh",
+            "name" : "UnlitColor",
+            "matrix" : [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.5,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "visible" : true,
+            "geometry" : "29135095-DA03-42B3-9A0F-B7D56BAD43D9",
+            "material" : "11792322-3D95-4CEC-B882-307D36C168CB"
+          },
+          {
+            "uuid" : "22875E4E-1230-409D-B538-4101C7661857",
+            "type" : "Mesh",
+            "name" : "MobileBumpedDiffuse",
+            "matrix" : [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.5,
+              -1.5,
+              0.0,
+              1.0
+            ],
+            "visible" : true,
+            "geometry" : "29135095-DA03-42B3-9A0F-B7D56BAD43D9",
+            "material" : "80F00A18-A78A-4D63-A7F5-8A2FEA6E604E"
+          },
+          {
+            "uuid" : "BA88FC24-3268-465F-8A36-95D4F9237E02",
+            "type" : "Mesh",
+            "name" : "MobileBumpedSpecular",
+            "matrix" : [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              -1.5,
+              0.0,
+              1.0
+            ],
+            "visible" : true,
+            "geometry" : "29135095-DA03-42B3-9A0F-B7D56BAD43D9",
+            "material" : "1179DE77-C849-4223-8623-76C3F8EA8C44"
+          }
+        ]
+      },
+      {
+        "uuid" : "F8750559-4326-4137-83CF-0DBAA9EA35F7",
+        "type" : "AmbientLight",
+        "name" : "AmbientLight",
+        "matrix" : [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "visible" : true,
+        "color"   : 3553602
+      }
+    ]
+  },
+  "images"     : [
+    {
+      "url" : "./images/Slate Tiles - Color Map.png",
+      "uuid" : "B02D6F1C-8E2A-4F2D-9690-6276A42E36C4",
+      "name" : "Slate Tiles - Color Map.png"
+    },
+    {
+      "url" : "./images/Slate Tiles - (Normal Map).png",
+      "uuid" : "71B6B8F6-CF7E-44D2-B13E-FEBFF730BD3A",
+      "name" : "Slate Tiles - (Normal Map).png"
+    },
+    {
+      "url" : "./images/Slate Tiles - HeightMap.png",
+      "uuid" : "958B19FE-1ABE-4CB0-B6AB-2F02C620FB11",
+      "name" : "Slate Tiles - HeightMap.png"
+    },
+    {
+      "url" : "./images/Slate Tiles - AO Map.png",
+      "uuid" : "7DD10969-D9E5-41A4-85E1-937613B73C22",
+      "name" : "Slate Tiles - AO Map.png"
+    },
+    {
+      "url" : "./images/Slate Tiles - Specular Map.png",
+      "uuid" : "44E8A83B-5E65-48A8-9F29-398BDD4F1022",
+      "name" : "Slate Tiles - Specular Map.png"
+    }
+  ],
+  "textures"   : [
+    {
+      "uuid" : "3587907D-D39F-4E6D-B70A-AC6BDDD93C05",
+      "offset" : [
+        0.0,
+        0.0
+      ],
+      "repeat" : [
+        1.0,
+        1.0
+      ],
+      "magFilter" : 1006,
+      "minFilter" : 1008,
+      "wrap"      : [
+        1000,
+        1000
+      ],
+      "image"     : "B02D6F1C-8E2A-4F2D-9690-6276A42E36C4",
+      "name"      : "./images/Slate Tiles - Color Map.png",
+      "anisotropy" : 1
+    },
+    {
+      "uuid" : "215694D7-3C48-469E-9D3F-020155C50B75",
+      "offset" : [
+        0.0,
+        0.0
+      ],
+      "repeat" : [
+        1.0,
+        1.0
+      ],
+      "magFilter" : 1006,
+      "minFilter" : 1008,
+      "wrap"      : [
+        1000,
+        1000
+      ],
+      "image"     : "71B6B8F6-CF7E-44D2-B13E-FEBFF730BD3A",
+      "name"      : "./images/Slate Tiles - (Normal Map).png",
+      "anisotropy" : 1
+    },
+    {
+      "uuid" : "AC6BD9E8-5BB4-4E46-84BC-43AAB8FF7EBF",
+      "offset" : [
+        0.0,
+        0.0
+      ],
+      "repeat" : [
+        1.0,
+        1.0
+      ],
+      "magFilter" : 1006,
+      "minFilter" : 1008,
+      "wrap"      : [
+        1000,
+        1000
+      ],
+      "image"     : "958B19FE-1ABE-4CB0-B6AB-2F02C620FB11",
+      "name"      : "./images/Slate Tiles - HeightMap.png",
+      "anisotropy" : 1
+    },
+    {
+      "uuid" : "8E7E029B-1F82-433D-90E7-4FE546973DA3",
+      "offset" : [
+        0.0,
+        0.0
+      ],
+      "repeat" : [
+        1.0,
+        1.0
+      ],
+      "magFilter" : 1006,
+      "minFilter" : 1008,
+      "wrap"      : [
+        1000,
+        1000
+      ],
+      "image"     : "7DD10969-D9E5-41A4-85E1-937613B73C22",
+      "name"      : "./images/Slate Tiles - AO Map.png",
+      "anisotropy" : 1
+    },
+    {
+      "uuid" : "81B7DC6A-9748-4D7D-9671-B8B51B19D33B",
+      "offset" : [
+        0.0,
+        0.0
+      ],
+      "repeat" : [
+        1.0,
+        1.0
+      ],
+      "magFilter" : 1006,
+      "minFilter" : 1008,
+      "wrap"      : [
+        1000,
+        1000
+      ],
+      "image"     : "44E8A83B-5E65-48A8-9F29-398BDD4F1022",
+      "name"      : "./images/Slate Tiles - Specular Map.png",
+      "anisotropy" : 1
+    }
+  ]
+}
