@@ -12,6 +12,7 @@ namespace Assets.Kanau.ThreeScene.Textures {
         }
 
         TextureContainer texcontainer;
+        LightmapContainer lightmapcontainer;
 
         public ImageElem(TextureContainer c) {
             this.texcontainer = c;
@@ -19,13 +20,25 @@ namespace Assets.Kanau.ThreeScene.Textures {
         }
 
         public ImageElem(LightmapContainer c) {
-            this.Name = c.ExportedFileName(".png");
+            this.lightmapcontainer = c;
+            this.Name = c.ExportedFileName(".jpg");
         }
 
         public void ExpoortImageFile(ExportPathHelper pathHelper) {
             if (texcontainer != null) {
                 string filename = pathHelper.ToImagePath(Name);
                 texcontainer.Save(filename);
+            }
+            if(lightmapcontainer != null) {
+                lightmapcontainer.Save(pathHelper);
+            }
+        }
+
+        public string URL
+        {
+            get
+            {
+                return string.Format("./{0}/{1}", ExportSettings.Instance.destination.imageDirectory, Name);
             }
         }
 

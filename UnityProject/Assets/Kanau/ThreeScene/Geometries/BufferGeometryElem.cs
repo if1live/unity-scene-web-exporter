@@ -27,7 +27,11 @@ namespace Assets.Kanau.ThreeScene.Geometries {
         public float[] UV3 { get; set; }
         public float[] UV4 { get; set; }
 
+        public Vector4 LightmapScaleOffset { get; private set; }
+        public bool HasLightmap { get; private set; }
+
         public Mesh Mesh;
+
 
         public string CreateSafeMeshName(string postfix) {
             return SafeName + postfix;
@@ -51,8 +55,12 @@ namespace Assets.Kanau.ThreeScene.Geometries {
             }
         }
 
-        public BufferGeometryElem(MeshContainer c) {
+        public BufferGeometryElem(MeshContainer c, bool hasLightmap, Vector4 lightmapScaleOffset) {
             this.Mesh = c.Mesh;
+            this.HasLightmap = hasLightmap;
+            this.LightmapScaleOffset = lightmapScaleOffset;
+            
+
             Mesh mesh = c.Mesh;
 
 
@@ -103,6 +111,18 @@ namespace Assets.Kanau.ThreeScene.Geometries {
             if (mesh.uv4.Length > 0) {
                 uvCount++;
                 UV4 = FlattenHelper.Flatten(GLConverter.ConvertDxTexcoordToGlTexcoord(mesh.uv4));
+            }
+
+            // if use lightmap uv
+            if (LightmapScaleOffset != null && UV2 == null) {
+                uvCount++;
+
+                var uv = FlattenHelper.Flatten(GLConverter.ConvertDxTexcoordToGlTexcoord(mesh.uv));
+                for (int i = 0; i < uv.Length; i += 2) {
+                    uv[i] = uv[i] * LightmapScaleOffset[0] + LightmapScaleOffset[2];
+                    uv[i + 1] = uv[i + 1] * LightmapScaleOffset[1] + LightmapScaleOffset[3];
+                }
+                UV2 = uv;
             }
         }
     }    

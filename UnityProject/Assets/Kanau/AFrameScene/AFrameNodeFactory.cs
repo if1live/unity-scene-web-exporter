@@ -4,7 +4,6 @@ using Assets.Kanau.ThreeScene.Cameras;
 using Assets.Kanau.ThreeScene.Geometries;
 using Assets.Kanau.ThreeScene.Lights;
 using Assets.Kanau.ThreeScene.Objects;
-using Assets.Kanau.Utils;
 using System;
 using UnityEngine;
 
@@ -211,7 +210,6 @@ namespace Assets.Kanau.AFrameScene {
             // assets
             var assetsNode = new AFrameNode("a-assets");
             // export mesh
-            var pathHelper = ExportPathHelper.Instance;
             foreach (var elem in sharedNodeTable.GetEnumerable<AbstractGeometryElem>()) {
                 // TODO 타입에 따라서 obj 굽는게 바뀔텐데
                 var bufferGeom = elem as BufferGeometryElem;

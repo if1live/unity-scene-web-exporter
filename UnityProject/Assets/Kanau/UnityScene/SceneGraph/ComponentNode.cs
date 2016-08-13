@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Kanau.UnityScene.SceneGraph
-{
+namespace Assets.Kanau.UnityScene.SceneGraph {
     public class ComponentNode<T> : IUnityNode where T : Component
     {
         // camera, light, ... 컴포넌트의 기본 클래스
@@ -14,7 +13,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph
             get { return Value.transform; }
         }
 
-        protected INodeTable<int> ContainerTable { get; set; }
+        protected INodeTable<string> ContainerTable { get; set; }
 
         public GameObject CurrentObject { get { return Value.gameObject; } }
         public GameObject ParentObject {
@@ -27,9 +26,9 @@ namespace Assets.Kanau.UnityScene.SceneGraph
                 }
             }
         }
-        public int InstanceId { get { return Value.GetInstanceID(); } }
+        public string InstanceId { get { return Value.GetInstanceID().ToString(); } }
 
-        public virtual void Initialize<T1>(T1 comp, INodeTable<int> containerTable) where T1 : Component {
+        public virtual void Initialize<T1>(T1 comp, INodeTable<string> containerTable) where T1 : Component {
             Debug.Assert(typeof(T) == typeof(T1));
             this.Value = (T)Convert.ChangeType(comp, comp.GetType());
             this.ContainerTable = containerTable;

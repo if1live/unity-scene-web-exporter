@@ -14,7 +14,7 @@ namespace Assets.Kanau.UnityScene.Containers {
         const float LightmapContrast = 1.1f;
 
         public int Index { get; private set; }
-        public int InstanceId { get { return Index; } }
+        public string InstanceId { get { return Index.ToString(); } }
 
         public LightmapContainer(int index) {
             this.Index = index;
@@ -64,10 +64,9 @@ namespace Assets.Kanau.UnityScene.Containers {
         public TextureWrapMode WrapMode { get { return LightmapFar.wrapMode; } }
         public int AnisoLevel { get { return LightmapFar.anisoLevel; } }
 
-        public string FileName { get { return "lightmap" + Index + ".jpg"; } }
-
         public void Save(ExportPathHelper pathHelper) {
-            Save(pathHelper.RootPath, JpegQuality, LightmapBrightness, LightmapContrast);
+            var filepath = pathHelper.ToImagePath(ExportedFileName(".jpg"));
+            Save(filepath, JpegQuality, LightmapBrightness, LightmapContrast);
         }
 
         public void Save(string path, float jpegQuality, float lightmapMult, float lightmapPower) {
@@ -118,8 +117,7 @@ namespace Assets.Kanau.UnityScene.Containers {
 
             JPGEncoder je = new JPGEncoder(tf, jpegQuality, "", true);
             byte[] bytes = je.GetBytes();
-
-            File.WriteAllBytes(path + FileName, bytes);
+            File.WriteAllBytes(path, bytes);
 
             Texture2D.DestroyImmediate(tf);
 #endif

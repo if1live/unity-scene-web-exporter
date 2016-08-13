@@ -6,7 +6,7 @@ namespace Assets.Kanau.UnityScene.Containers {
     public class MaterialContainer
     {
         public Material Material { get; private set; }
-        public int InstanceId { get { return Material.GetInstanceID(); } }
+        public string InstanceId { get { return Material.GetInstanceID().ToString(); } }
 
         public MaterialContainer(Material mtl) {
             this.Material = mtl;

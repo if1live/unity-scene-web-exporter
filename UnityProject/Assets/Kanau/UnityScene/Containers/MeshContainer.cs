@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Assets.Kanau.UnityScene.Containers
-{
+namespace Assets.Kanau.UnityScene.Containers {
     public class MeshContainer
     {
         public Mesh Mesh { get; private set; }
-        public int InstanceId { get { return Mesh.GetInstanceID(); } }
+        public string InstanceId { get { return Mesh.GetInstanceID().ToString(); } }
 
         public MeshContainer(Mesh m) {
             this.Mesh = m;

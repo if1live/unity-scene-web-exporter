@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Kanau.UnityScene.SceneGraph
-{
+namespace Assets.Kanau.UnityScene.SceneGraph {
     public struct ScriptVariable
     {
         public const string TheGameObject = "gameobject";
@@ -108,7 +107,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph
             return ScriptVariable.TheUnknown;
         }
 
-        public override void Initialize<T1>(T1 comp, INodeTable<int> containerTable) {
+        public override void Initialize<T1>(T1 comp, INodeTable<string> containerTable) {
             base.Initialize(comp, containerTable);
 
             this.BehaviourName = comp.GetType().ToString();

@@ -4,11 +4,11 @@ namespace Assets.Kanau.UnityScene.SceneGraph
 {
     public interface IUnityNode
     {
-        int InstanceId { get; }
+        string InstanceId { get; }
 
         GameObject CurrentObject { get; }
         GameObject ParentObject { get; }
 
-        void Initialize<T>(T comp, INodeTable<int> containerTable) where T : Component;
+        void Initialize<T>(T comp, INodeTable<string> containerTable) where T : Component;
     }
 }

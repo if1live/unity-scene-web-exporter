@@ -18,7 +18,7 @@ namespace Assets.Kanau.UnityScene {
         Report report;
         ThreeSceneRoot root;
 
-        Dictionary<int, Object3DElem> objNodeTable = new Dictionary<int, Object3DElem>();
+        Dictionary<string, Object3DElem> objNodeTable = new Dictionary<string, Object3DElem>();
 
         public ThreeSceneConvertVisitor(Report report) {
             this.report = report;
@@ -48,12 +48,49 @@ namespace Assets.Kanau.UnityScene {
                 RegisterLightmap(n);
             }
 
-            foreach (var n in unityscene.ContainerTable.GetEnumerable<MaterialContainer>()) {
-                RegisterMaterial(n);
+            // lightmap이 없는 경우
+            foreach (var n in unityscene.ContainerTable.GetEnumerable<MeshContainer>()) {
+                RegisterMeshWithoutLightmap(n);
             }
 
-            foreach (var n in unityscene.ContainerTable.GetEnumerable<MeshContainer>()) {
-                RegisterMesh(n);
+            // 게임오브젝트마다 별도의 Mesh를 등록하는게 가능하도록
+            // 왜냐하면 lightmap 좌표 정보는 lightmapScaleOffset는 Renderer에 저장되기때문
+            // lightmap이 있는 경우
+            foreach (var n in unityscene.GraphNodeTable.GetEnumerable<GameObjectNode>()) {
+                if(!n.HasLightmap) { continue; }
+                var renderer = n.CurrentObject.GetComponent<Renderer>();
+                var meshfilter = n.CurrentObject.GetComponent<MeshFilter>();
+                if(renderer == null) { continue; }
+                if(meshfilter == null) { continue; }
+
+                var meshcontainerkey = meshfilter.sharedMesh.GetInstanceID().ToString();
+                var meshcontainer = unityscene.ContainerTable.Get<MeshContainer>(meshcontainerkey);
+                AbstractGeometryElem geo = new BufferGeometryElem(meshcontainer, n.HasLightmap, n.lightmapScaleOffset);
+                var geokey = ConvertKeyForBufferGeometryElem(renderer);
+                root.SharedNodeTable.Add(geo, geokey);
+            }
+
+            foreach (var n in unityscene.ContainerTable.GetEnumerable<MaterialContainer>()) {
+                var mtl = CreateMaterialElem(n);
+                root.SharedNodeTable.Add(mtl, n.InstanceId);
+            }
+
+            foreach (var n in unityscene.GraphNodeTable.GetEnumerable<GameObjectNode>()) {
+                if (!n.HasLightmap) { continue; }
+                var renderer = n.CurrentObject.GetComponent<Renderer>();
+                if (renderer == null) { continue; }
+
+                var mtl = renderer.sharedMaterial;
+                var mtlcontainer = unityscene.ContainerTable.Get<MaterialContainer>(mtl.GetInstanceID().ToString());
+                var mtlelem = CreateMaterialElem(mtlcontainer);
+
+                var lightmapkey = renderer.lightmapIndex.ToString();
+                var lightmapelem = root.SharedNodeTable.Get<TextureElem>(lightmapkey);
+                mtlelem.LightMap = lightmapelem;
+
+                var key = ConvertKeyForMaterialELem(renderer);
+                root.SharedNodeTable.Add(mtlelem, key);
+
             }
 
             // Object3D와 관련된 객체
@@ -77,7 +114,7 @@ namespace Assets.Kanau.UnityScene {
 
             // 연관된 스크립트 변수 등록
             foreach (var n in unityscene.GraphNodeTable.GetEnumerable<ScriptNode>()) {
-                var objnode = objNodeTable[n.CurrentObject.GetInstanceID()];
+                var objnode = objNodeTable[n.CurrentObject.GetInstanceID().ToString()];
                 RegisterScriptVariables(unityscene, objnode, n);
             }
 
@@ -138,7 +175,7 @@ namespace Assets.Kanau.UnityScene {
 
         CameraElem RegisterToThreeScene(CameraNode n) {
             var node = new PerspectiveCameraElem(n);
-            var parent = objNodeTable[n.CurrentObject.GetInstanceID()];
+            var parent = objNodeTable[n.CurrentObject.GetInstanceID().ToString()];
             parent.AddChild(node);
             return node;
         }
@@ -163,7 +200,7 @@ namespace Assets.Kanau.UnityScene {
             }
 
             if (node != null) {
-                var parent = objNodeTable[n.CurrentObject.GetInstanceID()];
+                var parent = objNodeTable[n.CurrentObject.GetInstanceID().ToString()];
                 parent.AddChild(node);
                 return node;
             } else {
@@ -171,66 +208,51 @@ namespace Assets.Kanau.UnityScene {
             }
         }
 
-        void RegisterMaterial(MaterialContainer n) {
-            // 유니티에서는 lightmap 정보가 renderer에 붙지만
-            // three.js에서는 material에 들어간다.
-            // 그래서 material의 경우는 1:1로 매핑하는게 불가능하다.
-            // 그래서 같은 material에 대해서 라이트맵별로 재질을 만들어서 등록했다. 
-            // (라이트맵이 없는 재질도 등록)
-            /*
-            for (int i = -1; i < LightmapSettings.lightmaps.Length; i++) {
-                // lightmap
-                if (i >= 0) {
-                    var lightmapNode = new LightmapNode(i, n.Scene);
-                    mtl.LightMapNode = lightmapTextureTable[i];
-                    lightmapMaterialTable[i] = mtl;
-                }
-            }
-            */
-
+        MaterialElem CreateMaterialElem(MaterialContainer n) {
             var mtl = new MaterialElem(n);
-            root.SharedNodeTable.Add(mtl, n.InstanceId);
-            
+
             if (n.MainTexture) {
-                var instanceId = n.MainTexture.GetInstanceID();
+                var instanceId = n.MainTexture.GetInstanceID().ToString();
                 mtl.Map = root.SharedNodeTable.Get<TextureElem>(instanceId);
             }
 
             if (n.BumpMap) {
-                var instanceId = n.BumpMap.GetInstanceID();
+                var instanceId = n.BumpMap.GetInstanceID().ToString();
                 mtl.BumpMap = root.SharedNodeTable.Get<TextureElem>(instanceId);
             }
 
             if (n.DetailNormalMap) {
-                var uid = n.DetailNormalMap.GetInstanceID();
+                var uid = n.DetailNormalMap.GetInstanceID().ToString();
                 mtl.NormalMap = root.SharedNodeTable.Get<TextureElem>(uid);
             }
 
-            if(n.ParallaxMap) {
-                var uid = n.ParallaxMap.GetInstanceID();
+            if (n.ParallaxMap) {
+                var uid = n.ParallaxMap.GetInstanceID().ToString();
                 mtl.DisplacementMap = root.SharedNodeTable.Get<TextureElem>(uid);
             }
-            if(n.OcclusionMap) {
-                var uid = n.OcclusionMap.GetInstanceID();
+            if (n.OcclusionMap) {
+                var uid = n.OcclusionMap.GetInstanceID().ToString();
                 mtl.AoMap = root.SharedNodeTable.Get<TextureElem>(uid);
             }
             if (n.EmissionMap) {
-                var uid = n.EmissionMap.GetInstanceID();
+                var uid = n.EmissionMap.GetInstanceID().ToString();
                 mtl.EmissiveMap = root.SharedNodeTable.Get<TextureElem>(uid);
             }
 
             if (n.MetallicGlossMap) {
-                var uid = n.MetallicGlossMap.GetInstanceID();
+                var uid = n.MetallicGlossMap.GetInstanceID().ToString();
                 mtl.MetalnessMap = root.SharedNodeTable.Get<TextureElem>(uid);
             }
-            
-            if(n.SpecGlossMap) {
-                var uid = n.SpecGlossMap.GetInstanceID();
+
+            if (n.SpecGlossMap) {
+                var uid = n.SpecGlossMap.GetInstanceID().ToString();
                 mtl.SpecularMap = root.SharedNodeTable.Get<TextureElem>(uid);
             }
+
+            return mtl;
         }
 
-        void RegisterMesh(MeshContainer n) {
+        void RegisterMeshWithoutLightmap(MeshContainer n) {
             AbstractGeometryElem geo = null;
             if (n.Mesh.name == "Cube") {
                 geo = new BoxBufferGeometryElem(n);
@@ -241,7 +263,7 @@ namespace Assets.Kanau.UnityScene {
             } else if(n.Mesh.name == "Quad") {
                 geo = new QuadBufferGeometry(n);
             } else {
-                geo = new BufferGeometryElem(n);
+                geo = new BufferGeometryElem(n, false, Vector4.zero);
             } 
             root.SharedNodeTable.Add(geo, n.InstanceId);
         }
@@ -252,25 +274,25 @@ namespace Assets.Kanau.UnityScene {
 
                 Texture tex = val.GetTexture();
                 if(tex) {
-                    var elem = root.SharedNodeTable.Get<TextureElem>(tex.GetInstanceID());
+                    var elem = root.SharedNodeTable.Get<TextureElem>(tex.GetInstanceID().ToString());
                     val.value = elem.Uuid;
                 }
 
                 Material mtl = val.GetMaterial();
                 if (mtl) {
-                    var elem = root.SharedNodeTable.Get<MaterialElem>(mtl.GetInstanceID());
+                    var elem = root.SharedNodeTable.Get<MaterialElem>(mtl.GetInstanceID().ToString());
                     val.value = elem.Uuid;
                 }
 
                 Transform tr = val.GetTransform();
                 if(tr) {
-                    var elem = objNodeTable[tr.gameObject.GetInstanceID()];
+                    var elem = objNodeTable[tr.gameObject.GetInstanceID().ToString()];
                     val.value = elem.Uuid;
                 }
 
                 GameObject go = val.GetGameObject();
                 if(go) {
-                    var elem = objNodeTable[go.GetInstanceID()];
+                    var elem = objNodeTable[go.GetInstanceID().ToString()];
                     val.value = elem.Uuid;
                 }
 
@@ -288,7 +310,7 @@ namespace Assets.Kanau.UnityScene {
         void RegisterTexture(TextureContainer n) {
             // create image
             var imageNode = new ImageElem(n);
-            root.SharedNodeTable.Add(imageNode);
+            root.SharedNodeTable.Add(imageNode, n.InstanceId);
 
             // create texture
             var texNode = new TextureElem(n);
@@ -297,8 +319,16 @@ namespace Assets.Kanau.UnityScene {
         }
 
         MeshElem RegisterToThreeScene(RenderNode n) {
-            var geometryNode = root.SharedNodeTable.Get<AbstractGeometryElem>(n.Mesh.InstanceId);
-            var materialNode = root.SharedNodeTable.Get<MaterialElem>(n.Material.InstanceId);
+            var hasLightmap = (n.Value.lightmapIndex >= 0);
+            var geoKey = n.Mesh.InstanceId;
+            var mtlKey = n.Material.InstanceId;
+            if(hasLightmap) {
+                geoKey = ConvertKeyForBufferGeometryElem(n.Value);
+                mtlKey = ConvertKeyForMaterialELem(n.Value);
+            }
+
+            var geometryNode = root.SharedNodeTable.Get<AbstractGeometryElem>(geoKey);
+            var materialNode = root.SharedNodeTable.Get<MaterialElem>(mtlKey);
 
             Debug.Assert(geometryNode != null);
             Debug.Assert(materialNode != null);
@@ -308,9 +338,39 @@ namespace Assets.Kanau.UnityScene {
                 Geometry = geometryNode,
                 Material = materialNode,
             };
-            var parent = objNodeTable[n.CurrentObject.GetInstanceID()];
+            var parent = objNodeTable[n.CurrentObject.GetInstanceID().ToString()];
             parent.AddChild(meshNode);
             return meshNode;
         }
+
+        string ConvertKeyForBufferGeometryElem(Renderer renderer) {
+            var meshfilter = renderer.GetComponent<MeshFilter>();
+            var mesh = meshfilter.sharedMesh;
+            var basicKey = meshfilter.sharedMesh.GetInstanceID().ToString();
+
+            if (renderer.lightmapIndex >= 0) {
+                var attr = renderer.lightmapScaleOffset;
+                var key = string.Format("{0}_{1},{2},{3},{4}", basicKey, attr.x, attr.y, attr.z, attr.w);
+                return key;
+            } else {
+                // mesh container . instance id
+                return basicKey;
+            }
+        }
+
+        string ConvertKeyForMaterialELem(Renderer renderer) {
+            var mtl = renderer.sharedMaterial;
+            var basicKey = mtl.GetInstanceID().ToString();
+
+            if(renderer.lightmapIndex >= 0) {
+                var attr = renderer.lightmapScaleOffset;
+                var key = string.Format("{0}_{1},{2},{3},{4}", basicKey, attr.x, attr.y, attr.z, attr.w);
+                return key;
+
+            } else {
+                return basicKey;
+            }
+        }
+
     }
 }

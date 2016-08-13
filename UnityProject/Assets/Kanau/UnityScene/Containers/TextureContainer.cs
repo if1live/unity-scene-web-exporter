@@ -9,7 +9,7 @@ namespace Assets.Kanau.UnityScene.Containers {
     public class TextureContainer
     {
         public Texture Tex { get; private set; }
-        public int InstanceId { get { return Tex.GetInstanceID(); } }
+        public string InstanceId { get { return Tex.GetInstanceID().ToString(); } }
 
         public TextureContainer(Texture tex) {
             this.Tex = tex;

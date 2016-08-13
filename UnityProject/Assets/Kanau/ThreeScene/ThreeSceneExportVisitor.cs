@@ -9,6 +9,7 @@ using Assets.Kanau.Utils;
 using LitJson;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Assets.Kanau.ThreeScene {
@@ -385,8 +386,8 @@ namespace Assets.Kanau.ThreeScene {
         }
 
         public void Visit(ImageElem el) {
-            using (var scope = new JsonScopeObjectWriter(writer)) {
-                scope.WriteKeyValue("url", "./" + el.Name);
+            using (var scope = new JsonScopeObjectWriter(writer)) {                
+                scope.WriteKeyValue("url", el.URL);
                 scope.WriteKeyValue("uuid", el.Uuid);
                 scope.WriteKeyValue("name", el.Name);
             }

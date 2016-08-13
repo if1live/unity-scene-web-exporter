@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Kanau.UnityScene.SceneGraph
-{
+namespace Assets.Kanau.UnityScene.SceneGraph {
     public interface IGameObjectNode : IUnityNode
     {
         string Name { get; }
@@ -24,7 +23,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph
 
         ComponentNode<Transform> TransformNode { get; }
 
-        void BuildHierarchy(INodeTable<int> table);
+        void BuildHierarchy(INodeTable<string> table);
         GameObjectNode Parent { get; }
         GameObjectNode[] Children { get; }
 
@@ -34,7 +33,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph
         // ligthmap
         bool HasLightmap { get; }
         int LightmapIndex { get; }
-        float[] LightmapTileOffset { get; }
+        Vector4 lightmapScaleOffset { get; }
     }
 
     /// <summary>
@@ -42,7 +41,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph
     /// </summary>
     public class GameObjectNode : IGameObjectNode
     {
-        public const int RootInstanceId = int.MaxValue;
+        public const string RootInstanceId = "__ROOT__";
 
         public GameObject CurrentObject { get; private set; }
         public GameObject ParentObject {
@@ -56,9 +55,9 @@ namespace Assets.Kanau.UnityScene.SceneGraph
         }
         public bool HasParent { get { return ParentObject != null; } }
 
-        public int InstanceId {
+        public string InstanceId {
             get {
-                return CurrentObject.GetInstanceID();
+                return CurrentObject.GetInstanceID().ToString();
             }
         }
 
@@ -66,7 +65,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph
             this.CurrentObject = go;
         }
 
-        public void Initialize<T>(T comp, INodeTable<int> containerTable) where T : Component {
+        public void Initialize<T>(T comp, INodeTable<string> containerTable) where T : Component {
             throw new NotImplementedException();
         }
 
@@ -93,16 +92,16 @@ namespace Assets.Kanau.UnityScene.SceneGraph
         }
 
         // child-parent
-        public void BuildHierarchy(INodeTable<int> table) {
+        public void BuildHierarchy(INodeTable<string> table) {
             if(ParentObject != null) {
-                Parent = table.Get<GameObjectNode>(ParentObject.GetInstanceID());
+                Parent = table.Get<GameObjectNode>(ParentObject.GetInstanceID().ToString());
             }
 
             var childlist = new List<GameObjectNode>();
             var tr = CurrentObject.transform;
             for(int i = 0; i < tr.childCount; i++) {
                 var childtr = tr.GetChild(i);
-                var child = table.Get<GameObjectNode>(childtr.gameObject.GetInstanceID());
+                var child = table.Get<GameObjectNode>(childtr.gameObject.GetInstanceID().ToString());
                 childlist.Add(child);
             }
             Children = childlist.ToArray();
@@ -143,11 +142,9 @@ namespace Assets.Kanau.UnityScene.SceneGraph
             get { return CurrentObject.GetComponent<Renderer>().lightmapIndex; }
         }
 
-        public float[] LightmapTileOffset {
-            get {
-                Vector4 p = CurrentObject.GetComponent<Renderer>().lightmapScaleOffset;
-                return new float[] { p.x, p.y, p.z, p.w };
-            }
+        public Vector4 lightmapScaleOffset
+        {
+            get { return CurrentObject.GetComponent<Renderer>().lightmapScaleOffset; }
         }
     }
 
@@ -168,7 +165,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph
         public bool HasTag { get { return false; } }
         public string Tag { get { return ""; } }
 
-        public int InstanceId { get { return GameObjectNode.RootInstanceId; } }
+        public string InstanceId { get { return GameObjectNode.RootInstanceId; } }
 
         public bool IsStatic { get { return false; } }
 
@@ -182,7 +179,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph
 
         public ComponentNode<Transform> TransformNode { get { return null; } }
 
-        public void BuildHierarchy(INodeTable<int> table) {
+        public void BuildHierarchy(INodeTable<string> table) {
             // TODO 부모 없는 모다 찾아서 붙이기
             var parentlist = new List<GameObjectNode>();
             foreach (var n in table.GetEnumerable<GameObjectNode>()) {
@@ -193,7 +190,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph
             Children = parentlist.ToArray();
         }
 
-        public void Initialize<T>(T comp, INodeTable<int> containerTable) where T : Component {
+        public void Initialize<T>(T comp, INodeTable<string> containerTable) where T : Component {
             throw new NotImplementedException();
         }
 
@@ -206,6 +203,6 @@ namespace Assets.Kanau.UnityScene.SceneGraph
         public bool HasLightmap { get { return false; } }
         public int LightmapIndex { get { return -1; } }
 
-        public float[] LightmapTileOffset { get { return new float[] { 0, 0, 0, 0 }; } }
+        public Vector4 lightmapScaleOffset { get { return Vector4.zero; } }
     }
 }

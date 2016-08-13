@@ -4,17 +4,16 @@ using Assets.Kanau.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Kanau.UnityScene
-{
+namespace Assets.Kanau.UnityScene {
     public class UnitySceneRoot
     {
         readonly ProjectSettings settings;
-        readonly INodeTable<int> containerTable;
-        readonly INodeTable<int> graphNodeTable;
+        readonly INodeTable<string> containerTable;
+        readonly INodeTable<string> graphNodeTable;
 
         public ProjectSettings Settings { get { return settings; } }
-        public INodeTable<int> ContainerTable { get { return containerTable; } }
-        public INodeTable<int> GraphNodeTable { get { return graphNodeTable; } }
+        public INodeTable<string> ContainerTable { get { return containerTable; } }
+        public INodeTable<string> GraphNodeTable { get { return graphNodeTable; } }
 
         public UnitySceneRoot() {
             settings = new ProjectSettings();
@@ -24,6 +23,7 @@ namespace Assets.Kanau.UnityScene
 
         public void Add(GameObject go) {
             // containers
+            VisitToCreateLightmap();
             VisitToCreateMesh_r(go);
             VisitToCreateMaterial_r(go);
             VisitToCreateTexture(containerTable.GetEnumerable<MaterialContainer>());
@@ -42,13 +42,13 @@ namespace Assets.Kanau.UnityScene
             foreach (var node in graphNodeTable.GetEnumerable<ScriptNode>()) {
                 foreach (var val in node.VariableEnumerable) {
                     Material mtl = val.GetMaterial();
-                    if (mtl && !containerTable.Contains<MaterialContainer>(mtl.GetInstanceID())) {
+                    if (mtl && !containerTable.Contains<MaterialContainer>(mtl.GetInstanceID().ToString())) {
                         var c = new MaterialContainer(mtl);
                         containerTable.Add(c.InstanceId, c);
                     }
 
                     Texture tex = val.GetTexture();
-                    if (tex && !containerTable.Contains<TextureContainer>(tex.GetInstanceID())) {
+                    if (tex && !containerTable.Contains<TextureContainer>(tex.GetInstanceID().ToString())) {
                         var c = new TextureContainer(tex);
                         containerTable.Add(c.InstanceId, c);
                     }
@@ -58,10 +58,20 @@ namespace Assets.Kanau.UnityScene
             VisitToCreateTexture(containerTable.GetEnumerable<MaterialContainer>());
         }
 
+        void VisitToCreateLightmap() {
+            for (int i = 0; i < LightmapSettings.lightmaps.Length; i++) {
+                var key = i.ToString();
+                if (containerTable.Contains<LightmapContainer>(key) == false) {
+                    var container = new LightmapContainer(i);
+                    containerTable.Add(key, container);
+                }
+            }
+        }
+
         void VisitToCreateMesh_r(GameObject go) {
             if (go.GetComponent<Renderer>()) {
                 var mesh = ComponentHelper.GetMesh(go);
-                if(!containerTable.Contains<MeshContainer>(mesh.GetInstanceID())) {
+                if(!containerTable.Contains<MeshContainer>(mesh.GetInstanceID().ToString())) {
                     var c = new MeshContainer(mesh);
                     containerTable.Add(c.InstanceId, c);
                 }
@@ -75,7 +85,7 @@ namespace Assets.Kanau.UnityScene
         void VisitToCreateMaterial_r(GameObject go) {
             if (go.GetComponent<Renderer>()) {
                 var material = go.GetComponent<Renderer>().sharedMaterial;
-                if(!containerTable.Contains<MaterialContainer>(material.GetInstanceID())) {
+                if(!containerTable.Contains<MaterialContainer>(material.GetInstanceID().ToString())) {
                     var c = new MaterialContainer(material);
                     containerTable.Add(c.InstanceId, c);
                 }
@@ -89,7 +99,7 @@ namespace Assets.Kanau.UnityScene
         void VisitToCreateTexture(IEnumerable<MaterialContainer> materials) {
             foreach (var material in materials) {
                 foreach (var tex in material.Textures) {
-                    if (!containerTable.Contains<TextureContainer>(tex.GetInstanceID())) {
+                    if (!containerTable.Contains<TextureContainer>(tex.GetInstanceID().ToString())) {
                         var c = new TextureContainer(tex);
                         containerTable.Add(c.InstanceId, c);
                     }
@@ -103,7 +113,15 @@ namespace Assets.Kanau.UnityScene
 
             var comp = go.GetComponent<Comp>();
 
-            if (comp) {
+            var isValid = true;
+            if(typeof(Comp) == typeof(Light) && comp != null) {
+                // TODO remove if light is mixed or realtime
+                // baked light is not need in scene
+                var light = (Light)(object)comp;
+                int a = 1;
+            }
+
+            if (comp && isValid) {
                 var node = new Node();
                 node.Initialize(comp, containerTable);
 
@@ -163,24 +181,24 @@ namespace Assets.Kanau.UnityScene
             }
         }
 
-        INodeTable<int> CreateContainerTable() {
-            var table = new NodeTable<int>();
-            table.Register(new SingleTypeNodeTable<int, MeshContainer>());
-            table.Register(new SingleTypeNodeTable<int, TextureContainer>());
-            table.Register(new SingleTypeNodeTable<int, MaterialContainer>());
-            table.Register(new SingleTypeNodeTable<int, LightmapContainer>());
+        INodeTable<string> CreateContainerTable() {
+            var table = new NodeTable<string>();
+            table.Register(new SingleTypeNodeTable<string, MeshContainer>());
+            table.Register(new SingleTypeNodeTable<string, TextureContainer>());
+            table.Register(new SingleTypeNodeTable<string, MaterialContainer>());
+            table.Register(new SingleTypeNodeTable<string, LightmapContainer>());
             return table;
         }
 
-        INodeTable<int> CreateGraphNodeTable() {
-            var table = new NodeTable<int>();
-            table.Register(new SingleTypeNodeTable<int, CameraNode>());
-            table.Register(new SingleTypeNodeTable<int, LightNode>());
+        INodeTable<string> CreateGraphNodeTable() {
+            var table = new NodeTable<string>();
+            table.Register(new SingleTypeNodeTable<string, CameraNode>());
+            table.Register(new SingleTypeNodeTable<string, LightNode>());
 
-            table.Register(new SingleTypeNodeTable<int, RenderNode>());
-            table.Register(new SingleTypeNodeTable<int, ScriptNode>());
+            table.Register(new SingleTypeNodeTable<string, RenderNode>());
+            table.Register(new SingleTypeNodeTable<string, ScriptNode>());
 
-            table.Register(new SingleTypeNodeTable<int, GameObjectNode>());
+            table.Register(new SingleTypeNodeTable<string, GameObjectNode>());
 
             return table;
         }
