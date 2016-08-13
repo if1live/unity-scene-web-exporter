@@ -33,19 +33,19 @@ function setupScene(result) {
     camera.updateProjectionMatrix();
 	
     controls = new THREE.TrackballControls( camera );
-controls.rotateSpeed = 1.0;
-				controls.zoomSpeed = 1.2;
-				controls.panSpeed = 0.8;
+    controls.rotateSpeed = 1.0;
+    controls.zoomSpeed = 1.2;
+    controls.panSpeed = 0.8;
 
-				controls.noZoom = false;
-				controls.noPan = false;
+    controls.noZoom = false;
+    controls.noPan = false;
 
-				controls.staticMoving = true;
-				controls.dynamicDampingFactor = 0.3;
+    controls.staticMoving = true;
+    controls.dynamicDampingFactor = 0.3;
 
-				controls.keys = [ 65, 83, 68 ];
+    controls.keys = [ 65, 83, 68 ];
 
-				//controls.addEventListener( 'change', render );
+    //controls.addEventListener( 'change', render );
 
     // for script variables demo
     var scriptobj = findByUserData(scene, "tag", "Player");
@@ -80,7 +80,7 @@ function init() {
     renderer.setSize( 800, 480 );
     container.appendChild( renderer.domElement );
     
-    window.addEventListener( 'resize', onWindowResize, false );
+    //window.addEventListener( 'resize', onWindowResize, false );
 
 
     // loade scene
