@@ -19,7 +19,7 @@ namespace Assets.Kanau.AFrameScene.Materials {
                 Src = src,
             };
 
-            var side = (container.Color.a == 1) ? MaterialSide.Double : MaterialSide.Front;
+            var side = (container.Color.a == 1) ? MaterialSide.Front : MaterialSide.Double;
             var output = new AFrameMaterial()
             {
                 Shader = shader,

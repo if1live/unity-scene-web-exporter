@@ -216,12 +216,11 @@ namespace Assets.Kanau.AFrameScene {
                 // TODO 타입에 따라서 obj 굽는게 바뀔텐데
                 var bufferGeom = elem as BufferGeometryElem;
                 if (bufferGeom == null) { continue; }
-                var mesh = bufferGeom.Mesh;
 
                 var assetNode = new AFrameNode("a-asset-item");
-                assetNode.AddAttribute("id", mesh.name + "-obj");
+                assetNode.AddAttribute("id", bufferGeom.CreateSafeMeshName("-obj"));
 
-                string filepath = "./models/" + mesh.name + ".obj";
+                string filepath = "./models/" + bufferGeom.CreateMeshFileName(".obj");
                 assetNode.AddAttribute("src", filepath);
 
                 assetsNode.AddChild(assetNode);
@@ -267,7 +266,7 @@ namespace Assets.Kanau.AFrameScene {
 
             } else {
                 var geom = el.Geometry as BufferGeometryElem;
-                node.AddAttribute("obj-model", "obj: #" + geom.Mesh.name + "-obj");
+                node.AddAttribute("obj-model", "obj: #" + geom.CreateSafeMeshName("-obj"));
                 node.AddAttribute("material", mtl);
             }
 

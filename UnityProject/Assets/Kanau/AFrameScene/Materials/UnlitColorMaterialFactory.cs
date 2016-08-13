@@ -12,7 +12,7 @@ namespace Assets.Kanau.AFrameScene.Materials {
 
             var output = new AFrameMaterial()
             {
-                Side = MaterialSide.Double,
+                Side = MaterialSide.Front,
                 Shader = shader,
             };
             return output;

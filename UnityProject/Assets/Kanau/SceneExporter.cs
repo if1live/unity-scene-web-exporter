@@ -61,7 +61,7 @@ namespace Assets.Kanau {
                     var bufferGeom = el as BufferGeometryElem;
                     if(bufferGeom == null) { continue; }
 
-                    string filepath = pathHelper.ToModelPath(bufferGeom.Mesh.name + ".obj");
+                    string filepath = pathHelper.ToModelPath(bufferGeom.CreateMeshFileName(".obj"));
                     ObjExporter.MeshToFile(bufferGeom.Mesh, filepath);
                 }                
             }

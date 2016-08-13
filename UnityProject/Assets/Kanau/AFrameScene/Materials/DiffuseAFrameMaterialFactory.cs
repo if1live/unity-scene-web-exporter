@@ -20,7 +20,7 @@ namespace Assets.Kanau.AFrameScene.Materials {
             {
                 Shader = shader,
                 Transparent = container.Transparent,
-                Side = (container.Color.a == 1) ? MaterialSide.Double : MaterialSide.Front,
+                Side = (container.Color.a == 1) ? MaterialSide.Front: MaterialSide.Double,
             };
             return output;
         }

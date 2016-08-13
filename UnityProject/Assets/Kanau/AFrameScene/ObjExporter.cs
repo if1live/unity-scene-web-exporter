@@ -86,7 +86,7 @@ public class ObjExporter {
         }
         sb.Append("\n");
         foreach (Vector3 v in m.normals) {
-            sb.Append(string.Format("vn {0} {1} {2}\n", -v.x, -v.y, v.z));
+            sb.Append(string.Format("vn {0} {1} {2}\n", v.x, v.y, -v.z));
         }
         sb.Append("\n");
         foreach (Vector3 v in m.uv) {
@@ -96,7 +96,7 @@ public class ObjExporter {
         int[] triangles = m.triangles;
         for (int i = 0; i < triangles.Length; i += 3) {
             sb.Append(string.Format("f {0}/{0}/{0} {1}/{1}/{1} {2}/{2}/{2}\n",
-                                    triangles[i] + 1, triangles[i + 1] + 1, triangles[i + 2] + 1));
+                                    triangles[i] + 1, triangles[i + 2] + 1, triangles[i + 1] + 1));
         }
         return sb.ToString();
     }

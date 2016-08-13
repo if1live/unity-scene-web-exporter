@@ -29,6 +29,28 @@ namespace Assets.Kanau.ThreeScene.Geometries {
 
         public Mesh Mesh;
 
+        public string CreateSafeMeshName(string postfix) {
+            return SafeName + postfix;
+        }
+        public string CreateMeshFileName(string extension) {
+            return Mesh.name + extension;
+        }
+
+        public string SafeName
+        {
+            get
+            {
+                if(Mesh.name.Length == 0) {
+                    return "EMPTY_NAME";
+                }
+                char first = Mesh.name[0];
+                if('0' <= first && first <= '9') {
+                    return "PREFIX_NUM_" + Mesh.name;
+                }
+                return Mesh.name;
+            }
+        }
+
         public BufferGeometryElem(MeshContainer c) {
             this.Mesh = c.Mesh;
             Mesh mesh = c.Mesh;
