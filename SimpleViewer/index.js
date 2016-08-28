@@ -27,6 +27,9 @@ writeExamplePage({
 writeExamplePage({
     scenefile: './sample-threejs/5minlab/scene.json',
 }, './threejs-5minlab-scene.html');
+writeExamplePage({
+    scenefile: './sample-threejs/lightmap/scene.json',
+}, './threejs-lightmap-scene.html');
 
 function writeIndexPage() {
     ejs.renderFile('./views/pages/index.ejs', {}, {}, function(err, str) {
