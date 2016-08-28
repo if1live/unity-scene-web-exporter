@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Mini Three.js Scene Viewer</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r80/three.min.js"></script>
+<style>
+body {
+    margin: 0px;
+    background-color: #000000;
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+<script>
+
+// global variables
+var camera, scene, renderer;
+
+function findByUserData(node, key, value) {
+    if(node.userData && node.userData[key] == value) {
+        return node;
+    }
+    for(var i = 0 ; i < node.children.length ; i++) {
+        var child = node.children[i];
+        var found = findByUserData(child, key, value);
+        if(found != null) {
+            return found;
+        }
+    }
+    return undefined;
+}
+
+function setupScene(result) {
+    scene = result;
+    // find main camera by tag
+    camera = findByUserData(scene, "tag", "MainCamera");
+    // calculate aspect. use window size.
+    var winsize = renderer.getSize();
+    camera.aspect = winsize.width / winsize.height;
+    camera.updateProjectionMatrix();
+}
+
+
+function init() {	
+    // three.js renderer
+	var container = document.body;
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setClearColor( 0x333333 );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    container.appendChild( renderer.domElement );
+	
+    // Load scene - Begin
+    var loader = new THREE.ObjectLoader();
+	// TODO : input yout exported json file
+    var url = './scene.json';
+    loader.load(url, function(obj) {
+        setupScene(obj);
+    });
+	// Load scene - End
+};
+
+function animate() {
+    if(scene && camera) {
+        renderer.render(scene, camera);
+    }
+    requestAnimationFrame(animate);
+}
+
+
+init();
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>

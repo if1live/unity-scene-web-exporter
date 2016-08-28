@@ -36,3 +36,6 @@ UnityProject/output
 node_modules
 
 SimpleViewer/*.html
+MiniThreejsViewer/images/*
+MiniThreejsViewer/models/*
+MiniThreejsViewer/*.json
