@@ -30,7 +30,7 @@ Open your Unity3D project. Copy `/UnityProject/Assets/Kanau" directory into your
 
 ![copy kanau](https://raw.githubusercontent.com/if1live/unity-scene-web-exporter/master/document/manual-copy-kanau.png)
 
-### Lightmapping
+### Lightmapping (Optional)
 If you don't want to export lightmapping, skip it.
 `/UnityProject/Assets/Scenes/DemoLightmap` is Lightmap Sample Scene.
 
