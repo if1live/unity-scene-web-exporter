@@ -100,7 +100,7 @@ namespace Assets.Kanau.ThreeScene.Geometries {
 
             if (mesh.uv2.Length > 0) {
                 uvCount++;
-                UV2 = FlattenHelper.Flatten(GLConverter.ConvertDxTexcoordToGlTexcoord(mesh.uv2));
+                UV2 = ConvertUVToLightmappingUV(mesh.uv2, LightmapScaleOffset);
             }
 
             if (mesh.uv3.Length > 0) {
@@ -116,14 +116,17 @@ namespace Assets.Kanau.ThreeScene.Geometries {
             // if use lightmap uv
             if (LightmapScaleOffset != null && UV2 == null) {
                 uvCount++;
-
-                var uv = FlattenHelper.Flatten(GLConverter.ConvertDxTexcoordToGlTexcoord(mesh.uv));
-                for (int i = 0; i < uv.Length; i += 2) {
-                    uv[i] = uv[i] * LightmapScaleOffset[0] + LightmapScaleOffset[2];
-                    uv[i + 1] = uv[i + 1] * LightmapScaleOffset[1] + LightmapScaleOffset[3];
-                }
-                UV2 = uv;
+                UV2 = ConvertUVToLightmappingUV(mesh.uv, LightmapScaleOffset);
             }
+        }
+
+        float[] ConvertUVToLightmappingUV(Vector2[] uv, Vector4 lightmapScaleOffset) {
+            var uv2 = FlattenHelper.Flatten(GLConverter.ConvertDxTexcoordToGlTexcoord(uv));
+            for (int i = 0; i < uv2.Length; i += 2) {
+                uv2[i] = uv2[i] * lightmapScaleOffset[0] + lightmapScaleOffset[2];
+                uv2[i + 1] = uv2[i + 1] * lightmapScaleOffset[1] + lightmapScaleOffset[3];
+            }
+            return uv2;
         }
     }    
 }
