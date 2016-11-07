@@ -72,7 +72,8 @@ Open exported html in browser.
 * Export configurations are used in A-Frame exporting. Three.js doesn't use it.
 * A-Frame is unstable library. (current A-Frame version is 0.2.0) In future, A-Frame exporter wiil be broken.
 
-## Similar Project / Library
+## Similar Projects / Libraries
 * [J3D - unity3d-to-threejs exporter](https://github.com/drojdjou/J3D)
-* [UnityAFrameExporter - Export A-Frame From Unity Scene.](https://github.com/umiyuki/UnityAFrameExporter)
-* [Three.js JSON Exporter - Asset Store](https://www.assetstore.unity3d.com/en/#!/content/40550)
+* [UnityAFrameExporter - Export A-Frame From Unity Scene](https://github.com/umiyuki/UnityAFrameExporter)
+* [Three.js JSON Exporter - via Unity Asset Store](https://www.assetstore.unity3d.com/en/#!/content/40550)
+* [unity-webvr - Export Unity scene to WebGL](https://github.com/xirvr/unity-webvr)
