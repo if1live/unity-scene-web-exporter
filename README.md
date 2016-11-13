@@ -68,9 +68,9 @@ Open exported html in browser.
 ![screenshot](https://raw.githubusercontent.com/if1live/unity-scene-web-exporter/master/document/manual-mini-threejs-viewer.jpg)
 
 ## Note
-* Tested on Unity3D 5.4.0f3.
+* Tested on Unity3D 5.4.2p3.
 * Export configurations are used in A-Frame exporting. Three.js doesn't use it.
-* A-Frame is unstable library. (current A-Frame version is 0.2.0) In future, A-Frame exporter wiil be broken.
+* A-Frame is unstable library. (current A-Frame version is 0.3.2) In future, A-Frame exporter wiil be broken.
 
 ## Similar Projects / Libraries
 * [J3D - unity3d-to-threejs exporter](https://github.com/drojdjou/J3D)

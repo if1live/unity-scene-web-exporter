@@ -1,5 +1,9 @@
-﻿using Assets.Kanau.ThreeScene;
+﻿using Assets.Kanau.AFrameScene;
+using Assets.Kanau.AFrameScene.Materials;
+using Assets.Kanau.ThreeScene;
 using Assets.Kanau.ThreeScene.Geometries;
+using Assets.Kanau.ThreeScene.Materials;
+using Assets.Kanau.ThreeScene.Objects;
 using Assets.Kanau.ThreeScene.Textures;
 using Assets.Kanau.UnityScene;
 using Assets.Kanau.UnityScene.SceneGraph;
@@ -56,14 +60,33 @@ namespace Assets.Kanau {
             var pathHelper = ExportPathHelper.Instance;
 
             if (fmt == SceneFormat.AFrame) {
-                foreach(var el in root.SharedNodeTable.GetEnumerable<AbstractGeometryElem>()) {
-                    // TODO 타입에 따라서 obj 굽는게 바뀔텐데
-                    var bufferGeom = el as BufferGeometryElem;
-                    if(bufferGeom == null) { continue; }
+                foreach(var el in root.SharedNodeTable.GetEnumerable<MeshElem>()) {
+                    var bufferGeom = el.Geometry as BufferGeometryElem;
+                    if (bufferGeom != null) {
+                        string filepath = pathHelper.ToModelPath(bufferGeom.CreateMeshFileName(".obj"));
+                        ObjExporter.MeshToFile(bufferGeom.Mesh, filepath);
+                    }
 
-                    string filepath = pathHelper.ToModelPath(bufferGeom.CreateMeshFileName(".obj"));
-                    ObjExporter.MeshToFile(bufferGeom.Mesh, filepath);
-                }                
+                    var mtl = MaterialFacade.Instance.CreateMaterial(el.Material);
+                    var exporter = new MtlExporter();
+                    if(bufferGeom != null) {
+                        string filepath = pathHelper.ToModelPath(bufferGeom.CreateMeshFileName(".mtl"));
+                        MtlExporter.ToFile(mtl, bufferGeom.SafeName, filepath);
+                    }
+                }
+            }
+        }
+
+        void WriteMaterialFiles (ThreeSceneRoot root, SceneFormat fmt) {
+            var pathHelper = ExportPathHelper.Instance;
+
+            if (fmt == SceneFormat.AFrame) {
+                foreach (var el in root.SharedNodeTable.GetEnumerable<MaterialElem>()) {
+                    var aframeMtl = MaterialFacade.Instance.CreateMaterial(el);
+                    var name = el.Name;
+                    string filepath = pathHelper.ToModelPath(name + ".mtl");
+                    MtlExporter.ToFile(aframeMtl, name, filepath);
+                }
             }
         }
 

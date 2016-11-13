@@ -1,6 +1,7 @@
 ﻿using Assets.Kanau.AFrameScene;
 using Assets.Kanau.ThreeScene.Geometries;
 using Assets.Kanau.ThreeScene.Materials;
+using Assets.Kanau.ThreeScene.Objects;
 using Assets.Kanau.ThreeScene.Textures;
 using Assets.Kanau.Utils;
 using LitJson;
@@ -25,6 +26,7 @@ namespace Assets.Kanau.ThreeScene {
             table.Register(new SingleTypeThreeNodeTable<TextureElem>());
             table.Register(new SingleTypeThreeNodeTable<ImageElem>());
             table.Register(new SingleTypeThreeNodeTable<MaterialElem>());
+            table.Register(new SingleTypeThreeNodeTable<MeshElem>());
             return table;
         }
 

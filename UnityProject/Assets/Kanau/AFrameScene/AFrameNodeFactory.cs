@@ -3,8 +3,11 @@ using Assets.Kanau.ThreeScene;
 using Assets.Kanau.ThreeScene.Cameras;
 using Assets.Kanau.ThreeScene.Geometries;
 using Assets.Kanau.ThreeScene.Lights;
+using Assets.Kanau.ThreeScene.Materials;
 using Assets.Kanau.ThreeScene.Objects;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace Assets.Kanau.AFrameScene {
@@ -185,6 +188,13 @@ namespace Assets.Kanau.AFrameScene {
             node.AddAttribute("radius", el.Radius);
             return node;
         }
+        public AFrameNode Create (BoxBufferGeometryElem el) {
+            var node = new AFrameNode("a-box");
+            node.AddAttribute("width", el.Width);
+            node.AddAttribute("height", el.Height);
+            node.AddAttribute("depth", el.Depth);
+            return node;
+        }
 
         public AFrameNode Create(BufferGeometryElem el) {
             throw new NotImplementedException();
@@ -209,11 +219,15 @@ namespace Assets.Kanau.AFrameScene {
 
                 var assetNode = new AFrameNode("a-asset-item");
                 assetNode.AddAttribute("id", bufferGeom.CreateSafeMeshName("-obj"));
-
                 string filepath = "./models/" + bufferGeom.CreateMeshFileName(".obj");
                 assetNode.AddAttribute("src", filepath);
-
                 assetsNode.AddChild(assetNode);
+
+                var assetNode_mtl = new AFrameNode("a-asset-item");
+                assetNode_mtl.AddAttribute("id", bufferGeom.CreateSafeMeshName("-mtl"));
+                string filepath_mtl = "./models/" + bufferGeom.CreateMeshFileName(".mtl");
+                assetNode_mtl.AddAttribute("src", filepath_mtl);
+                assetsNode.AddChild(assetNode_mtl);
             }
             node.AddChild(assetsNode);
 
@@ -239,25 +253,58 @@ namespace Assets.Kanau.AFrameScene {
             WriteCommonAFrameNode(el, node);
 
             AFrameNode geometryNode = null;
-            IProperty mtl = MaterialFacade.Instance.GetMaterialProperty(el.Material);
-            if (mtl == null) {
-                mtl = new SimpleProperty<string>("side: double");
-            }
+            var mtl = MaterialFacade.Instance.CreateMaterial(el.Material);
 
             // TODO 타입 하드코딩해서 분기하는거 제거하기
-
             if (el.Geometry.Type != "BufferGeometry") {
                 var v = new AFrameExportVisitor(sharedNodeTable);
                 el.Geometry.Accept(v);
                 geometryNode = v.Node;
 
-                geometryNode.AddAttribute("material", mtl);
+                // v0.3.2
+                var standard = mtl.Shader as StandardAFrameShader;
+                var flat = mtl.Shader as FlatAFrameShader;
+
+                var props = new Dictionary<string, IProperty>();
+                if(standard != null) {
+                    var shader = standard;
+                    props["shader"] = new SimpleProperty<string>(shader.ShaderName);
+                    props["color"] = new ColorProperty(shader.Color, StandardAFrameShader.DefaultColor);
+                    props["roughness"] = new SimpleProperty<float>(shader.Roughness, StandardAFrameShader.DefaultRoughness);
+                    props["metalness"] = new SimpleProperty<float>(shader.Metalness, StandardAFrameShader.DefaultMetalness);
+                    props["repeat"] = new Vector2Property(shader.Repeat, StandardAFrameShader.DefaultRepeat);
+                    props["src"] = new SimpleProperty<string>(shader.Src, "");
+                }
+
+                if(flat != null) {
+                    var shader = flat;
+                    props["shader"] = new SimpleProperty<string>(shader.ShaderName);
+                    props["color"] = new ColorProperty(shader.Color, StandardAFrameShader.DefaultColor);
+                    props["repeat"] = new Vector2Property(shader.Repeat, StandardAFrameShader.DefaultRepeat);
+                    props["src"] = new SimpleProperty<string>(shader.Src, "");
+                }
+                
+                foreach(var kv in props) {
+                    geometryNode.AddAttribute(kv.Key, kv.Value);
+                }
+
                 node.AddChild(geometryNode);
 
             } else {
                 var geom = el.Geometry as BufferGeometryElem;
-                node.AddAttribute("obj-model", "obj: #" + geom.CreateSafeMeshName("-obj"));
-                node.AddAttribute("material", mtl);
+                var sb = new StringBuilder();
+                sb.Append("obj: ");
+
+                sb.Append("#" + geom.CreateSafeMeshName("-obj"));
+                sb.Append("; ");
+
+                var exporter = new MtlExporter();
+                if(!exporter.IsBlank(mtl)) {
+                    sb.Append("mtl: ");
+                    sb.Append("#" + geom.CreateSafeMeshName("-mtl"));
+                }
+
+                node.AddAttribute("obj-model", sb.ToString());
             }
 
             return node;

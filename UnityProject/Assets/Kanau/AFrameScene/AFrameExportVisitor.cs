@@ -49,7 +49,8 @@ namespace Assets.Kanau.AFrameScene {
         public void Visit(DirectionalLightElem el) { Node = factory.Create(el); }
         public void Visit(SphereBufferGeometryElem el) { Node = factory.Create(el); }
         public void Visit(CylinderBufferGeometryElem el) { Node = factory.Create(el); }
-        public void Visit(BufferGeometryElem el) { Node = factory.Create(el); }
+        public void Visit (BoxBufferGeometryElem el) { Node = factory.Create(el); }
+        public void Visit (BufferGeometryElem el) { Node = factory.Create(el); }
         public void Visit(PerspectiveCameraElem el) { Node = factory.Create(el); }
     }
 }

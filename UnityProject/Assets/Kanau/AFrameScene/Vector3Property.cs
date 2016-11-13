@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Kanau.AFrameScene {
     public class Vector3Property : IProperty {
@@ -40,6 +41,10 @@ namespace Assets.Kanau.AFrameScene {
         public static Vector3Property MakeRotation(Quaternion q) {
             var r = q.eulerAngles;
             return new Vector3Property(new Vector3(-r.x, -r.y, r.z), Vector3.zero);
+        }
+
+        public string GetValue (string key) {
+            return MakeString();
         }
     }
 }

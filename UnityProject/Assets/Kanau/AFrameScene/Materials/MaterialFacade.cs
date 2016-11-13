@@ -48,7 +48,7 @@ namespace Assets.Kanau.AFrameScene.Materials {
             }
         }
 
-        public IProperty GetMaterialProperty(MaterialElem el) {
+        public AFrameMaterial CreateMaterial(MaterialElem el) {
             var materialType = PredefinedMaterialTable[0];
             var shadername = el.Material.shader.name;
             foreach (var m in PredefinedMaterialTable) {
@@ -59,7 +59,11 @@ namespace Assets.Kanau.AFrameScene.Materials {
             }
 
             var factory = FindMaterialFactory(materialType.to);
-            var mtl = factory.Create(el);
+            return factory.Create(el);
+        }
+
+        public IProperty GetMaterialProperty(MaterialElem el) {
+            var mtl = CreateMaterial(el);
             return mtl.CreateProperty();
         }
     }

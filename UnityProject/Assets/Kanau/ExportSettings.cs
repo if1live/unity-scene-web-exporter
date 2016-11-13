@@ -42,9 +42,9 @@ namespace Assets.Kanau {
     public class AFrameSettings {
         public string title = "Hello world!";
 
-        // a-frame 최신버전은 언제 구현이 바뀔지 모른다. 그래서 0.2.0로 고정시킴
         // https://aframe.io/releases/latest/aframe.min.js
-        public string libraryAddress = "https://aframe.io/releases/0.2.0/aframe.min.js";
+		// fix a-frame version.
+        public string libraryAddress = "https://aframe.io/releases/0.3.2/aframe.min.js";
         public bool enablePerformanceStatistics = false;
 
         public string exporterPath = "Assets/Kanau";

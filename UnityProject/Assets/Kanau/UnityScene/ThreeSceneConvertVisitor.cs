@@ -110,6 +110,8 @@ namespace Assets.Kanau.UnityScene {
             foreach(var n in unityscene.GraphNodeTable.GetEnumerable<RenderNode>()) {
                 var meshelem = RegisterToThreeScene(n);
                 meshelems.Add(meshelem);
+
+                root.SharedNodeTable.Add(meshelem, meshelem.Uuid);
             }
 
             // 연관된 스크립트 변수 등록
@@ -258,8 +260,10 @@ namespace Assets.Kanau.UnityScene {
                 geo = new SphereBufferGeometryElem(n);
             } else if (n.Mesh.name == "Cylinder") {
                 geo = new CylinderBufferGeometryElem(n);
-            } else if(n.Mesh.name == "Quad") {
+            } else if (n.Mesh.name == "Quad") {
                 geo = new QuadBufferGeometry(n);
+            } else if(n.Mesh.name == "Cube") {
+                geo = new BoxBufferGeometryElem(n);
             } else {
                 geo = new BufferGeometryElem(n, false, Vector4.zero);
             } 

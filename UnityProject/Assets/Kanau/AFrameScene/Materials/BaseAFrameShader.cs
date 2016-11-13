@@ -3,6 +3,7 @@
 namespace Assets.Kanau.AFrameScene.Materials {
     public abstract class BaseAFrameShader {
         public abstract void FillProperty(KeyValueProperty p);
+        public abstract string ShaderName { get; }
 
         protected void Add(KeyValueProperty p, string key, Color color) {
             p.Add(key, "#" + Three.UnityColorToHexColor(color));
@@ -21,12 +22,12 @@ namespace Assets.Kanau.AFrameScene.Materials {
     /// https://aframe.io/docs/master/core/shaders.html#properties
     /// </summary>
     public class StandardAFrameShader : BaseAFrameShader {
-        readonly Color DefaultColor = new Color(1, 1, 1);
+        public static readonly Color DefaultColor = new Color(1, 1, 1);
         // TODO height
-        const bool DefaultFog = true;
-        const float DefaultMetalness = 0.5f;
-        readonly Vector2 DefaultRepeat = new Vector2(1, 1);
-        const float DefaultRoughness = 0.5f;
+        public const bool DefaultFog = true;
+        public const float DefaultMetalness = 0.5f;
+        public static readonly Vector2 DefaultRepeat = new Vector2(1, 1);
+        public const float DefaultRoughness = 0.5f;
         // TODO width
 
         public Color Color { get; set; }
@@ -36,16 +37,19 @@ namespace Assets.Kanau.AFrameScene.Materials {
         public float Roughness { get; set; }
         public string Src { get; set; }
 
+        public override string ShaderName { get { return "standard"; } }
+
         public StandardAFrameShader() {
             this.Color = DefaultColor;
             this.Fog = DefaultFog;
             this.Metalness = DefaultMetalness;
             this.Repeat = DefaultRepeat;
             this.Roughness = DefaultRoughness;
+            this.Src = "";
         }
 
         public override void FillProperty(KeyValueProperty p) {
-            p.Add("shader", "standard");
+            p.Add("shader", ShaderName);
 
             if (Color != DefaultColor) { Add(p, "color", Color); }
             if (Fog != DefaultFog) { p.Add("fog", Fog); }
@@ -60,10 +64,10 @@ namespace Assets.Kanau.AFrameScene.Materials {
     /// https://aframe.io/docs/master/core/shaders.html#properties-1
     /// </summary>
     public class FlatAFrameShader : BaseAFrameShader {
-        readonly Color DefaultColor = new Color(1, 1, 1);
-        const bool DefaultFog = true;
+        public static readonly Color DefaultColor = new Color(1, 1, 1);
+        public const bool DefaultFog = true;
         // TODO height
-        readonly Vector2 DefaultRepeat = new Vector2(1, 1);
+        public static readonly Vector2 DefaultRepeat = new Vector2(1, 1);
         // TODO width
 
         public Color Color { get; set; }
@@ -71,14 +75,17 @@ namespace Assets.Kanau.AFrameScene.Materials {
         public Vector2 Repeat { get; set; }
         public string Src { get; set; }
 
+        public override string ShaderName { get { return "flat"; } }
+
         public FlatAFrameShader() {
             this.Color = DefaultColor;
             this.Fog = DefaultFog;
             this.Repeat = DefaultRepeat;
+            this.Src = "";
         }
 
         public override void FillProperty(KeyValueProperty p) {
-            p.Add("shader", "flat");
+            p.Add("shader", ShaderName);
 
             if (Color != DefaultColor) { Add(p, "color", Color); }
             if (Fog != DefaultFog) { p.Add("fog", Fog); }
