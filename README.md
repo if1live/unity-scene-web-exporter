@@ -1,4 +1,7 @@
 # UnitySceneWebExporter
+
+[![Build Status](https://travis-ci.org/if1live/unity-scene-web-exporter.svg?branch=master)](https://travis-ci.org/if1live/unity-scene-web-exporter)
+
 Export Three.js or A-Frame From Unity Scene
 
 ![screenshot](https://raw.githubusercontent.com/if1live/unity-scene-web-exporter/master/document/manual-mini-threejs-viewer.jpg)
