@@ -1,3 +1,6 @@
+mtllib engrim.mtl
+usemtl engrim
+
 g engrim
 v -0.6164451 -0.01764793 -0.09413175
 v -0.6165454 -0.02176687 -0.1012651

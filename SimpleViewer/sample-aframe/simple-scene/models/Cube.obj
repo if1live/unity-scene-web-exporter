@@ -1,3 +1,6 @@
+mtllib Cube.mtl
+usemtl Cube
+
 g Cube
 v 0.5 -0.5 -0.5
 v -0.5 -0.5 -0.5

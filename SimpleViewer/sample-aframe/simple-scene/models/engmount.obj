@@ -1,3 +1,6 @@
+mtllib engmount.mtl
+usemtl engmount
+
 g engmount
 v -0.5184247 -0.008648083 -0.078708
 v -0.5166099 -0.01592492 -0.09131443

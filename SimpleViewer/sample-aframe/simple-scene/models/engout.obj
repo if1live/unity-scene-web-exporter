@@ -1,3 +1,6 @@
+mtllib engout.mtl
+usemtl engout
+
 g engout
 v -0.5773064 0.03907797 -0.06363332
 v -0.544525 0.03072224 -0.06368771

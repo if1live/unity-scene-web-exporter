@@ -1,3 +1,6 @@
+mtllib tiles.mtl
+usemtl tiles
+
 g tiles
 v -0.3804261 0.4682101 0.09389655
 v -0.5000296 0.130293 0.1259944

@@ -7,7 +7,7 @@
   },
   "geometries" : [
     {
-      "uuid" : "57C79BF8-3B28-4A9C-870A-B92BCB1D7973",
+      "uuid" : "geo-398",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -267,54 +267,54 @@
             "itemSize" : 2,
             "type"     : "Float32Array",
             "array"    : [
-              0.690986514091492,
-              0.347164392471313,
-              0.996658086776733,
-              0.347164392471313,
-              0.690986514091492,
-              0.652835845947266,
-              0.996658086776733,
-              0.652835845947266,
-              0.309727311134338,
-              0.347164243459702,
-              0.00405576638877392,
-              0.347164243459702,
-              0.347164243459702,
-              0.652835845947266,
-              0.652835845947266,
-              0.652835845947266,
-              0.309727311134338,
-              0.652835845947266,
-              0.00405576638877392,
-              0.652835845947266,
-              0.347164243459702,
-              0.347164243459702,
-              0.652835845947266,
-              0.347164243459702,
-              0.347164243459702,
-              0.00405576638877392,
-              0.347164243459702,
-              0.309727311134338,
-              0.652835845947266,
-              0.309727311134338,
-              0.652835845947266,
-              0.00405576638877392,
-              0.690272808074951,
-              0.309727311134338,
-              0.995944261550903,
-              0.309727311134338,
-              0.995944261550903,
-              0.00405576638877392,
-              0.690272808074951,
-              0.00405576638877392,
-              0.309727311134338,
-              0.00405576638877392,
-              0.00405576638877392,
-              0.00405576638877392,
-              0.00405576638877392,
-              0.309727311134338,
-              0.309727311134338,
-              0.309727311134338
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
             ]
           }
         }
@@ -323,7 +323,7 @@
   ],
   "materials"  : [
     {
-      "uuid" : "452425DD-7F61-478A-9111-CC10A7DA22D9",
+      "uuid" : "0000000000000000f000000000000000",
       "name" : "Default-Material",
       "type" : "MeshStandardMaterial",
       "metalness" : 0.0,
@@ -335,11 +335,11 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "60DD09D3-C641-4A88-9D9F-0948EACD1BB6",
+      "uuid" : "571fad45b73d17b4c8619d448593f6c2",
       "name" : "SampleTexture",
       "type" : "MeshStandardMaterial",
       "metalness" : 0.0,
-      "map"       : "AF738358-DF74-4EE3-93CD-887DAA97A150",
+      "map"       : "bd3aa404730bb834aa45790ba1e5f524-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -349,7 +349,7 @@
     }
   ],
   "object"     : {
-    "uuid" : "A996BA5F-FF29-4844-880C-1F08B291CD82",
+    "uuid" : "ROOT",
     "type" : "Scene",
     "name" : "KanauScene",
     "matrix" : [
@@ -373,7 +373,7 @@
     "visible" : true,
     "children" : [
       {
-        "uuid" : "CE171A2A-ADFB-40C0-B2D5-34D6B88B23F4",
+        "uuid" : "",
         "type" : "PerspectiveCamera",
         "name" : "Main Camera",
         "matrix" : [
@@ -409,7 +409,7 @@
         "filmOffset" : 0
       },
       {
-        "uuid" : "3A3000D3-89B9-47BB-9A23-E28A4BDBA55C",
+        "uuid" : "",
         "type" : "DirectionalLight",
         "name" : "Directional Light",
         "matrix" : [
@@ -435,7 +435,7 @@
         "intensity" : 1.0
       },
       {
-        "uuid" : "B602D7DB-430C-496D-810C-D7369FE39A4D",
+        "uuid" : "",
         "type" : "Mesh",
         "name" : "Cube",
         "matrix" : [
@@ -517,30 +517,30 @@
             "sampleGameObject" : {
               "key" : "sampleGameObject",
               "type" : "gameobject",
-              "value" : "B602D7DB-430C-496D-810C-D7369FE39A4D"
+              "value" : ""
             },
             "sampleMaterial"   : {
               "key" : "sampleMaterial",
               "type" : "material",
-              "value" : "60DD09D3-C641-4A88-9D9F-0948EACD1BB6"
+              "value" : "571fad45b73d17b4c8619d448593f6c2"
             },
             "sampleTransform"  : {
               "key" : "sampleTransform",
               "type" : "transform",
-              "value" : "3A3000D3-89B9-47BB-9A23-E28A4BDBA55C"
+              "value" : ""
             },
             "sampleTexture"    : {
               "key" : "sampleTexture",
               "type" : "texture",
-              "value" : "821845DD-6F33-463C-A282-2E8A7BBC9B22"
+              "value" : "280b65d58921d5a47a15f19f04541845-texture"
             }
           }
         },
-        "geometry" : "57C79BF8-3B28-4A9C-870A-B92BCB1D7973",
-        "material" : "452425DD-7F61-478A-9111-CC10A7DA22D9"
+        "geometry" : "geo-398",
+        "material" : "0000000000000000f000000000000000"
       },
       {
-        "uuid" : "1B915D25-FC5B-481F-924A-4BA510EB386E",
+        "uuid" : "unique-ambient-light",
         "type" : "AmbientLight",
         "name" : "AmbientLight",
         "matrix" : [
@@ -569,18 +569,18 @@
   "images"     : [
     {
       "url" : "./images/blue_christmas_by_kahookashii-d4jz91b.jpg",
-      "uuid" : "0ED5E730-8C35-4EED-AFD4-CFDB19EDD9D0",
+      "uuid" : "280b65d58921d5a47a15f19f04541845-image",
       "name" : "blue_christmas_by_kahookashii-d4jz91b.jpg"
     },
     {
       "url" : "./images/128px-BroBear-guide2_cv.png",
-      "uuid" : "48BE4443-DAB6-4064-8E9C-A9C70733C96F",
+      "uuid" : "bd3aa404730bb834aa45790ba1e5f524-image",
       "name" : "128px-BroBear-guide2_cv.png"
     }
   ],
   "textures"   : [
     {
-      "uuid" : "821845DD-6F33-463C-A282-2E8A7BBC9B22",
+      "uuid" : "280b65d58921d5a47a15f19f04541845-texture",
       "offset" : [
         0.0,
         0.0
@@ -595,12 +595,12 @@
         1000,
         1000
       ],
-      "image"     : "0ED5E730-8C35-4EED-AFD4-CFDB19EDD9D0",
+      "image"     : "280b65d58921d5a47a15f19f04541845-image",
       "name"      : "./images/blue_christmas_by_kahookashii-d4jz91b.jpg",
       "anisotropy" : 1
     },
     {
-      "uuid" : "AF738358-DF74-4EE3-93CD-887DAA97A150",
+      "uuid" : "bd3aa404730bb834aa45790ba1e5f524-texture",
       "offset" : [
         0.0,
         0.0
@@ -615,7 +615,7 @@
         1000,
         1000
       ],
-      "image"     : "48BE4443-DAB6-4064-8E9C-A9C70733C96F",
+      "image"     : "bd3aa404730bb834aa45790ba1e5f524-image",
       "name"      : "./images/128px-BroBear-guide2_cv.png",
       "anisotropy" : 1
     }

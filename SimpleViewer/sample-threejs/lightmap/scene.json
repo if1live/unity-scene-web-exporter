@@ -7,14 +7,14 @@
   },
   "geometries" : [
     {
-      "uuid" : "15BD45E6-76F2-4B6A-A040-AD66A9B737A5",
+      "uuid" : "geo-402",
       "type" : "SphereBufferGeometry",
       "radius" : "0.5",
       "widthSegments" : 16,
       "heightSegments" : 16
     },
     {
-      "uuid" : "8AD6A26D-A87E-412C-B31D-81E8CF6FD5ED",
+      "uuid" : "geo-398",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -328,13 +328,13 @@
       }
     },
     {
-      "uuid" : "926FA7E0-6392-4E25-9153-55AA7F362170",
+      "uuid" : "geo-408",
       "type" : "PlaneBufferGeometry",
       "width" : 1.0,
       "height" : 1.0
     },
     {
-      "uuid" : "B775A63E-DA22-4A2F-8A3F-B4F6FA2B2167",
+      "uuid" : "geo-406",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -2182,7 +2182,7 @@
       }
     },
     {
-      "uuid" : "8ADF70D3-0795-413D-B393-BD0615F62726",
+      "uuid" : "0000000000000000e000000000000000-1",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -9674,7 +9674,7 @@
       }
     },
     {
-      "uuid" : "3353DBF4-2B77-4B93-8AF3-A48FFBCADAE6",
+      "uuid" : "0000000000000000e000000000000000-2",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -9988,7 +9988,7 @@
       }
     },
     {
-      "uuid" : "1F9F7524-4B2B-40BC-AC7C-3216CFF49260",
+      "uuid" : "0000000000000000e000000000000000-3",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -10072,7 +10072,7 @@
       }
     },
     {
-      "uuid" : "9BB26A3E-5DD3-4709-B009-0248189B81CF",
+      "uuid" : "0000000000000000e000000000000000-4",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -10386,7 +10386,7 @@
       }
     },
     {
-      "uuid" : "A90FF7B1-AAF9-42EF-A0C8-E0AE1AEF105C",
+      "uuid" : "0000000000000000e000000000000000-5",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -12236,11 +12236,11 @@
   ],
   "materials"  : [
     {
-      "uuid" : "BA928A56-690D-4B2E-9F39-A0E9DCC3BA02",
+      "uuid" : "798bfe98a9e2cf4458f2885691017fdb",
       "name" : "Twitter",
       "type" : "MeshStandardMaterial",
       "metalness" : 0.0,
-      "map"       : "E9106893-DEA2-4736-A9F3-C78764921FB6",
+      "map"       : "c4cb085bb346202419f09f77d4b293a9-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -12249,11 +12249,11 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "E878556A-78D5-45D5-B361-40BF6CFE1424",
+      "uuid" : "607818f74b15d714f8ea04fc4366d442",
       "name" : "Name",
       "type" : "MeshStandardMaterial",
       "metalness" : 0.0,
-      "map"       : "1DE41AE7-032E-4426-AE61-EEE38CB19074",
+      "map"       : "edc201489e8b42147820d8cc45caa95c-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -12262,12 +12262,12 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "C39A1715-78ED-4D82-B8C5-6DD1CC3E11B0",
+      "uuid" : "59ae2546e9624864d8b4ac7302216fd5",
       "name" : "blue_christmas_by_kahookashii-d4jz91b",
       "type" : "MeshStandardMaterial",
       "roughness" : 1.0,
       "metalness" : 0.0,
-      "map"       : "2D2A2A24-313C-4390-8E14-A4E69E3D7EAC",
+      "map"       : "280b65d58921d5a47a15f19f04541845-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -12276,11 +12276,11 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "656E6821-16B1-4483-823A-41DC5CD547DE",
+      "uuid" : "750fcb15ff0a45e4999d661ac62209c8",
       "name" : "Logo",
       "type" : "MeshStandardMaterial",
       "metalness" : 0.0,
-      "map"       : "87B2583E-EFB3-450B-B800-30EEB60BEBC4",
+      "map"       : "144c8d1c2e22de740994da15e53bf2d0-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -12289,7 +12289,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "F9938E3A-44AF-4A39-A433-9765A8F28575",
+      "uuid" : "130f8bd91578c914685d7ba862e38110",
       "name" : "Floor",
       "type" : "MeshStandardMaterial",
       "color" : 6008017,
@@ -12302,12 +12302,12 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "9450528E-EC42-44AC-8841-5E5EC2D32D56",
+      "uuid" : "798bfe98a9e2cf4458f2885691017fdb",
       "name" : "Twitter",
       "type" : "MeshStandardMaterial",
       "metalness" : 0.0,
-      "map"       : "E9106893-DEA2-4736-A9F3-C78764921FB6",
-      "lightMap"  : "4725338E-629E-45CA-8B09-208777A72A38",
+      "map"       : "c4cb085bb346202419f09f77d4b293a9-texture",
+      "lightMap"  : "lightmap-0-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -12316,12 +12316,12 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "3857AF18-9A6D-4021-A197-2A0BB0D1DA71",
+      "uuid" : "607818f74b15d714f8ea04fc4366d442",
       "name" : "Name",
       "type" : "MeshStandardMaterial",
       "metalness" : 0.0,
-      "map"       : "1DE41AE7-032E-4426-AE61-EEE38CB19074",
-      "lightMap"  : "4725338E-629E-45CA-8B09-208777A72A38",
+      "map"       : "edc201489e8b42147820d8cc45caa95c-texture",
+      "lightMap"  : "lightmap-0-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -12330,13 +12330,13 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "2E1FCC72-286B-4BBF-B281-D5E9374DEF1B",
+      "uuid" : "59ae2546e9624864d8b4ac7302216fd5",
       "name" : "blue_christmas_by_kahookashii-d4jz91b",
       "type" : "MeshStandardMaterial",
       "roughness" : 1.0,
       "metalness" : 0.0,
-      "map"       : "2D2A2A24-313C-4390-8E14-A4E69E3D7EAC",
-      "lightMap"  : "4725338E-629E-45CA-8B09-208777A72A38",
+      "map"       : "280b65d58921d5a47a15f19f04541845-texture",
+      "lightMap"  : "lightmap-0-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -12345,12 +12345,12 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "5744CC7A-E229-4E1F-8A72-84CCF867E222",
+      "uuid" : "750fcb15ff0a45e4999d661ac62209c8",
       "name" : "Logo",
       "type" : "MeshStandardMaterial",
       "metalness" : 0.0,
-      "map"       : "87B2583E-EFB3-450B-B800-30EEB60BEBC4",
-      "lightMap"  : "4725338E-629E-45CA-8B09-208777A72A38",
+      "map"       : "144c8d1c2e22de740994da15e53bf2d0-texture",
+      "lightMap"  : "lightmap-0-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -12359,12 +12359,12 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "1EAA559F-CB73-43D8-89B4-F83B8E16C850",
+      "uuid" : "130f8bd91578c914685d7ba862e38110",
       "name" : "Floor",
       "type" : "MeshStandardMaterial",
       "color" : 6008017,
       "metalness" : 0.0,
-      "lightMap"  : "4725338E-629E-45CA-8B09-208777A72A38",
+      "lightMap"  : "lightmap-0-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -12374,7 +12374,7 @@
     }
   ],
   "object"     : {
-    "uuid" : "2DC35360-923D-4EC6-B215-15A19344813B",
+    "uuid" : "ROOT",
     "type" : "Scene",
     "name" : "KanauScene",
     "matrix" : [
@@ -12398,7 +12398,7 @@
     "visible" : true,
     "children" : [
       {
-        "uuid" : "FE42DC28-A1E3-4C35-9FE6-12263ED6707B",
+        "uuid" : "",
         "type" : "PerspectiveCamera",
         "name" : "Main Camera",
         "matrix" : [
@@ -12434,21 +12434,21 @@
         "filmOffset" : 0
       },
       {
-        "uuid" : "2510FDC1-BFA0-4C54-93A8-F84351EADBB9",
+        "uuid" : "",
         "type" : "Group",
         "name" : "Directional Light",
         "matrix" : [
-          0.314378321170807,
+          0.314378499984741,
           -0.100336015224457,
-          -0.94398045539856,
+          -0.94398033618927,
           0.0,
-          -0.658077836036682,
-          0.69364869594574,
+          -0.658077657222748,
+          0.693648755550385,
           -0.292891055345535,
           0.0,
-          0.684178352355957,
-          0.713291168212891,
-          0.152039170265198,
+          0.684178233146667,
+          0.713291049003601,
+          0.152039349079132,
           0.0,
           0.0,
           3.0,
@@ -12458,7 +12458,7 @@
         "visible" : true
       },
       {
-        "uuid" : "E29A76AF-AE68-484D-AD6F-57C727EA2903",
+        "uuid" : "",
         "type" : "Group",
         "name" : "AuthorContainer",
         "matrix" : [
@@ -12482,7 +12482,7 @@
         "visible" : true,
         "children" : [
           {
-            "uuid" : "2381DC07-2379-4EF5-8FAB-9297A1553113",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "TwitterSphere",
             "matrix" : [
@@ -12504,11 +12504,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "8ADF70D3-0795-413D-B393-BD0615F62726",
-            "material" : "9450528E-EC42-44AC-8841-5E5EC2D32D56"
+            "geometry" : "0000000000000000e000000000000000-1",
+            "material" : "798bfe98a9e2cf4458f2885691017fdb"
           },
           {
-            "uuid" : "557067BF-4617-4038-A49A-A1F9D1AEE552",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "NameCube",
             "matrix" : [
@@ -12530,13 +12530,13 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "3353DBF4-2B77-4B93-8AF3-A48FFBCADAE6",
-            "material" : "3857AF18-9A6D-4021-A197-2A0BB0D1DA71"
+            "geometry" : "0000000000000000e000000000000000-2",
+            "material" : "607818f74b15d714f8ea04fc4366d442"
           }
         ]
       },
       {
-        "uuid" : "AA528083-535F-4EAD-AB51-623BE4EEA7DA",
+        "uuid" : "",
         "type" : "Mesh",
         "name" : "SoraQuad",
         "matrix" : [
@@ -12558,11 +12558,11 @@
           1.0
         ],
         "visible" : true,
-        "geometry" : "1F9F7524-4B2B-40BC-AC7C-3216CFF49260",
-        "material" : "2E1FCC72-286B-4BBF-B281-D5E9374DEF1B"
+        "geometry" : "0000000000000000e000000000000000-3",
+        "material" : "59ae2546e9624864d8b4ac7302216fd5"
       },
       {
-        "uuid" : "0C403EE5-5CC1-488A-BE41-1D51BF6C0C9F",
+        "uuid" : "",
         "type" : "Mesh",
         "name" : "LogoCube",
         "matrix" : [
@@ -12584,11 +12584,11 @@
           1.0
         ],
         "visible" : true,
-        "geometry" : "9BB26A3E-5DD3-4709-B009-0248189B81CF",
-        "material" : "5744CC7A-E229-4E1F-8A72-84CCF867E222"
+        "geometry" : "0000000000000000e000000000000000-4",
+        "material" : "750fcb15ff0a45e4999d661ac62209c8"
       },
       {
-        "uuid" : "A900BCB4-27A6-4A08-9D2B-FB37D6227DA4",
+        "uuid" : "",
         "type" : "Mesh",
         "name" : "Plane",
         "matrix" : [
@@ -12610,11 +12610,11 @@
           1.0
         ],
         "visible" : true,
-        "geometry" : "A90FF7B1-AAF9-42EF-A0C8-E0AE1AEF105C",
-        "material" : "1EAA559F-CB73-43D8-89B4-F83B8E16C850"
+        "geometry" : "0000000000000000e000000000000000-5",
+        "material" : "130f8bd91578c914685d7ba862e38110"
       },
       {
-        "uuid" : "07BE73E0-3956-4084-8B42-3C0DA3A0A3FA",
+        "uuid" : "unique-ambient-light",
         "type" : "AmbientLight",
         "name" : "AmbientLight",
         "matrix" : [
@@ -12643,33 +12643,33 @@
   "images"     : [
     {
       "url" : "./images/40692662-Social-media-messages-twitter-retweet-icon-sign-Seamless-pattern-with-geometric-texture-Vector-illus-Stock-Vector.jpg",
-      "uuid" : "56275ED6-DA82-447A-A7FE-8AB24643C33B",
+      "uuid" : "c4cb085bb346202419f09f77d4b293a9-image",
       "name" : "40692662-Social-media-messages-twitter-retweet-icon-sign-Seamless-pattern-with-geometric-texture-Vector-illus-Stock-Vector.jpg"
     },
     {
       "url" : "./images/name.png",
-      "uuid" : "54B28089-F4F5-4E08-BAEC-673C907F0281",
+      "uuid" : "edc201489e8b42147820d8cc45caa95c-image",
       "name" : "name.png"
     },
     {
       "url" : "./images/blue_christmas_by_kahookashii-d4jz91b.jpg",
-      "uuid" : "15939886-A4A7-4FB2-81B4-9742A208AAC5",
+      "uuid" : "280b65d58921d5a47a15f19f04541845-image",
       "name" : "blue_christmas_by_kahookashii-d4jz91b.jpg"
     },
     {
       "url" : "./images/01_\uB85C\uACE0_4.png",
-      "uuid" : "11A00498-21B2-4487-BE31-85F5176520F4",
+      "uuid" : "144c8d1c2e22de740994da15e53bf2d0-image",
       "name" : "01_\uB85C\uACE0_4.png"
     },
     {
       "url" : "./images/Lightmap-0_comp_light.jpg",
-      "uuid" : "7314CEF3-F218-4D35-B41A-C3621EA427E0",
+      "uuid" : "lightmap-0-image",
       "name" : "Lightmap-0_comp_light.jpg"
     }
   ],
   "textures"   : [
     {
-      "uuid" : "E9106893-DEA2-4736-A9F3-C78764921FB6",
+      "uuid" : "c4cb085bb346202419f09f77d4b293a9-texture",
       "offset" : [
         0.0,
         0.0
@@ -12684,12 +12684,12 @@
         1000,
         1000
       ],
-      "image"     : "56275ED6-DA82-447A-A7FE-8AB24643C33B",
+      "image"     : "c4cb085bb346202419f09f77d4b293a9-image",
       "name"      : "./images/40692662-Social-media-messages-twitter-retweet-icon-sign-Seamless-pattern-with-geometric-texture-Vector-illus-Stock-Vector.jpg",
       "anisotropy" : 1
     },
     {
-      "uuid" : "1DE41AE7-032E-4426-AE61-EEE38CB19074",
+      "uuid" : "edc201489e8b42147820d8cc45caa95c-texture",
       "offset" : [
         0.0,
         0.0
@@ -12704,12 +12704,12 @@
         1000,
         1000
       ],
-      "image"     : "54B28089-F4F5-4E08-BAEC-673C907F0281",
+      "image"     : "edc201489e8b42147820d8cc45caa95c-image",
       "name"      : "./images/name.png",
       "anisotropy" : 1
     },
     {
-      "uuid" : "2D2A2A24-313C-4390-8E14-A4E69E3D7EAC",
+      "uuid" : "280b65d58921d5a47a15f19f04541845-texture",
       "offset" : [
         0.0,
         0.0
@@ -12724,12 +12724,12 @@
         1000,
         1000
       ],
-      "image"     : "15939886-A4A7-4FB2-81B4-9742A208AAC5",
+      "image"     : "280b65d58921d5a47a15f19f04541845-image",
       "name"      : "./images/blue_christmas_by_kahookashii-d4jz91b.jpg",
       "anisotropy" : 1
     },
     {
-      "uuid" : "87B2583E-EFB3-450B-B800-30EEB60BEBC4",
+      "uuid" : "144c8d1c2e22de740994da15e53bf2d0-texture",
       "offset" : [
         0.0,
         0.0
@@ -12744,12 +12744,12 @@
         1000,
         1000
       ],
-      "image"     : "11A00498-21B2-4487-BE31-85F5176520F4",
+      "image"     : "144c8d1c2e22de740994da15e53bf2d0-image",
       "name"      : "./images/01_\uB85C\uACE0_4.png",
       "anisotropy" : 1
     },
     {
-      "uuid" : "4725338E-629E-45CA-8B09-208777A72A38",
+      "uuid" : "lightmap-0-texture",
       "offset" : [
         0.0,
         0.0
@@ -12764,7 +12764,7 @@
         1001,
         1001
       ],
-      "image"     : "7314CEF3-F218-4D35-B41A-C3621EA427E0",
+      "image"     : "lightmap-0-image",
       "name"      : "./images/Lightmap-0_comp_light.jpg",
       "anisotropy" : 3
     }

@@ -1,3 +1,6 @@
+mtllib Plane.mtl
+usemtl Plane
+
 g Plane
 v 5 -1.110223E-16 -5
 v 4 -1.110223E-16 -5
