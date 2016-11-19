@@ -1,4 +1,44 @@
 #!/bin/bash
+
+function clear_previous_content() {
+    rm -rf documents
+    rm -rf libs
+    rm -rf sample-aframe 
+    rm -rf sample-threejs
+    rm -rf *.html 
+    rm -rf *.js 
+    rm -rf *.css 
+}
+
+function copy_content() {
+    cp -r documents output
+    cp -r libs output
+    cp -r sample-aframe output
+    cp -r sample-threejs output
+    cp *.html output
+    cp *.js output
+    cp *.css output
+}
+
+function publish() {
+    git add .
+    git commit -a -m "add new site content"
+    if [[ $? == 0 ]]; then
+        git push origin gh-pages
+    fi
+}
+
 cd SimpleViewer
 node index.js
+
+git clone --depth 1 --quiet -b gh-pages https://github.com/if1live/unity-scene-web-exporter.git output
+
+cd output; clear_previous_content; cd ..
+
+copy_content;
+
+cd output; publish;
+
 cd ..
+
+
