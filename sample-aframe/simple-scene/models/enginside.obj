@@ -1,3 +1,6 @@
+mtllib enginside.mtl
+usemtl enginside
+
 g enginside
 v -0.5444825 1.508222E-07 -0.06368616
 v -0.5597721 0.009785747 -0.08061118

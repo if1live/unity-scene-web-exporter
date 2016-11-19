@@ -7,7 +7,7 @@
   },
   "geometries" : [
     {
-      "uuid" : "4D368319-793D-4A9A-A02C-E174CA8C700E",
+      "uuid" : "geo-10092",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -39835,13 +39835,13 @@
       }
     },
     {
-      "uuid" : "38301424-16E0-432B-BCE7-6A0F7AB30179",
+      "uuid" : "geo-408",
       "type" : "PlaneBufferGeometry",
       "width" : 1.0,
       "height" : 1.0
     },
     {
-      "uuid" : "142D671A-D896-49BB-9075-6DB084763D4C",
+      "uuid" : "-1",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -79671,12 +79671,12 @@
   ],
   "materials"  : [
     {
-      "uuid" : "1195E33F-C98A-458E-8A94-5F6ED6EF4518",
+      "uuid" : "f665a7d57e15b7d4da52b30d520957fb",
       "name" : "5minvrMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
       "metalness" : 0.0,
-      "map"       : "BB645D25-3316-4B94-9253-9EF6FA2EC048",
+      "map"       : "f7a18f067a2962a46a914b95befd08f3-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -79685,40 +79685,40 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "DEA8BBA1-D2D7-43CD-9EC1-E7BD28C2892A",
+      "uuid" : "d0d4df26b9164d34fa8c0a022e337b61",
       "name" : "5minlab_snakevr",
       "type" : "MeshBasicMaterial",
-      "map"  : "CF267B70-7360-4D7B-9C17-9B5BE66120AF",
+      "map"  : "07a834f768560d04c86e5b8b807b5286-texture",
       "aoMapIntensity" : 0.0
     },
     {
-      "uuid" : "F1DCDE7F-0958-4DDB-BC42-B9DD4BA914AA",
+      "uuid" : "c73f785c306a07843a2a5e7b8b8161d5",
       "name" : "5minlab_logo",
       "type" : "MeshBasicMaterial",
-      "map"  : "BF6170F0-E29D-4F32-A73A-F453FA0D884C",
+      "map"  : "e72f906da27948b4c8f0b0802702acd6-texture",
       "aoMapIntensity" : 0.0
     },
     {
-      "uuid" : "D75FA963-B239-4F77-9B9F-54D1AABDEF02",
+      "uuid" : "cccfe247821e344428215e9a0151451e",
       "name" : "White",
       "type" : "MeshBasicMaterial",
       "aoMapIntensity" : 0.0
     },
     {
-      "uuid" : "E6021036-6C6F-4EBF-9298-9824F40A6057",
+      "uuid" : "7e9ae963d0df2ce4686a23b07640171c",
       "name" : "5minlab_sky",
       "type" : "MeshBasicMaterial",
-      "map"  : "52515281-F182-478F-B6A9-1C255F2CDC8E",
+      "map"  : "31df4931601cc0247be7262ff71cc5dc-texture",
       "aoMapIntensity" : 0.0
     },
     {
-      "uuid" : "463C6E78-41F6-45C2-A593-3FA0F2279F03",
+      "uuid" : "f665a7d57e15b7d4da52b30d520957fb",
       "name" : "5minvrMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
       "metalness" : 0.0,
-      "map"       : "BB645D25-3316-4B94-9253-9EF6FA2EC048",
-      "lightMap"  : "252126F5-9977-4133-93EF-0862F6184496",
+      "map"       : "f7a18f067a2962a46a914b95befd08f3-texture",
+      "lightMap"  : "lightmap-0-texture",
       "bumpScale" : 0.100000001490116,
       "normalScale" : [
         0.100000001490116,
@@ -79728,7 +79728,7 @@
     }
   ],
   "object"     : {
-    "uuid" : "44EECF90-5C78-4FF1-A050-18C0F36C8BE7",
+    "uuid" : "ROOT",
     "type" : "Scene",
     "name" : "KanauScene",
     "matrix" : [
@@ -79752,7 +79752,7 @@
     "visible" : true,
     "children" : [
       {
-        "uuid" : "344D7831-1E66-485F-938E-6D6FBADD370D",
+        "uuid" : "",
         "type" : "PerspectiveCamera",
         "name" : "Main Camera",
         "matrix" : [
@@ -79788,7 +79788,7 @@
         "filmOffset" : 0
       },
       {
-        "uuid" : "F4E9B316-9E73-485B-A4A9-D4C4CB309A61",
+        "uuid" : "",
         "type" : "Group",
         "name" : "Directional Light",
         "matrix" : [
@@ -79812,7 +79812,7 @@
         "visible" : true
       },
       {
-        "uuid" : "E164C64A-9A8F-42F2-99A2-981F3D32A1C8",
+        "uuid" : "",
         "type" : "Group",
         "name" : "Room",
         "matrix" : [
@@ -79836,7 +79836,7 @@
         "visible" : true,
         "children" : [
           {
-            "uuid" : "0AEC2C02-D6DD-40E4-A9F7-8F7B3C191DC3",
+            "uuid" : "",
             "type" : "Group",
             "name" : "5minvr",
             "matrix" : [
@@ -79860,7 +79860,7 @@
             "visible" : true,
             "children" : [
               {
-                "uuid" : "81A60437-87BA-4A9F-8A15-0B737A4BC923",
+                "uuid" : "",
                 "type" : "Mesh",
                 "name" : "5minvr",
                 "matrix" : [
@@ -79882,15 +79882,15 @@
                   1.0
                 ],
                 "visible" : true,
-                "geometry" : "142D671A-D896-49BB-9075-6DB084763D4C",
-                "material" : "463C6E78-41F6-45C2-A593-3FA0F2279F03"
+                "geometry" : "-1",
+                "material" : "f665a7d57e15b7d4da52b30d520957fb"
               }
             ]
           }
         ]
       },
       {
-        "uuid" : "2CC79D4F-D08E-43C9-9C60-6A39C7A88B6B",
+        "uuid" : "",
         "type" : "Mesh",
         "name" : "SnakeVR",
         "matrix" : [
@@ -79912,11 +79912,11 @@
           1.0
         ],
         "visible" : true,
-        "geometry" : "38301424-16E0-432B-BCE7-6A0F7AB30179",
-        "material" : "DEA8BBA1-D2D7-43CD-9EC1-E7BD28C2892A"
+        "geometry" : "geo-408",
+        "material" : "d0d4df26b9164d34fa8c0a022e337b61"
       },
       {
-        "uuid" : "8271D974-937A-40F3-9BDA-5A7C9B0A7566",
+        "uuid" : "",
         "type" : "Group",
         "name" : "Point light",
         "matrix" : [
@@ -79940,7 +79940,7 @@
         "visible" : true
       },
       {
-        "uuid" : "EA193027-44C2-4BB3-A583-4B97FCB76D18",
+        "uuid" : "",
         "type" : "Group",
         "name" : "LogoContainer",
         "matrix" : [
@@ -79964,7 +79964,7 @@
         "visible" : true,
         "children" : [
           {
-            "uuid" : "FE5F5F9C-0FC9-4AFF-BB75-FC2AD236B43E",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "Logo",
             "matrix" : [
@@ -79986,11 +79986,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "38301424-16E0-432B-BCE7-6A0F7AB30179",
-            "material" : "F1DCDE7F-0958-4DDB-BC42-B9DD4BA914AA"
+            "geometry" : "geo-408",
+            "material" : "c73f785c306a07843a2a5e7b8b8161d5"
           },
           {
-            "uuid" : "74427EF0-189E-4B56-9E2D-1EF2425D68FA",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "Background",
             "matrix" : [
@@ -80012,13 +80012,13 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "38301424-16E0-432B-BCE7-6A0F7AB30179",
-            "material" : "D75FA963-B239-4F77-9B9F-54D1AABDEF02"
+            "geometry" : "geo-408",
+            "material" : "cccfe247821e344428215e9a0151451e"
           }
         ]
       },
       {
-        "uuid" : "AD939913-7A11-44DA-A428-52F570FF0506",
+        "uuid" : "",
         "type" : "Mesh",
         "name" : "Sky",
         "matrix" : [
@@ -80040,11 +80040,11 @@
           1.0
         ],
         "visible" : true,
-        "geometry" : "38301424-16E0-432B-BCE7-6A0F7AB30179",
-        "material" : "E6021036-6C6F-4EBF-9298-9824F40A6057"
+        "geometry" : "geo-408",
+        "material" : "7e9ae963d0df2ce4686a23b07640171c"
       },
       {
-        "uuid" : "F649C8BD-43B6-4819-B89C-618CFE46BD8D",
+        "uuid" : "unique-ambient-light",
         "type" : "AmbientLight",
         "name" : "AmbientLight",
         "matrix" : [
@@ -80073,33 +80073,33 @@
   "images"     : [
     {
       "url" : "./images/5minvr.png",
-      "uuid" : "99039E0B-0076-4AF0-9094-075AFFFF93B3",
+      "uuid" : "f7a18f067a2962a46a914b95befd08f3-image",
       "name" : "5minvr.png"
     },
     {
       "url" : "./images/app_upper_for_vrweb.png",
-      "uuid" : "1DE27BB5-C0B0-4B77-B43F-BF860880524A",
+      "uuid" : "07a834f768560d04c86e5b8b807b5286-image",
       "name" : "app_upper_for_vrweb.png"
     },
     {
       "url" : "./images/01_\uB85C\uACE0_2.png",
-      "uuid" : "2590333F-9D74-4193-8319-5145F346CBA3",
+      "uuid" : "e72f906da27948b4c8f0b0802702acd6-image",
       "name" : "01_\uB85C\uACE0_2.png"
     },
     {
       "url" : "./images/blue-sky-resize.jpg",
-      "uuid" : "43A0E08A-56A1-4DB5-97F7-A643F661359E",
+      "uuid" : "31df4931601cc0247be7262ff71cc5dc-image",
       "name" : "blue-sky-resize.jpg"
     },
     {
       "url" : "./images/Lightmap-0_comp_light.jpg",
-      "uuid" : "229E6D42-6B5A-4F6A-B47E-BDE4596364DF",
+      "uuid" : "lightmap-0-image",
       "name" : "Lightmap-0_comp_light.jpg"
     }
   ],
   "textures"   : [
     {
-      "uuid" : "BB645D25-3316-4B94-9253-9EF6FA2EC048",
+      "uuid" : "f7a18f067a2962a46a914b95befd08f3-texture",
       "offset" : [
         0.0,
         0.0
@@ -80114,12 +80114,12 @@
         1000,
         1000
       ],
-      "image"     : "99039E0B-0076-4AF0-9094-075AFFFF93B3",
+      "image"     : "f7a18f067a2962a46a914b95befd08f3-image",
       "name"      : "./images/5minvr.png",
       "anisotropy" : 1
     },
     {
-      "uuid" : "CF267B70-7360-4D7B-9C17-9B5BE66120AF",
+      "uuid" : "07a834f768560d04c86e5b8b807b5286-texture",
       "offset" : [
         0.0,
         0.0
@@ -80134,12 +80134,12 @@
         1000,
         1000
       ],
-      "image"     : "1DE27BB5-C0B0-4B77-B43F-BF860880524A",
+      "image"     : "07a834f768560d04c86e5b8b807b5286-image",
       "name"      : "./images/app_upper_for_vrweb.png",
       "anisotropy" : 1
     },
     {
-      "uuid" : "BF6170F0-E29D-4F32-A73A-F453FA0D884C",
+      "uuid" : "e72f906da27948b4c8f0b0802702acd6-texture",
       "offset" : [
         0.0,
         0.0
@@ -80154,12 +80154,12 @@
         1001,
         1001
       ],
-      "image"     : "2590333F-9D74-4193-8319-5145F346CBA3",
+      "image"     : "e72f906da27948b4c8f0b0802702acd6-image",
       "name"      : "./images/01_\uB85C\uACE0_2.png",
       "anisotropy" : 1
     },
     {
-      "uuid" : "52515281-F182-478F-B6A9-1C255F2CDC8E",
+      "uuid" : "31df4931601cc0247be7262ff71cc5dc-texture",
       "offset" : [
         0.0,
         0.0
@@ -80174,12 +80174,12 @@
         1000,
         1000
       ],
-      "image"     : "43A0E08A-56A1-4DB5-97F7-A643F661359E",
+      "image"     : "31df4931601cc0247be7262ff71cc5dc-image",
       "name"      : "./images/blue-sky-resize.jpg",
       "anisotropy" : 1
     },
     {
-      "uuid" : "252126F5-9977-4133-93EF-0862F6184496",
+      "uuid" : "lightmap-0-texture",
       "offset" : [
         0.0,
         0.0
@@ -80194,7 +80194,7 @@
         1001,
         1001
       ],
-      "image"     : "229E6D42-6B5A-4F6A-B47E-BDE4596364DF",
+      "image"     : "lightmap-0-image",
       "name"      : "./images/Lightmap-0_comp_light.jpg",
       "anisotropy" : 3
     }

@@ -1,3 +1,6 @@
+mtllib windows.mtl
+usemtl windows
+
 g windows
 v 0.4999494 -0.068171 -0.056924
 v 0.5349478 -0.04709326 -0.05660632

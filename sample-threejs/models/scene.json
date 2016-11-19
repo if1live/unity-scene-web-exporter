@@ -7,7 +7,7 @@
   },
   "geometries" : [
     {
-      "uuid" : "7B39DE95-4306-4E8A-9FE1-26899BE2973F",
+      "uuid" : "geo-9056",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -1344,7 +1344,7 @@
       }
     },
     {
-      "uuid" : "2EA6B381-1B73-44DF-9FD0-5D8BC2026E45",
+      "uuid" : "geo-9058",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -2078,7 +2078,7 @@
       }
     },
     {
-      "uuid" : "D91EABA8-8CBD-4C04-9393-6E167B2A9B72",
+      "uuid" : "geo-9060",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -2650,7 +2650,7 @@
       }
     },
     {
-      "uuid" : "BD3DD985-5D72-4168-8D98-5C382AF48881",
+      "uuid" : "geo-9062",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -3438,7 +3438,7 @@
       }
     },
     {
-      "uuid" : "019801E3-62DD-4F33-9801-65A26485BC1A",
+      "uuid" : "geo-9064",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -3794,7 +3794,7 @@
       }
     },
     {
-      "uuid" : "333E6456-8BBC-4B0C-8A78-63988999597B",
+      "uuid" : "geo-9066",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -4243,7 +4243,7 @@
       }
     },
     {
-      "uuid" : "35129C5B-8E39-49AA-83D8-C949AA1CAEAF",
+      "uuid" : "geo-9068",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -4464,7 +4464,7 @@
       }
     },
     {
-      "uuid" : "7F85832F-E38D-43D7-925E-35EFDC1CC64B",
+      "uuid" : "geo-9070",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -4745,7 +4745,7 @@
       }
     },
     {
-      "uuid" : "C25C7B50-46ED-46A9-882F-B43E87B5C5CD",
+      "uuid" : "geo-9072",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -4879,7 +4879,7 @@
       }
     },
     {
-      "uuid" : "30235CDD-BD15-45AB-8D6F-704E782643CF",
+      "uuid" : "geo-9074",
       "type" : "BufferGeometry",
       "data" : {
         "index" : {
@@ -5129,7 +5129,7 @@
   ],
   "materials"  : [
     {
-      "uuid" : "2D878C64-87E4-49C2-9B96-66E7D89F1CD4",
+      "uuid" : "97e0754537d9d2e43bb5798ea6c5ceb7",
       "name" : "bodyMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5142,7 +5142,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "6CCF7D7B-1041-406C-A2B1-978461CBA69A",
+      "uuid" : "ed9b604f26c09374c8caf2fbeb89ba66",
       "name" : "enginsideMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5155,7 +5155,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "9568661C-20E5-4BC8-9464-09D4032A2E86",
+      "uuid" : "1dc56416505b9314cac6e56f0e4560de",
       "name" : "engmountMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5168,7 +5168,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "79164421-E679-4A0B-97E5-F6976A076A0B",
+      "uuid" : "01d1fefe1707fba4b8ee680d7e8c760b",
       "name" : "engoutMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5181,7 +5181,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "C875EF15-EAA0-4928-9211-034E22B4D6DA",
+      "uuid" : "0d64c817e0943cc4db7fbbb4c493f393",
       "name" : "engrimMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5194,7 +5194,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "98328315-A216-4E56-B59A-34A85DE920A3",
+      "uuid" : "1e1284c4949ec2540a35928741f63e41",
       "name" : "rearbodyMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5207,7 +5207,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "11DEAEFF-B785-43AE-82AA-354A5FC2ABC7",
+      "uuid" : "41068600d12f7354d874a50d6bac9e74",
       "name" : "tailMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5220,7 +5220,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "49590DF2-67FD-45B6-9A76-077738D2250E",
+      "uuid" : "48f6cfd514fed06478d84c342dabd6b7",
       "name" : "tilesMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5233,7 +5233,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "A8F59918-9D12-4FBB-BDC2-C706817A10F8",
+      "uuid" : "56204631ad9ce1546addfd4dbed6f148",
       "name" : "windowsMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5246,7 +5246,7 @@
       "displacementScale" : 0.0199999995529652
     },
     {
-      "uuid" : "06ECAEB8-933C-443A-A7CC-C223A945A449",
+      "uuid" : "3d832e8a345a5a14d94ac3d5b3be79ed",
       "name" : "wingsMat",
       "type" : "MeshStandardMaterial",
       "color" : 13421772,
@@ -5260,7 +5260,7 @@
     }
   ],
   "object"     : {
-    "uuid" : "9E390726-A3C4-41F4-8DB3-25AB3246AFBE",
+    "uuid" : "ROOT",
     "type" : "Scene",
     "name" : "KanauScene",
     "matrix" : [
@@ -5284,7 +5284,7 @@
     "visible" : true,
     "children" : [
       {
-        "uuid" : "30EBDF23-BE51-41A3-86A7-F96FBD5DAECD",
+        "uuid" : "",
         "type" : "PerspectiveCamera",
         "name" : "Main Camera",
         "matrix" : [
@@ -5320,7 +5320,7 @@
         "filmOffset" : 0
       },
       {
-        "uuid" : "AF10E727-B914-4CAB-B386-C4C05B8626EA",
+        "uuid" : "",
         "type" : "DirectionalLight",
         "name" : "Directional Light",
         "matrix" : [
@@ -5346,7 +5346,7 @@
         "intensity" : 1.0
       },
       {
-        "uuid" : "25BC5973-7533-4FB7-A00D-C61B629EDBEE",
+        "uuid" : "",
         "type" : "Group",
         "name" : "shuttle",
         "matrix" : [
@@ -5370,7 +5370,7 @@
         "visible" : true,
         "children" : [
           {
-            "uuid" : "8552C8F6-5A3B-417D-B276-7F85B6FCA841",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "body",
             "matrix" : [
@@ -5392,11 +5392,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "7B39DE95-4306-4E8A-9FE1-26899BE2973F",
-            "material" : "2D878C64-87E4-49C2-9B96-66E7D89F1CD4"
+            "geometry" : "geo-9056",
+            "material" : "97e0754537d9d2e43bb5798ea6c5ceb7"
           },
           {
-            "uuid" : "CB18CC0B-0294-4232-8181-760E0CDED226",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "enginside",
             "matrix" : [
@@ -5418,11 +5418,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "2EA6B381-1B73-44DF-9FD0-5D8BC2026E45",
-            "material" : "6CCF7D7B-1041-406C-A2B1-978461CBA69A"
+            "geometry" : "geo-9058",
+            "material" : "ed9b604f26c09374c8caf2fbeb89ba66"
           },
           {
-            "uuid" : "BC53FBAA-A710-46B7-8759-7AE6F64EB965",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "engmount",
             "matrix" : [
@@ -5444,11 +5444,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "D91EABA8-8CBD-4C04-9393-6E167B2A9B72",
-            "material" : "9568661C-20E5-4BC8-9464-09D4032A2E86"
+            "geometry" : "geo-9060",
+            "material" : "1dc56416505b9314cac6e56f0e4560de"
           },
           {
-            "uuid" : "77555455-D463-49B3-A6F2-0C07FA4E9618",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "engout",
             "matrix" : [
@@ -5470,11 +5470,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "BD3DD985-5D72-4168-8D98-5C382AF48881",
-            "material" : "79164421-E679-4A0B-97E5-F6976A076A0B"
+            "geometry" : "geo-9062",
+            "material" : "01d1fefe1707fba4b8ee680d7e8c760b"
           },
           {
-            "uuid" : "5AC47BAB-CED1-4FD7-82E5-59CB271D770D",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "engrim",
             "matrix" : [
@@ -5496,11 +5496,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "019801E3-62DD-4F33-9801-65A26485BC1A",
-            "material" : "C875EF15-EAA0-4928-9211-034E22B4D6DA"
+            "geometry" : "geo-9064",
+            "material" : "0d64c817e0943cc4db7fbbb4c493f393"
           },
           {
-            "uuid" : "672EF69D-48A5-4A25-BA42-269B78AE2F9E",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "rearbody",
             "matrix" : [
@@ -5522,11 +5522,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "333E6456-8BBC-4B0C-8A78-63988999597B",
-            "material" : "98328315-A216-4E56-B59A-34A85DE920A3"
+            "geometry" : "geo-9066",
+            "material" : "1e1284c4949ec2540a35928741f63e41"
           },
           {
-            "uuid" : "17A42941-0C28-468F-82A8-E4B1D489CD77",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "tail",
             "matrix" : [
@@ -5548,11 +5548,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "35129C5B-8E39-49AA-83D8-C949AA1CAEAF",
-            "material" : "11DEAEFF-B785-43AE-82AA-354A5FC2ABC7"
+            "geometry" : "geo-9068",
+            "material" : "41068600d12f7354d874a50d6bac9e74"
           },
           {
-            "uuid" : "F068B8E6-1FAC-45F2-8533-CC581CD87894",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "tiles",
             "matrix" : [
@@ -5574,11 +5574,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "7F85832F-E38D-43D7-925E-35EFDC1CC64B",
-            "material" : "49590DF2-67FD-45B6-9A76-077738D2250E"
+            "geometry" : "geo-9070",
+            "material" : "48f6cfd514fed06478d84c342dabd6b7"
           },
           {
-            "uuid" : "272B1ADB-16F4-42F7-A4D2-BC311FBFA4E9",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "windows",
             "matrix" : [
@@ -5600,11 +5600,11 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "C25C7B50-46ED-46A9-882F-B43E87B5C5CD",
-            "material" : "A8F59918-9D12-4FBB-BDC2-C706817A10F8"
+            "geometry" : "geo-9072",
+            "material" : "56204631ad9ce1546addfd4dbed6f148"
           },
           {
-            "uuid" : "826EB332-6EFE-4AA6-A9F9-A77EB7882C85",
+            "uuid" : "",
             "type" : "Mesh",
             "name" : "wings",
             "matrix" : [
@@ -5626,13 +5626,13 @@
               1.0
             ],
             "visible" : true,
-            "geometry" : "30235CDD-BD15-45AB-8D6F-704E782643CF",
-            "material" : "06ECAEB8-933C-443A-A7CC-C223A945A449"
+            "geometry" : "geo-9074",
+            "material" : "3d832e8a345a5a14d94ac3d5b3be79ed"
           }
         ]
       },
       {
-        "uuid" : "AF537E8F-F646-44E9-9165-26F3BF714A15",
+        "uuid" : "unique-ambient-light",
         "type" : "AmbientLight",
         "name" : "AmbientLight",
         "matrix" : [
