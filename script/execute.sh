@@ -22,8 +22,9 @@ function copy_content() {
 }
 
 function publish() {
+	SHA=`git rev-parse --verify HEAD`
     git add .
-    git commit -a -m "add new site content"
+	git commit -a -m "Deploy to GitHub Pages: ${SHA}"
     if [[ $? == 0 ]]; then
         git push origin gh-pages
     fi
@@ -46,7 +47,7 @@ configure_ssh;
 cd SimpleViewer
 node index.js
 
-git clone --depth 1 --quiet -b gh-pages https://github.com/if1live/unity-scene-web-exporter.git output
+git clone --depth 1 --quiet -b gh-pages git@github.com:if1live/unity-scene-web-exporter.git output
 
 cd output; clear_previous_content; cd ..
 
