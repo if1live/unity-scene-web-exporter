@@ -152,8 +152,8 @@ namespace Assets.Kanau.Editor {
             string codeBase = Assembly.GetExecutingAssembly().CodeBase;
             UriBuilder uri = new UriBuilder(codeBase);
             string path = Uri.UnescapeDataString(uri.Path);
-            var resourcePath = Path.GetFullPath(new Uri(Path.Combine(Path.GetDirectoryName(path), "../../Assets/Resources")).AbsolutePath);
-            var assetPath = Path.GetFullPath(new Uri(Path.Combine(Path.GetDirectoryName(path), "../../Assets")).AbsolutePath);
+            //var resourcePath = Path.GetFullPath(new Uri(Path.Combine(Path.GetDirectoryName(path), "../../Assets/Resources")).AbsolutePath);
+            //var assetPath = Path.GetFullPath(new Uri(Path.Combine(Path.GetDirectoryName(path), "../../Assets")).AbsolutePath);
             var rootPath = Path.GetFullPath(new Uri(Path.Combine(Path.GetDirectoryName(path), "../../")).AbsolutePath);
             return rootPath;
         }

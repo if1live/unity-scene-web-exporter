@@ -20,6 +20,20 @@ namespace Assets.Kanau.UnityScene.Containers {
         public int AnisoLevel { get { return Tex.anisoLevel; } }
         public string Name { get { return Tex.name; } }
 
+        public string Guid
+        {
+            get
+            {
+#if UNITY_EDITOR
+                var assetpath = AssetDatabase.GetAssetPath(Tex);
+                var guid = AssetDatabase.AssetPathToGUID(assetpath);
+                return guid;
+#else
+                return "";
+#endif
+            }
+        }
+
         public string FilePath
         {
             get

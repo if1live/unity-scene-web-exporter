@@ -68,7 +68,6 @@ namespace Assets.Kanau {
                     }
 
                     var mtl = MaterialFacade.Instance.CreateMaterial(el.Material);
-                    var exporter = new MtlExporter();
                     if(bufferGeom != null) {
                         string filepath = pathHelper.ToModelPath(bufferGeom.CreateMeshFileName(".mtl"));
                         MtlExporter.ToFile(mtl, bufferGeom.SafeName, filepath);

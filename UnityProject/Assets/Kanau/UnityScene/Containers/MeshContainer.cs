@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Assets.Kanau.UnityScene.Containers {
     public class MeshContainer
@@ -13,5 +16,19 @@ namespace Assets.Kanau.UnityScene.Containers {
         public string Name { get { return Mesh.name; } }
         public int VertexCount { get { return Mesh.vertexCount; } }
         public int TriangleCount { get { return Mesh.triangles.Length / 3; } }
+
+        public string Guid
+        {
+            get
+            {
+#if UNITY_EDITOR
+                var assetpath = AssetDatabase.GetAssetPath(Mesh);
+                var guid = AssetDatabase.AssetPathToGUID(assetpath);
+                return guid;
+#else
+                return "";
+#endif
+            }
+        }
     }
 }

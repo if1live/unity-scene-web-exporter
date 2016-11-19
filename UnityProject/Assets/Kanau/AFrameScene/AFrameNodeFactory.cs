@@ -104,7 +104,7 @@ namespace Assets.Kanau.AFrameScene {
             const float DefaultDecay = 1.0f;
             const float DefaultDistance = 0.0f;
             const float DefaultExponent = 10.0f;
-            readonly Color DefaultGroundColor = new UnityEngine.Color(1, 1, 1);
+            public readonly Color DefaultGroundColor = new UnityEngine.Color(1, 1, 1);
             const float DefaultIntensity = 1.0f;
 
             AFrameNode node;

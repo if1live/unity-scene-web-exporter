@@ -56,6 +56,7 @@ namespace Assets.Kanau.UnityScene {
             // 게임오브젝트마다 별도의 Mesh를 등록하는게 가능하도록
             // 왜냐하면 lightmap 좌표 정보는 lightmapScaleOffset는 Renderer에 저장되기때문
             // lightmap이 있는 경우
+            var lightmapMeshNum = 1;
             foreach (var n in unityscene.GraphNodeTable.GetEnumerable<GameObjectNode>()) {
                 if(!n.HasLightmap) { continue; }
                 var renderer = n.CurrentObject.GetComponent<Renderer>();
@@ -65,7 +66,11 @@ namespace Assets.Kanau.UnityScene {
 
                 var meshcontainerkey = meshfilter.sharedMesh.GetInstanceID().ToString();
                 var meshcontainer = unityscene.ContainerTable.Get<MeshContainer>(meshcontainerkey);
+
                 AbstractGeometryElem geo = new BufferGeometryElem(meshcontainer, n.HasLightmap, n.lightmapScaleOffset);
+                geo.Uuid = string.Format("{0}-{1}", meshcontainer.Guid, lightmapMeshNum);
+                lightmapMeshNum += 1;
+
                 var geokey = ConvertKeyForBufferGeometryElem(renderer);
                 root.SharedNodeTable.Add(geo, geokey);
             }
@@ -158,8 +163,10 @@ namespace Assets.Kanau.UnityScene {
             if(n.SuperRoot) {
                 elem = new SceneElem();
                 elem.Name = "KanauScene";
+                elem.Uuid = n.Guid;
             } else {
                 elem = new GroupElem(n);
+                elem.Uuid = n.Guid;
             }
 
             if (n.HasTag) { elem.Tag = n.Tag; }
@@ -177,6 +184,7 @@ namespace Assets.Kanau.UnityScene {
 
         CameraElem RegisterToThreeScene(CameraNode n) {
             var node = new PerspectiveCameraElem(n);
+            node.Uuid = n.Guid;
             var parent = objNodeTable[n.CurrentObject.GetInstanceID().ToString()];
             parent.AddChild(node);
             return node;
@@ -185,9 +193,11 @@ namespace Assets.Kanau.UnityScene {
         void RegisterLightmap(LightmapContainer n) {
             // create image
             var imageNode = new ImageElem(n);
+            imageNode.Uuid = n.Guid + "-image";
             root.SharedNodeTable.Add(imageNode, n.InstanceId);
 
             var texNode = new TextureElem(n);
+            texNode.Uuid = n.Guid + "-texture";
             root.SharedNodeTable.Add(texNode, n.InstanceId);
 
             texNode.Image = imageNode;
@@ -202,6 +212,8 @@ namespace Assets.Kanau.UnityScene {
             }
 
             if (node != null) {
+                node.Uuid = n.Guid;
+
                 var parent = objNodeTable[n.CurrentObject.GetInstanceID().ToString()];
                 parent.AddChild(node);
                 return node;
@@ -212,6 +224,7 @@ namespace Assets.Kanau.UnityScene {
 
         MaterialElem CreateMaterialElem(MaterialContainer n) {
             var mtl = new MaterialElem(n);
+            mtl.Uuid = n.Guid;
 
             if (n.MainTexture) {
                 var instanceId = n.MainTexture.GetInstanceID().ToString();
@@ -262,11 +275,12 @@ namespace Assets.Kanau.UnityScene {
                 geo = new CylinderBufferGeometryElem(n);
             } else if (n.Mesh.name == "Quad") {
                 geo = new QuadBufferGeometry(n);
-            } else if(n.Mesh.name == "Cube") {
-                geo = new BoxBufferGeometryElem(n);
+            //} else if(n.Mesh.name == "Cube") {
+            //    geo = new BoxBufferGeometryElem(n);
             } else {
                 geo = new BufferGeometryElem(n, false, Vector4.zero);
-            } 
+            }
+            geo.Uuid = "geo-" + n.InstanceId;
             root.SharedNodeTable.Add(geo, n.InstanceId);
         }
 
@@ -304,7 +318,9 @@ namespace Assets.Kanau.UnityScene {
 
         void Visit(ProjectSettings n) {
             // ambient light - 유니티에서는 프로젝트 설정이지만 three.js에서는 요소
+            // 하나로 보장되니까 그냥 넣어도 된다
             var ambientlight = new AmbientLightElem(n);
+            ambientlight.Uuid = "unique-ambient-light";
             var parent = objNodeTable[GameObjectNode.RootInstanceId];
             parent.AddChild(ambientlight);
         }
@@ -312,10 +328,12 @@ namespace Assets.Kanau.UnityScene {
         void RegisterTexture(TextureContainer n) {
             // create image
             var imageNode = new ImageElem(n);
+            imageNode.Uuid = n.Guid + "-image";
             root.SharedNodeTable.Add(imageNode, n.InstanceId);
 
             // create texture
             var texNode = new TextureElem(n);
+            texNode.Uuid = n.Guid + "-texture";
             texNode.Image = imageNode;
             root.SharedNodeTable.Add(texNode, n.InstanceId);
         }
@@ -340,6 +358,7 @@ namespace Assets.Kanau.UnityScene {
                 Geometry = geometryNode,
                 Material = materialNode,
             };
+            meshNode.Uuid = n.Guid;
             var parent = objNodeTable[n.CurrentObject.GetInstanceID().ToString()];
             parent.AddChild(meshNode);
             return meshNode;
@@ -347,7 +366,7 @@ namespace Assets.Kanau.UnityScene {
 
         string ConvertKeyForBufferGeometryElem(Renderer renderer) {
             var meshfilter = renderer.GetComponent<MeshFilter>();
-            var mesh = meshfilter.sharedMesh;
+            //var mesh = meshfilter.sharedMesh;
             var basicKey = meshfilter.sharedMesh.GetInstanceID().ToString();
 
             if (renderer.lightmapIndex >= 0) {

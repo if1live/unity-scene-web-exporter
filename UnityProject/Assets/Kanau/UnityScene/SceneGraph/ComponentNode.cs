@@ -1,5 +1,8 @@
 ﻿using System;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Assets.Kanau.UnityScene.SceneGraph {
     public class ComponentNode<T> : IUnityNode where T : Component
@@ -14,6 +17,20 @@ namespace Assets.Kanau.UnityScene.SceneGraph {
         }
 
         protected INodeTable<string> ContainerTable { get; set; }
+
+        public string Guid
+        {
+            get
+            {
+#if UNITY_EDITOR
+                var assetpath = AssetDatabase.GetAssetPath(Value);
+                var guid = AssetDatabase.AssetPathToGUID(assetpath);
+                return guid;
+#else
+                return "";
+#endif
+            }
+        }
 
         public GameObject CurrentObject { get { return Value.gameObject; } }
         public GameObject ParentObject {

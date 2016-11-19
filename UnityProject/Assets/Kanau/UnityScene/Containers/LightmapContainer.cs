@@ -16,6 +16,14 @@ namespace Assets.Kanau.UnityScene.Containers {
         public int Index { get; private set; }
         public string InstanceId { get { return Index.ToString(); } }
 
+        public string Guid
+        {
+            get
+            {
+                return string.Format("lightmap-{0}", Index);
+            }
+        }
+
         public LightmapContainer(int index) {
             this.Index = index;
         }

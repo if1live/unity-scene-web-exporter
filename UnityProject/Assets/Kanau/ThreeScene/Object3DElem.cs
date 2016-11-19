@@ -82,7 +82,7 @@ namespace Assets.Kanau.ThreeScene {
         public bool IsStatic { get; set; }
 
         public void CopyAttributes(Object3DElem other) {
-            this.guid = other.guid;
+            this.Uuid = other.Uuid;
             this.Visible = other.Visible;
             this.UnityMatrix = other.UnityMatrix;
             this.Name = other.Name;

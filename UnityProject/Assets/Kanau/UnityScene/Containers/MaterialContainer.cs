@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Kanau.UnityScene.Containers {
@@ -16,6 +17,16 @@ namespace Assets.Kanau.UnityScene.Containers {
 
         public Vector2 MainTextureOffset { get { return Material.mainTextureOffset; } }
         public Vector2 MainTextureScale { get { return Material.mainTextureScale; } }
+
+        public string Guid
+        {
+            get
+            {
+                var assetpath = AssetDatabase.GetAssetPath(Material);
+                var guid = AssetDatabase.AssetPathToGUID(assetpath);
+                return guid;
+            }
+        }
 
         // colors
         public Color Color { get { return GetColor("_Color", Color.white); } }

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Assets.Kanau.UnityScene.SceneGraph {
     public interface IGameObjectNode : IUnityNode
     {
         string Name { get; }
+        string Guid { get; }
 
         bool SuperRoot { get; }
 
@@ -54,6 +58,20 @@ namespace Assets.Kanau.UnityScene.SceneGraph {
             }
         }
         public bool HasParent { get { return ParentObject != null; } }
+
+        public string Guid
+        {
+            get
+            {
+#if UNITY_EDITOR
+                var assetpath = AssetDatabase.GetAssetPath(CurrentObject);
+                var guid = AssetDatabase.AssetPathToGUID(assetpath);
+                return guid;
+#else
+                return "";
+#endif
+            }
+        }
 
         public string InstanceId {
             get {
@@ -204,5 +222,10 @@ namespace Assets.Kanau.UnityScene.SceneGraph {
         public int LightmapIndex { get { return -1; } }
 
         public Vector4 lightmapScaleOffset { get { return Vector4.zero; } }
+
+        public string Guid
+        {
+            get { return "ROOT"; }
+        }
     }
 }
