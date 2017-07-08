@@ -84,9 +84,9 @@ namespace Assets.Kanau.ThreeScene.Geometries {
                 Colors = new float[mesh.colors.Length * 3];
                 for(int i = 0; i < mesh.colors.Length; i++) {
                     var color = mesh.colors[i];
-                    Colors[i * 4 + 0] = color.r;
-                    Colors[i * 4 + 1] = color.g;
-                    Colors[i * 4 + 2] = color.b;
+                    Colors[i * 3 + 0] = color.r;
+                    Colors[i * 3 + 1] = color.g;
+                    Colors[i * 3 + 2] = color.b;
                 }
             }
 
