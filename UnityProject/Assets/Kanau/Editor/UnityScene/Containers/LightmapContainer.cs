@@ -65,7 +65,7 @@ namespace Assets.Kanau.UnityScene.Containers {
         }
 
         public Texture2D LightmapFar {
-            get { return LightmapSettings.lightmaps[Index].lightmapFar; }
+            get { return LightmapSettings.lightmaps[Index].lightmapColor; }
         }
 
         public FilterMode FilterMode { get { return LightmapFar.filterMode; } }
@@ -96,7 +96,7 @@ namespace Assets.Kanau.UnityScene.Containers {
                 texImporter.SaveAndReimport();
             }
 
-            Texture2D ti = LightmapSettings.lightmaps[Index].lightmapFar;
+            Texture2D ti = LightmapSettings.lightmaps[Index].lightmapColor;
 
             Texture2D tf = new Texture2D(ti.width, ti.height, TextureFormat.ARGB32, false);
             Color32[] c = ti.GetPixels32();

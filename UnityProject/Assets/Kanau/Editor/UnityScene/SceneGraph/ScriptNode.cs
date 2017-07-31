@@ -16,6 +16,7 @@ namespace Assets.Kanau.UnityScene.SceneGraph {
         public string fieldType;
         public string key;
         public object value;
+		public bool isSimple; // outputs native-json without extra type info
 
         public static readonly ScriptVariable Null;
 
@@ -82,9 +83,14 @@ namespace Assets.Kanau.UnityScene.SceneGraph {
             typeof(DateTime),
         };
 
+		static bool IsSimpleType(object o) {
+			var type = o.GetType();
+			return simpleTypeSet.Contains(type);
+		}
+
         static string GetFieldTypeFromObject(object o) {
             var type = o.GetType();
-            if (simpleTypeSet.Contains(type)) {
+			if (IsSimpleType(o)) {
                 return type.ToString().ToLower();
             }
             if(o is Material) {
@@ -118,11 +124,13 @@ namespace Assets.Kanau.UnityScene.SceneGraph {
                 var key = field.Name;
                 var val = field.GetValue(Value);
                 var fieldType = GetFieldTypeFromObject(val);
+
                 var kv = new ScriptVariable()
                 {
                     fieldType = fieldType,
                     key = key,
                     value = val,
+					isSimple = IsSimpleType(val)
                 };
                 variables.Add(kv);
             }
