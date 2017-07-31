@@ -78,12 +78,44 @@ namespace Assets.Kanau.ThreeScene {
             }
 
             public void WriterScriptNodeVariable(ScriptVariable val) {
-                using (var s1 = new JsonScopeObjectWriter(writer)) {
-                    s1.WriteKeyValue("key", val.key);
-                    s1.WriteKeyValue("type", val.ShortFieldType);
-                    WriteObjectVariable(s1, val.value);
+				if(val.isSimple) {
+					WritePrimitive(val.value);	
+				}
+				else
+				{
+					using (var s1 = new JsonScopeObjectWriter(writer)) {
+	                    s1.WriteKeyValue("key", val.key);
+	                    s1.WriteKeyValue("type", val.ShortFieldType);
+	                    WriteObjectVariable(s1, val.value);
+					}
                 }
             }
+
+			void WritePrimitive(object o) {
+				var type = o.GetType();
+				if (type == typeof(float)) {
+					writer.Write((float)o);
+				} else if (type == typeof(double)) {
+					writer.Write((double)o);
+				} else if (type == typeof(int)) {
+					writer.Write((int)o);
+				} else if (type == typeof(short)) {
+					writer.Write((short)o);
+				} else if (type == typeof(byte)) {
+					writer.Write((byte)o);
+				} else if (type == typeof(long)) {
+					writer.Write((long)o);
+				} else if (type == typeof(char)) {
+					writer.Write((char)o);
+				} else if (type == typeof(string)) {
+					writer.Write((string)o);
+				} else if (type == typeof(bool)) {
+					writer.Write((bool)o);
+				} else {
+					throw new ArgumentException("Unknown primitive type: " + type.ToString());
+				}
+
+			}
 
             void WriteObjectVariable(JsonScopeObjectWriter s, object o) {
                 var type = o.GetType();
