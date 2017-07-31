@@ -112,6 +112,10 @@ namespace Assets.Kanau.UnityScene.SceneGraph {
         // child-parent
         public void BuildHierarchy(INodeTable<string> table) {
             if(ParentObject != null) {
+				if(!table.Contains<GameObjectNode>(ParentObject.GetInstanceID().ToString()))
+				{
+					Debug.LogError(string.Format("Unable to find instanceId for object: {0}", ParentObject.name), ParentObject);
+				}
                 Parent = table.Get<GameObjectNode>(ParentObject.GetInstanceID().ToString());
             }
 

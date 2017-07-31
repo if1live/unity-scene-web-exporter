@@ -73,7 +73,8 @@ namespace Assets.Kanau.UnityScene {
         void VisitToCreateMesh_r(GameObject go) {
             if (go.GetComponent<Renderer>()) {
                 var mesh = ComponentHelper.GetMesh(go);
-                if(!containerTable.Contains<MeshContainer>(mesh.GetInstanceID().ToString())) {
+				if(mesh != null && !containerTable.Contains<MeshContainer>(mesh.GetInstanceID().ToString())) {
+					Debug.Log(string.Format("Processing Mesh, {0}, {1}, on object, {2}", mesh.name, mesh.GetInstanceID(), go.name), go);
                     var c = new MeshContainer(mesh);
                     containerTable.Add(c.InstanceId, c);
                 }
@@ -153,6 +154,11 @@ namespace Assets.Kanau.UnityScene {
         void VisitToCreateScriptNode_r(GameObject go) {
             MonoBehaviour[] scripts = go.GetComponents<MonoBehaviour>() as MonoBehaviour[];
             foreach (MonoBehaviour script in scripts) {
+				if(script == null)
+				{
+					Debug.LogWarning(string.Format("Orphaned script on component {0}", go.name), go);
+					continue;
+				}
                 var node = new ScriptNode();
                 node.Initialize(script, containerTable);
 

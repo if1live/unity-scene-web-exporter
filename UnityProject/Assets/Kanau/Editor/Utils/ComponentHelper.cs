@@ -9,9 +9,13 @@ namespace Assets.Kanau.Utils
             if (go.GetComponent<Renderer>() is MeshRenderer) {
                 MeshFilter meshFilter = go.GetComponent<MeshFilter>();
                 mesh = meshFilter.sharedMesh;
-            } else {
+			} else if (go.GetComponent<SkinnedMeshRenderer>() != null) {
                 mesh = go.GetComponent<SkinnedMeshRenderer>().sharedMesh;
             }
+			else
+			{
+				Debug.LogWarning("Unknown Mesh on object", go);
+			}
             return mesh;
         }
     }
